@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "Hash": "Nj9jIeA4iBuroqRwq56XWkT6Zyt5JBhlQeioJwPUOvo=",
+  "Source": "PlayersBook.Web",
+  "BasePath": "_content/PlayersBook.Web",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "PlayersBook.Web\\wwwroot",
+      "Source": "PlayersBook.Web",
+      "ContentRoot": "C:\\Dev\\PlayersBook\\PlayersBook.Web\\wwwroot\\",
+      "BasePath": "_content/PlayersBook.Web",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Dev\\PlayersBook\\PlayersBook.Web\\wwwroot\\apiDoc.xml",
+      "SourceId": "PlayersBook.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Dev\\PlayersBook\\PlayersBook.Web\\wwwroot\\",
+      "BasePath": "_content/PlayersBook.Web",
+      "RelativePath": "apiDoc.xml",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\apiDoc.xml"
+    },
+    {
+      "Identity": "C:\\Dev\\PlayersBook\\PlayersBook.Web\\wwwroot\\favicon.ico",
+      "SourceId": "PlayersBook.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Dev\\PlayersBook\\PlayersBook.Web\\wwwroot\\",
+      "BasePath": "_content/PlayersBook.Web",
+      "RelativePath": "favicon.ico",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\favicon.ico"
+    }
+  ]
+}
