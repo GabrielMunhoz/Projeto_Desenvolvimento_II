@@ -15,19 +15,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.1-Data", "4.1-Data", "{92
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.2-CrossCutting", "4.2-CrossCutting", "{42E017E9-6295-4DA6-B1A8-6A2410265824}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayersBook.Application", "PlayersBook.Application\PlayersBook.Application.csproj", "{51887466-B97E-4F07-A7DA-24A524F5A4E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlayersBook.Application", "PlayersBook.Application\PlayersBook.Application.csproj", "{51887466-B97E-4F07-A7DA-24A524F5A4E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayersBook.Domain", "PlayersBook.Domain\PlayersBook.Domain.csproj", "{9F54C800-E7BF-4006-9D17-40EFE0201788}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlayersBook.Domain", "PlayersBook.Domain\PlayersBook.Domain.csproj", "{9F54C800-E7BF-4006-9D17-40EFE0201788}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayersBook.Data", "PlayersBook.Data\PlayersBook.Data.csproj", "{2C9D0F05-D56A-4C6C-99FD-CA61505EAA09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlayersBook.Data", "PlayersBook.Data\PlayersBook.Data.csproj", "{2C9D0F05-D56A-4C6C-99FD-CA61505EAA09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayersBook.Auth", "PlayersBook.Auth\PlayersBook.Auth.csproj", "{76C5AE86-C9DE-40FD-8B97-B5173163A3DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlayersBook.Auth", "PlayersBook.Auth\PlayersBook.Auth.csproj", "{76C5AE86-C9DE-40FD-8B97-B5173163A3DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayersBook.IoC", "PlayersBook.IoC\PlayersBook.IoC.csproj", "{C733BB46-2047-4664-B7D9-A42E28260AA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlayersBook.IoC", "PlayersBook.IoC\PlayersBook.IoC.csproj", "{C733BB46-2047-4664-B7D9-A42E28260AA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayersBook.Swagger", "PlayersBook.Swagger\PlayersBook.Swagger.csproj", "{D54A231B-75D8-4F57-981F-6290AB0EFA2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlayersBook.Swagger", "PlayersBook.Swagger\PlayersBook.Swagger.csproj", "{D54A231B-75D8-4F57-981F-6290AB0EFA2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayersBook.Web", "PlayersBook.Web\PlayersBook.Web.csproj", "{6719E04C-EB3A-47A3-BBBB-5B1EA30D0F11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlayersBook.Web", "PlayersBook.Web\PlayersBook.Web.csproj", "{6719E04C-EB3A-47A3-BBBB-5B1EA30D0F11}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0-Test", "0-Test", "{FA6F6D9C-3728-4D1A-A978-B8AF6907834E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayersBook.Application.Test", "PlayersBook.Application.Test\PlayersBook.Application.Test.csproj", "{0A139A80-819F-4D77-BD2C-F38B70DDACE3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +67,10 @@ Global
 		{6719E04C-EB3A-47A3-BBBB-5B1EA30D0F11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6719E04C-EB3A-47A3-BBBB-5B1EA30D0F11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6719E04C-EB3A-47A3-BBBB-5B1EA30D0F11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A139A80-819F-4D77-BD2C-F38B70DDACE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A139A80-819F-4D77-BD2C-F38B70DDACE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A139A80-819F-4D77-BD2C-F38B70DDACE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A139A80-819F-4D77-BD2C-F38B70DDACE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,6 +85,7 @@ Global
 		{C733BB46-2047-4664-B7D9-A42E28260AA2} = {42E017E9-6295-4DA6-B1A8-6A2410265824}
 		{D54A231B-75D8-4F57-981F-6290AB0EFA2C} = {42E017E9-6295-4DA6-B1A8-6A2410265824}
 		{6719E04C-EB3A-47A3-BBBB-5B1EA30D0F11} = {317BF1FE-E6E7-498C-BF40-705A7726413E}
+		{0A139A80-819F-4D77-BD2C-F38B70DDACE3} = {FA6F6D9C-3728-4D1A-A978-B8AF6907834E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3A51ADDE-6253-42F1-8B79-7A5BC303BC7F}

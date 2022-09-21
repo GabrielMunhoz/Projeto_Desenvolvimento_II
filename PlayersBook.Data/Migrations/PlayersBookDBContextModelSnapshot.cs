@@ -31,7 +31,7 @@ namespace PlayersBook.Data.Migrations
                     b.Property<DateTime>("DateCreate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 9, 6, 23, 26, 29, 208, DateTimeKind.Local).AddTicks(6621));
+                        .HasDefaultValue(new DateTime(2022, 9, 20, 20, 26, 48, 543, DateTimeKind.Local).AddTicks(3239));
 
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime2");
@@ -118,7 +118,7 @@ namespace PlayersBook.Data.Migrations
                     b.Property<DateTime>("DateCreate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 9, 6, 23, 26, 29, 208, DateTimeKind.Local).AddTicks(6972));
+                        .HasDefaultValue(new DateTime(2022, 9, 20, 20, 26, 48, 543, DateTimeKind.Local).AddTicks(3575));
 
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime2");
@@ -140,7 +140,7 @@ namespace PlayersBook.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NickName")
+                    b.Property<string>("Nickname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -163,7 +163,7 @@ namespace PlayersBook.Data.Migrations
                             IsDeleted = false,
                             LastName = "Munhoz",
                             Name = "Gabriel",
-                            NickName = "Gmunho",
+                            Nickname = "Gmunho",
                             Password = "teste"
                         });
                 });
@@ -177,7 +177,7 @@ namespace PlayersBook.Data.Migrations
                     b.Property<DateTime>("DateCreate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 9, 6, 23, 26, 29, 208, DateTimeKind.Local).AddTicks(7158));
+                        .HasDefaultValue(new DateTime(2022, 9, 20, 20, 26, 48, 543, DateTimeKind.Local).AddTicks(3758));
 
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime2");

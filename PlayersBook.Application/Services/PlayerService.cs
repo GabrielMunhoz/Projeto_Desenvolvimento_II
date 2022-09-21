@@ -1,4 +1,6 @@
-﻿using PlayersBook.Application.Interfaces;
+﻿using AutoMapper;
+using PlayersBook.Application.Interfaces;
+using PlayersBook.Application.ViewModels.Player;
 using PlayersBook.Auth.Services;
 using PlayersBook.Domain.Entities;
 using PlayersBook.Domain.Interfaces;
@@ -11,26 +13,29 @@ namespace PlayersBook.Application.Services
     public class PlayerService : IPlayerService
     {
         private readonly IPlayerRepository playerRepository;
+        private readonly IMapper mapper;
 
-        public PlayerService(IPlayerRepository playerRepository)
+        public PlayerService(IPlayerRepository playerRepository, IMapper mapper)
         {
             this.playerRepository = playerRepository;
+            this.mapper = mapper;
         }
         public PlayerAuthenticateResponseViewModel Authenticate(Player player)
         {
-            if (string.IsNullOrEmpty(player.Email) || string.IsNullOrEmpty(player.Password))
-                throw new Exception("player email/password is not valid");
+            if (string.IsNullOrEmpty(player.Nickname) || string.IsNullOrEmpty(player.Password))
+                throw new Exception("Nickname/password are required");
 
             player.Password = EncryptPassword(player.Password);
 
             Player playerDB = playerRepository.Find(x => !x.IsDeleted
-                                                    && x.Email.ToLower() == player.Email.ToLower()
+                                                    && (x.Email.ToLower() == player.Nickname.ToLower() 
+                                                        || x.Nickname.ToLower() == player.Nickname.ToLower())
                                                     && x.Password.ToLower() == player.Password.ToLower());
 
             if (playerDB == null)
                 throw new Exception("Player not found");
 
-            return new PlayerAuthenticateResponseViewModel(playerDB,
+            return new PlayerAuthenticateResponseViewModel(mapper.Map<PlayerViewModel>(playerDB),
                                                         TokenService.GenerateToken(playerDB));
         }
 
@@ -47,12 +52,12 @@ namespace PlayersBook.Application.Services
         public Player GetById(string id)
         {
             if (!Guid.TryParse(id, out Guid playerId))
-                throw new Exception("user id is not valid");
+                throw new Exception("Player id is not valid");
 
             Player player = playerRepository.Find(x => x.Id == playerId && !x.IsDeleted);
 
             if (player == null)
-                throw new Exception("User not foud");
+                throw new Exception("Player not foud");
 
             return player;
         }

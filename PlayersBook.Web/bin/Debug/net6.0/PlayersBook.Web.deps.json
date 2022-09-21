@@ -1073,6 +1073,7 @@
       },
       "PlayersBook.Application/1.0.0": {
         "dependencies": {
+          "AutoMapper": "11.0.1",
           "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
           "PlayersBook.Auth": "1.0.0",
           "PlayersBook.Domain": "1.0.0"

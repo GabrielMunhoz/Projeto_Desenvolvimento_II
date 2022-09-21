@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using PlayersBook.Application.Interfaces;
 using PlayersBook.Application.ViewModels.Player;
 using PlayersBook.Domain.Entities;
+using Template.Application.ViewModels;
 
 namespace PlayersBook.Web.Controllers
 {
@@ -21,7 +22,7 @@ namespace PlayersBook.Web.Controllers
         }
 
         [HttpPost("Authenticate"), AllowAnonymous]
-        public IActionResult Authenticate(PlayerViewModel playerViewModel)
+        public IActionResult Authenticate(PlayerAuthenticateRequestViewModel playerViewModel)
         {
             if (!ModelState.IsValid)
                 return BadRequest();

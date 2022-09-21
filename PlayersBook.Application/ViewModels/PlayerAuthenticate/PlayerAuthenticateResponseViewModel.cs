@@ -1,12 +1,13 @@
-﻿using PlayersBook.Domain.Entities;
+﻿using PlayersBook.Application.ViewModels.Player;
+using PlayersBook.Domain.Entities;
 
 namespace Template.Application.ViewModels
 {
     public class PlayerAuthenticateResponseViewModel
     {
-        public Player Player { get; set; }
+        public PlayerViewModel Player { get; set; }
         public string Token { get; set; }
-        public PlayerAuthenticateResponseViewModel(Player player, string token)
+        public PlayerAuthenticateResponseViewModel(PlayerViewModel player, string token)
         {
             this.Player = player;
             this.Token = token;

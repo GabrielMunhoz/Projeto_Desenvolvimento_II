@@ -1,5 +1,6 @@
 ﻿using PlayersBook.Application.ViewModels.Player;
 using PlayersBook.Domain.Entities;
+using Template.Application.ViewModels;
 using Profile = AutoMapper.Profile;
 
 namespace PlayersBook.Application.AutoMapper
@@ -11,6 +12,7 @@ namespace PlayersBook.Application.AutoMapper
             #region ViewModelToDomain
 
             CreateMap<PlayerViewModel, Player>();
+            CreateMap<PlayerAuthenticateRequestViewModel, Player>();
 
             #endregion
 
