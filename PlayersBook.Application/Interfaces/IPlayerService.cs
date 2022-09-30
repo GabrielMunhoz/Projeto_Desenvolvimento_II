@@ -7,9 +7,9 @@ namespace PlayersBook.Application.Interfaces
     {
         PlayerAuthenticateResponseViewModel Authenticate(Player user);
         List<Player> Get();
-        bool Post(Player player);
-        Player GetById(string id);
-        bool Put(Player player);
-        bool Delete(string id);
+        Task<Player> Post(Player player);
+        Task<Player> GetById(string id);
+        Task<Player> Put(Player player);
+        Task<bool> Delete(string id);
     }
 }

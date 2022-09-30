@@ -12,8 +12,6 @@ namespace PlayersBook.Data.Mapping
             builder.Property(x => x.GameCategory).IsRequired();
             builder.Property(x => x.GroupCategory).IsRequired();
             builder.Property(x => x.IsActive).IsRequired();
-            builder.HasOne(x => x.Host);
-            builder.HasMany(x => x.Guests).WithOne();
         }
     }
 }

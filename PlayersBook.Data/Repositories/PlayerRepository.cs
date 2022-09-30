@@ -1,4 +1,5 @@
-﻿using PlayersBook.Data.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using PlayersBook.Data.Context;
 using PlayersBook.Data.Repositories.Base;
 using PlayersBook.Domain.Entities;
 using PlayersBook.Domain.Interfaces;
@@ -11,9 +12,9 @@ namespace PlayersBook.Data.Repositories
         {
 
         }
-        public IEnumerable<Player> GetAll()
+        public List<Player> GetAll()
         {
-            return Query(x => !x.IsDeleted);
+            return Query(x => !x.IsDeleted).ToList();
         }
     }
 }

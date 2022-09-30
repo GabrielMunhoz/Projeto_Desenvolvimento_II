@@ -55,5 +55,25 @@ namespace PlayersBook.Data.Extensions
 
             return builder;
         }
+
+        public static ModelBuilder ConfigureRelationshipAdvertisementPlayer(this ModelBuilder builder)
+        {
+            builder.Entity<AdvertisementPlayers>()
+                .HasKey(ap => new { ap.advertisementId, ap.PlayerId }); 
+
+            builder.Entity<AdvertisementPlayers>()
+                .HasOne(ad => ad.Advertisement)
+                .WithMany(p => p.Guests)
+                .HasForeignKey(ad => ad.advertisementId);
+            
+            builder.Entity<AdvertisementPlayers>()
+                .HasOne(ad => ad.Player)
+                .WithMany(p => p.Advertisements)
+                .HasForeignKey(ad => ad.PlayerId);
+
+            
+
+            return builder;
+        }
     }
 }

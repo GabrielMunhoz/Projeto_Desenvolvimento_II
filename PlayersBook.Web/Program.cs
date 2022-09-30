@@ -6,6 +6,7 @@ using PlayersBook.Auth.Models;
 using PlayersBook.Data.Context;
 using PlayersBook.IoC;
 using PlayersBook.Swagger;
+using PlayersBook.Web.AutoMapper;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,7 +21,7 @@ opt.UseSqlServer(builder.Configuration.GetConnectionString("playersbookdb"))
 
 NativeInjector.RegisterServices(builder.Services);
 
-builder.Services.AddAutoMapper(typeof(AutoMapperSetup));
+builder.Services.AddAutoMapperConfiguration();
 
 builder.Services.AddSwaggerConfiguration();
 
@@ -51,13 +52,13 @@ builder.Services.AddAuthentication(x =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-}
+//if (!app.Environment.IsDevelopment())
+//{
+//    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+//    app.UseHsts();
+//}
 
-app.UseSwaggerConfiguration();
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
@@ -69,6 +70,8 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller}/{action=Index}/{id?}");
+
+app.UseSwaggerConfiguration();
 
 app.MapFallbackToFile("index.html"); ;
 

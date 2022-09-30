@@ -39,17 +39,20 @@ namespace PlayersBook.Application.Services
                                                         TokenService.GenerateToken(playerDB));
         }
 
-        public bool Post(Player player)
+        public async Task<Player> Post(Player player)
         {
-            throw new NotImplementedException();
+            if (!(player.Id == Guid.Empty))
+                throw new Exception("Id must be empty");
+            player.Password = EncryptPassword(player.Password);
+            return await playerRepository.CreateAsync(player);
         }
 
         public List<Player> Get()
         {
-            return playerRepository.GetAll().ToList();
+            return playerRepository.GetAll();
         }
 
-        public Player GetById(string id)
+        public Task<Player> GetById(string id)
         {
             if (!Guid.TryParse(id, out Guid playerId))
                 throw new Exception("Player id is not valid");
@@ -59,10 +62,10 @@ namespace PlayersBook.Application.Services
             if (player == null)
                 throw new Exception("Player not foud");
 
-            return player;
+            return Task.FromResult(player);
         }
 
-        public bool Put(Player player)
+        public Task<Player> Put(Player player)
         {
             if (player.Id == Guid.Empty)
                 throw new Exception("Player id is not valid");
@@ -74,10 +77,13 @@ namespace PlayersBook.Application.Services
 
             player.Password = EncryptPassword(player.Password);
 
-            return playerRepository.Update(player);
+            if (!playerRepository.Update(player))
+                throw new Exception("Update player failed");
+
+            return Task.FromResult(player); 
         }
 
-        public bool Delete(string id)
+        public Task<bool> Delete(string id)
         {
             throw new NotImplementedException();
         }

@@ -1,0 +1,20 @@
+<button class="btn-primary" (click)="showList = !showList">
+  {{ showList ? "Novo player" : "Lista de players" }}
+</button>
+
+<div *ngIf="showList">
+  <div *ngFor="let item of players">
+    <p>{{ item.name }}</p>
+  </div>
+  <p>players works!</p>
+</div>
+
+<div *ngIf="!showList">
+<form (ngSubmit)="post()" #playerForm="ngForm">
+    <label for="name">Name: </label>
+    <input type="text" name="name" [(ngModel)]="player.name">
+    <label for="nickname">Nickname: </label>
+    <input type="text" name="nickname" [(ngModel)]="player.nickname">
+    <input type="submit" value="Enviar">
+</form>
+</div>

@@ -14,12 +14,14 @@ namespace PlayersBook.IoC
             #region Services
 
             services.AddScoped<IPlayerService, PlayerService>();
+            services.AddScoped<IAdvertisementService, AdvertisementService>();
 
             #endregion
 
             #region Repositories
 
             services.AddScoped<IPlayerRepository, PlayerRepository>();
+            services.AddScoped<IAdvertisementRepository, AdvertisementRepository>();
             
             #endregion
 

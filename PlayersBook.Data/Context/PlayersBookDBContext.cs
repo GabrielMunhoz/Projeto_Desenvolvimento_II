@@ -10,6 +10,8 @@ namespace PlayersBook.Data.Context
         #region DBSETS
         public DbSet<Player> Players { get; set; }
         public DbSet<Profile> Profiles { get; set; }
+        public DbSet<Advertisement> Advertisements { get; set; }
+
         #endregion
 
         #region Constructor
@@ -26,7 +28,9 @@ namespace PlayersBook.Data.Context
             modelBuilder.ApplyConfiguration(new ProfileMap());
 
             modelBuilder.ApplyGlobalConfiguration();
-            modelBuilder.SeedData(); 
+            modelBuilder.SeedData();
+
+            modelBuilder.ConfigureRelationshipAdvertisementPlayer(); 
 
             base.OnModelCreating(modelBuilder);
         }

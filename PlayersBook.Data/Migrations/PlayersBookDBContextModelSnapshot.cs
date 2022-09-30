@@ -31,7 +31,7 @@ namespace PlayersBook.Data.Migrations
                     b.Property<DateTime>("DateCreate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 9, 20, 20, 26, 48, 543, DateTimeKind.Local).AddTicks(3239));
+                        .HasDefaultValue(new DateTime(2022, 9, 23, 18, 39, 48, 958, DateTimeKind.Local).AddTicks(3229));
 
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime2");
@@ -44,9 +44,6 @@ namespace PlayersBook.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("HostId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -55,11 +52,28 @@ namespace PlayersBook.Data.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
 
+                    b.Property<string>("PlayerHostId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("HostId");
+                    b.ToTable("Advertisements", (string)null);
+                });
 
-                    b.ToTable("Advertisement");
+            modelBuilder.Entity("PlayersBook.Domain.Entities.AdvertisementPlayers", b =>
+                {
+                    b.Property<Guid>("advertisementId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("PlayerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("advertisementId", "PlayerId");
+
+                    b.HasIndex("PlayerId");
+
+                    b.ToTable("AdvertisementPlayers", (string)null);
                 });
 
             modelBuilder.Entity("PlayersBook.Domain.Entities.GamesCategory", b =>
@@ -81,7 +95,7 @@ namespace PlayersBook.Data.Migrations
 
                     b.HasIndex("ProfileId");
 
-                    b.ToTable("GamesCategory");
+                    b.ToTable("GamesCategory", (string)null);
                 });
 
             modelBuilder.Entity("PlayersBook.Domain.Entities.GamesTags", b =>
@@ -103,7 +117,7 @@ namespace PlayersBook.Data.Migrations
 
                     b.HasIndex("ProfileId");
 
-                    b.ToTable("GamesTags");
+                    b.ToTable("GamesTags", (string)null);
                 });
 
             modelBuilder.Entity("PlayersBook.Domain.Entities.Player", b =>
@@ -112,13 +126,10 @@ namespace PlayersBook.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AdvertisementId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime>("DateCreate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 9, 20, 20, 26, 48, 543, DateTimeKind.Local).AddTicks(3575));
+                        .HasDefaultValue(new DateTime(2022, 9, 23, 18, 39, 48, 958, DateTimeKind.Local).AddTicks(3520));
 
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime2");
@@ -150,9 +161,7 @@ namespace PlayersBook.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AdvertisementId");
-
-                    b.ToTable("Players");
+                    b.ToTable("Players", (string)null);
 
                     b.HasData(
                         new
@@ -177,7 +186,7 @@ namespace PlayersBook.Data.Migrations
                     b.Property<DateTime>("DateCreate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 9, 20, 20, 26, 48, 543, DateTimeKind.Local).AddTicks(3758));
+                        .HasDefaultValue(new DateTime(2022, 9, 23, 18, 39, 48, 958, DateTimeKind.Local).AddTicks(3653));
 
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime2");
@@ -205,18 +214,26 @@ namespace PlayersBook.Data.Migrations
 
                     b.HasIndex("PlayerId");
 
-                    b.ToTable("Profiles");
+                    b.ToTable("Profiles", (string)null);
                 });
 
-            modelBuilder.Entity("PlayersBook.Domain.Entities.Advertisement", b =>
+            modelBuilder.Entity("PlayersBook.Domain.Entities.AdvertisementPlayers", b =>
                 {
-                    b.HasOne("PlayersBook.Domain.Entities.Player", "Host")
-                        .WithMany()
-                        .HasForeignKey("HostId")
+                    b.HasOne("PlayersBook.Domain.Entities.Player", "Player")
+                        .WithMany("Advertisements")
+                        .HasForeignKey("PlayerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Host");
+                    b.HasOne("PlayersBook.Domain.Entities.Advertisement", "Advertisement")
+                        .WithMany("Guests")
+                        .HasForeignKey("advertisementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Advertisement");
+
+                    b.Navigation("Player");
                 });
 
             modelBuilder.Entity("PlayersBook.Domain.Entities.GamesCategory", b =>
@@ -233,13 +250,6 @@ namespace PlayersBook.Data.Migrations
                         .HasForeignKey("ProfileId");
                 });
 
-            modelBuilder.Entity("PlayersBook.Domain.Entities.Player", b =>
-                {
-                    b.HasOne("PlayersBook.Domain.Entities.Advertisement", null)
-                        .WithMany("Guests")
-                        .HasForeignKey("AdvertisementId");
-                });
-
             modelBuilder.Entity("PlayersBook.Domain.Entities.Profile", b =>
                 {
                     b.HasOne("PlayersBook.Domain.Entities.Player", "Player")
@@ -254,6 +264,11 @@ namespace PlayersBook.Data.Migrations
             modelBuilder.Entity("PlayersBook.Domain.Entities.Advertisement", b =>
                 {
                     b.Navigation("Guests");
+                });
+
+            modelBuilder.Entity("PlayersBook.Domain.Entities.Player", b =>
+                {
+                    b.Navigation("Advertisements");
                 });
 
             modelBuilder.Entity("PlayersBook.Domain.Entities.Profile", b =>

@@ -25,6 +25,29 @@ namespace PlayersBook.Swagger
                     });
                 string? xmlPath = Path.Combine("wwwroot", "apiDoc.xml");
                 opt.IncludeXmlComments(xmlPath);
+                opt.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                    {
+                        In = ParameterLocation.Header,
+                        Description = "Please enter a valid token",
+                        Name = "Authorization",
+                        Type = SecuritySchemeType.Http,
+                        BearerFormat = "JWT",
+                        Scheme = "Bearer"
+                    });
+                opt.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type=ReferenceType.SecurityScheme,
+                                Id="Bearer"
+                            }
+                        },
+                        new string[]{}
+                    }
+                });
             });
         }
 
@@ -32,8 +55,8 @@ namespace PlayersBook.Swagger
         {
             return app.UseSwagger().UseSwaggerUI(c =>
             {
-                c.RoutePrefix = "doc";
-                c.SwaggerEndpoint("../swagger/v1/swagger.json", "Api v1");
+                c.RoutePrefix = "api/doc";
+                c.SwaggerEndpoint("../../swagger/v1/swagger.json", "Api v1");
             });
         }
 

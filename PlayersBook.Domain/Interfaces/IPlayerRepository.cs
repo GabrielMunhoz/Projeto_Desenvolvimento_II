@@ -5,6 +5,6 @@ namespace PlayersBook.Domain.Interfaces
 {
     public interface IPlayerRepository : IBaseRepository<Player>
     {
-        IEnumerable<Player> GetAll();
+        List<Player> GetAll();
     }
 }

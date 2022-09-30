@@ -22,7 +22,7 @@ namespace PlayersBook.Application.Test.Services
             {
                 var mappingConfig = new MapperConfiguration(mc =>
                 {
-                    mc.AddProfile(new AutoMapperSetup());
+                    mc.AddProfile(new PlayerMapping());
                 });
                 IMapper mapper = mappingConfig.CreateMapper();
                 _mapper = mapper;
@@ -99,7 +99,7 @@ namespace PlayersBook.Application.Test.Services
 
         }
         [Fact]
-        public void GetById_SendingInValidId_Error()
+        public  void GetById_SendingInValidId_Error()
         {
             //Arranje
             string messageExpected = "user id is not valid";
@@ -107,7 +107,7 @@ namespace PlayersBook.Application.Test.Services
             _playerRepository.Setup(x => x.Find(It.IsAny<Expression<Func<Player, bool>>>())).Returns(PlayerMockSeed.GetPlayers().FirstOrDefault());
 
             //Act
-            var ex = Assert.Throws<Exception>(() => _playerService.GetById(It.IsAny<string>()));
+            var ex = Assert.Throws<Exception>(() =>  _playerService.GetById(It.IsAny<string>()).Result);
             //Assert
             Assert.Equal(ex.Message, messageExpected);
         }
@@ -121,7 +121,7 @@ namespace PlayersBook.Application.Test.Services
             _playerRepository.Setup(x => x.Find(It.IsAny<Expression<Func<Player, bool>>>()));
 
             //Act
-            var ex = Assert.Throws<Exception>(() => _playerService.GetById(validId));
+            var ex = Assert.Throws<Exception>(() => _playerService.GetById(validId).Result);
             //Assert
             Assert.Equal(ex.Message, messageExpected);
         }
