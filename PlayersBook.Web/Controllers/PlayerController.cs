@@ -23,7 +23,7 @@ namespace PlayersBook.Web.Controllers
             this._logger = logger;
         }
 
-        [HttpPost("Authenticate")]
+        [HttpPost("Authenticate"), AllowAnonymous]
         public IActionResult Authenticate(PlayerAuthenticateRequestViewModel playerViewModel)
         {
             if (!ModelState.IsValid)
@@ -34,7 +34,7 @@ namespace PlayersBook.Web.Controllers
             return Ok(playerService.Authenticate(player));
         }
 
-        [HttpGet,AllowAnonymous]
+        [HttpGet]
         public IActionResult Get()
         {
             _logger.LogInformation($"Method get {nameof(PlayerController)}"); 
@@ -48,7 +48,7 @@ namespace PlayersBook.Web.Controllers
             return Ok(mapper.Map<PlayerViewModel>(playerService.GetById(id)));
         }
 
-        [HttpPost]
+        [HttpPost, AllowAnonymous]
         public async Task<IActionResult> Post(NewPlayerViewModel playerViewModel)
         {
             if (playerViewModel.Id != Guid.Empty)
