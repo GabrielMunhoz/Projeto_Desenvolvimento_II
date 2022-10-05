@@ -8,6 +8,10 @@ a {
 code {
   color: #e01a76;
 }
+body{
+  background-color: #360C2D;
+  height: 100vh;
+}
 
 .btn-primary {
   color: #fff;

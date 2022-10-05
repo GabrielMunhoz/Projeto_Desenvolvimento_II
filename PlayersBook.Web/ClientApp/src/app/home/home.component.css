@@ -1,0 +1,52 @@
+.heroHeader{
+    margin-top: 30px;
+    color: white;
+    font-family: "Lemonada", sans-serif;
+    margin-bottom: 30px;
+}
+.categories{
+    padding: 10px 10px;
+    background-color: #231923;
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.cardCategory{
+    background-color: white;
+    height: 200px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+.cardTitle{
+    color: black;
+}
+.createAdvertisement{
+    padding: 10px 10px;
+    background-color: #231923;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.createAdvertisement h4{
+    color: white;
+}
+.createAdvertisement strong{
+    color: #00D46E;
+}
+.categoriesAdvertisements{
+    width: 100%;
+
+}
+.advertisement{
+    background-color: #231923;
+    color: white;
+}
