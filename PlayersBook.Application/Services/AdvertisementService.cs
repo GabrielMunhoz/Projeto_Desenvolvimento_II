@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using PlayersBook.Application.Interfaces;
+using PlayersBook.Domain.DTOs;
 using PlayersBook.Domain.Entities;
 using PlayersBook.Domain.Interfaces;
 
@@ -15,10 +16,10 @@ namespace PlayersBook.Application.Services
             this.advertisementRepository = advertisementRepository;
             this.logger = logger;
         }
-        
+
         public async Task<ICollection<Advertisement>> GetAllAsync()
         {
-            return await advertisementRepository.GetAdvertisementsActiveAsync(); 
+            return await advertisementRepository.GetAdvertisementsActiveAsync();
         }
 
         public async Task<Advertisement> GetById(string id)
@@ -26,12 +27,12 @@ namespace PlayersBook.Application.Services
             if (string.IsNullOrEmpty(id))
                 throw new Exception("Player Id is not valid");
 
-            Guid.TryParse(id, out Guid userId); 
+            Guid.TryParse(id, out Guid userId);
 
             var result = await advertisementRepository.GetByIdAsync(userId);
 
             if (result == null)
-                throw new Exception("Not Found"); 
+                throw new Exception("Not Found");
 
             return result;
         }
@@ -46,7 +47,7 @@ namespace PlayersBook.Application.Services
                 var result = await advertisementRepository.SaveAdvertisement(advertisement);
 
                 if (result == null)
-                    throw new Exception("Create Failed"); 
+                    throw new Exception("Create Failed");
 
 
                 return result;
@@ -81,7 +82,25 @@ namespace PlayersBook.Application.Services
 
         public async Task<bool> DeleteAsync(string id)
         {
-            return await advertisementRepository.DeleteAdvertisementAsync(id); 
+            return await advertisementRepository.DeleteAdvertisementAsync(id);
+        }
+
+        public async Task<IList<AdvertisementsGroupedByGame>> GetAdvertisementsGroupedAsync()
+        {
+            try
+            {
+                var advertisements = await advertisementRepository.GetAdvertisementsActiveAsync();
+
+                List<AdvertisementsGroupedByGame>? itemsGruped = advertisements.GroupBy(x => x.GameCategory, (key, g) => new AdvertisementsGroupedByGame { CategoryGame = key, Advertisements = g.ToList() }).ToList();
+
+                return itemsGruped;
+
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex.Message); 
+                throw;
+            }
         }
     }
 }

@@ -12,6 +12,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { PlayersComponent } from './players/players.component';
 import { PlayerDataService } from './_data-services/players.data-service';
 import { Interceptor } from './interceptor/app.interceptor.module';
+import { AdvertisementDataService } from './_data-services/advertisementDataService';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { Interceptor } from './interceptor/app.interceptor.module';
     ]),
     Interceptor
   ],
-  providers: [PlayerDataService],
+  providers: [PlayerDataService, AdvertisementDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

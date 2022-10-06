@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using PlayersBook.Application.Interfaces;
 using PlayersBook.Application.ViewModels.Advertisement;
 using PlayersBook.Data.Repositories;
@@ -29,6 +30,12 @@ namespace PlayersBook.Web.Controllers
         public async Task<IActionResult> GetAdvertisementsAsync()
         {
             return Ok(mapper.Map<List<AdvertisementViewModel>>(await advertisementService.GetAllAsync())); 
+        }
+        [HttpGet("advertisementsGrouped")]
+        public async Task<IActionResult> GetAdvertisementsGrouByCategorysAsync()
+        {
+            var itemsGrouped = await advertisementService.GetAdvertisementsGroupedAsync();
+            return Ok(JsonConvert.SerializeObject(itemsGrouped)); 
         }
         
         [HttpGet("{id}")]

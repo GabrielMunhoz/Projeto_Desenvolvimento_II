@@ -51,9 +51,6 @@ namespace PlayersBook.Web.Controllers
         [HttpPost, AllowAnonymous]
         public async Task<IActionResult> Post(NewPlayerViewModel playerViewModel)
         {
-            if (playerViewModel.Id != Guid.Empty)
-                throw new Exception("Id must be empty.");
-
             if (!ModelState.IsValid)
                 return BadRequest("Player Invalid");
 
@@ -63,14 +60,14 @@ namespace PlayersBook.Web.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put(PlayerViewModel playerViewModel)
+        public async Task<IActionResult> Put(UpdatePlayerViewModel playerViewModel)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
             var result = await playerService.Put(mapper.Map<Player>(playerViewModel));
 
-            return Ok(result);
+            return Ok(mapper.Map<PlayerViewModel>(result));
         }
 
     }

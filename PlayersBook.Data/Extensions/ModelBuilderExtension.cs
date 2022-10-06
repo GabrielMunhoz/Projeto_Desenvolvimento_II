@@ -45,7 +45,7 @@ namespace PlayersBook.Data.Extensions
                 Nickname = "Gmunho",
                 Name = "Gabriel",
                 LastName = "Munhoz",
-                Password = "teste",
+                Password = "2E6F9B0D5885B6010F9167787445617F553A735F",//teste
                 Email = "gabrielmunhoz@playersbook.com",
                 DateCreate = new DateTime(2022, 9, 13),
                 IsDeleted = false,

@@ -16,10 +16,10 @@
 
 <div class="categoriesAdvertisements">
   <h4>categoryName</h4>
-  <div class="advertisement">
-    <h4>PlayerHostName</h4>
-    <p>groupType</p>
+  <div class="advertisement" *ngFor="let ad of advertisements">
+    <h4>{{ad.playerHostId}}</h4>
+    <p>{{ad.groupCategory}}</p>
     <p>useVoice?: </p>
-    <p>Guests: countGuests</p>
+    <p>Guests: {{ad.guestCount}}</p>
   </div>
 </div>
