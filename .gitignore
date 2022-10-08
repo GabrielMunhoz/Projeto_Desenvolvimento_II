@@ -229,3 +229,5 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+/PlayersBook.Web/ClientApp/node_modules
+/PlayersBook.Web/ClientApp/.angular/cache/13.3.4
