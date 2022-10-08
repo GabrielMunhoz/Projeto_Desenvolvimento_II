@@ -1,0 +1,15 @@
+<h1 mat-dialog-title> New Advertisement</h1>
+<div mat-dialog-content>
+    <form class="example-form" [formGroup]="advertisementForm">
+        <mat-form-field appearance="fill">
+            <mat-label>Input</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Select</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let item of playersName"  value="{{item}}">{{item}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </form>
+</div>

@@ -11,15 +11,20 @@
 </div>
 
 <div class="createAdvertisement">
-  <h4>Não encontrou seu duo, <strong>Crie seu anuncio!</strong></h4>
+  <h4>Não encontrou seu duo, <strong (click)="createAdvertisement()">Crie seu anuncio!</strong></h4>
 </div>
 
-<div class="categoriesAdvertisements">
-  <h4>categoryName</h4>
-  <div class="advertisement" *ngFor="let ad of advertisements">
-    <h4>{{ad.playerHostId}}</h4>
-    <p>{{ad.groupCategory}}</p>
-    <p>useVoice?: </p>
-    <p>Guests: {{ad.guestCount}}</p>
+
+
+<div class="gamesCategories" *ngFor="let adGrouped of advertisementsGrouped">
+  <h4>{{adGrouped.GameCategory}}</h4>
+  <div class="categoriesAdvertisements">
+    <div class="advertisement" *ngFor="let ad of adGrouped.Advertisements">
+      <h4>{{ad.PlayerHostName}}</h4>
+      <p>{{ad.GroupCategory}}</p>
+      <p>useVoice?: </p>
+      <p>Guests: {{ad.GuestCount}}</p>
+      <button (click)="alert(ad.Id)">Conectar</button>
+    </div>
   </div>
 </div>

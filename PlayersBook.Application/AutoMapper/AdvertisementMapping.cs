@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using PlayersBook.Application.ViewModels.Advertisement;
+using PlayersBook.Domain.DTOs;
 using PlayersBook.Domain.Entities;
 using Profile = AutoMapper.Profile;
 
@@ -16,12 +17,15 @@ namespace PlayersBook.Application.AutoMapper
             #endregion
 
             #region DomainToViewModel
+            CreateMap<AdvertisementsGroupedByGame, AdvertisementGroupedViewModel>();
             CreateMap<AdvertisementPlayers, PlayerReferenceViewModel>();
             CreateMap<PlayerReferenceViewModel, AdvertisementPlayers>();
             CreateMap<Advertisement, AdvertisementViewModel>()
                 .ForMember(
                 x => x.GuestCount,
-                opt => opt.MapFrom(src => src.Guests.Count())); ;
+                opt => opt.MapFrom(src => src.Guests.Count()))
+                .ForMember(x => x.PlayerHostName, opt => opt.MapFrom(src => src.Host.Nickname));
+
             CreateMap<Advertisement, AdvertisementDetailViewModel>()
                 .ForMember(
                 x => x.Guests,

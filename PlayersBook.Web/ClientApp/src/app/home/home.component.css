@@ -34,7 +34,7 @@
     justify-content: center;
     display: flex;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 .createAdvertisement h4{
     color: white;
@@ -42,9 +42,20 @@
 .createAdvertisement strong{
     color: #00D46E;
 }
-.categoriesAdvertisements{
+.createAdvertisement strong:hover{
+    color: #067f45;
+    cursor: pointer;
+}
+.gamesCategories{
     width: 100%;
     color: white;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+}
+.categoriesAdvertisements{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 .advertisement{
     padding: 30px;

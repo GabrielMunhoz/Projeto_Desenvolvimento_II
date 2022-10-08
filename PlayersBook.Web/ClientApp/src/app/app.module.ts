@@ -13,7 +13,13 @@ import { PlayersComponent } from './players/players.component';
 import { PlayerDataService } from './_data-services/players.data-service';
 import { Interceptor } from './interceptor/app.interceptor.module';
 import { AdvertisementDataService } from './_data-services/advertisementDataService';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatInputModule} from '@angular/material/input'
+import {MatSelectModule} from '@angular/material/select'
+import { MatNativeDateModule } from '@angular/material/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CreateAdvertisementDialogComponent } from './home/views/create-advertisement-dialog/create-advertisement-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +27,8 @@ import { AdvertisementDataService } from './_data-services/advertisementDataServ
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    PlayersComponent
+    PlayersComponent,
+    CreateAdvertisementDialogComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -33,7 +40,14 @@ import { AdvertisementDataService } from './_data-services/advertisementDataServ
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'players', component: PlayersComponent },
     ]),
-    Interceptor
+    Interceptor,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatInputModule,
+    MatNativeDateModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSelectModule
   ],
   providers: [PlayerDataService, AdvertisementDataService],
   bootstrap: [AppComponent]

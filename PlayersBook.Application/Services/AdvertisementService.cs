@@ -89,9 +89,9 @@ namespace PlayersBook.Application.Services
         {
             try
             {
-                var advertisements = await advertisementRepository.GetAdvertisementsActiveAsync();
+                var advertisements = await advertisementRepository.GetAdvertisementsActiveWithHostAsync();
 
-                List<AdvertisementsGroupedByGame>? itemsGruped = advertisements.GroupBy(x => x.GameCategory, (key, g) => new AdvertisementsGroupedByGame { CategoryGame = key, Advertisements = g.ToList() }).ToList();
+                List<AdvertisementsGroupedByGame>? itemsGruped = advertisements.GroupBy(x => x.GameCategory, (key, g) => new AdvertisementsGroupedByGame { GameCategory = key, Advertisements = g.ToList() }).ToList();
 
                 return itemsGruped;
 
