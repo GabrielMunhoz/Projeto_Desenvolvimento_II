@@ -11,6 +11,8 @@ namespace PlayersBook.Application.Interfaces
         Task<Advertisement> PostAsync(Advertisement advertisement);
         Task<bool> DeleteAsync(string id);
         Task<IList<AdvertisementsGroupedByGame>> GetAdvertisementsGroupedAsync();
-        
+        Task<IList<AdvertisementsGroupedByGame>> GetAdvertisementsGroupedWithArtAsync();
+
+
     }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { IGameCategory } from 'src/app/models/IgameCategory';
+import { AdvertisementDataService } from 'src/app/_data-services/advertisementDataService';
 import { GameDataService } from 'src/app/_data-services/gameCategoryDataService';
 
 @Component({
@@ -11,16 +12,19 @@ import { GameDataService } from 'src/app/_data-services/gameCategoryDataService'
 })
 export class CreateAdvertisementDialogComponent implements OnInit {
 
-  public advertisementForm: FormGroup = this.fb.group({}); 
+  advertisementForm: FormGroup = this.fb.group({}); 
 
-  public groupCategories = ["DUO", "TRIO", "TIME"]
+  groupCategories = ["DUO", "TRIO", "TIME"]
 
-  public gamesCategories : IGameCategory[] = [];
+  gamesCategories : IGameCategory[] = [];
+
+  spinner : boolean = false;
 
   constructor(
     private fb : FormBuilder,
     public dialogRef: MatDialogRef<CreateAdvertisementDialogComponent>,
-    private gameDataService: GameDataService
+    private gameDataService: GameDataService,
+    private advertisementDataService : AdvertisementDataService
     ) { }
 
   ngOnInit(): void {
@@ -38,12 +42,29 @@ export class CreateAdvertisementDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  publish(){
-    alert(this.advertisementForm.value);
-    console.log(this.advertisementForm.value);
-    this.dialogRef.close();
-    this.advertisementForm.reset();
+  getUrlImgage(){
+    return "https://static-cdn.jtvnw.net/ttv-boxart/516575-150x200.jpg"
   }
+
+  publish(){
+    this.spinner = true;
+    let ad = this.advertisementForm.value; 
+
+    this.advertisementDataService.post(ad).subscribe(result => {
+      console.log(result);
+      this.spinner = !this.spinner;
+      this.dialogRef.close();
+      this.advertisementForm.reset();
+    },
+    err => {
+      this.spinner = !this.spinner;
+      this.dialogRef.close();
+    this.advertisementForm.reset();
+      console.log(err);
+    })
+
+  }
+  
   getNicknamePlayerLoged(){
     let session = JSON.parse(localStorage.getItem("PlayerLogged") || ''); 
     return session?.player?.nickname; 

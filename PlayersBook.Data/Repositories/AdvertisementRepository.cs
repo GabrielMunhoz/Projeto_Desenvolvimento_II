@@ -121,7 +121,6 @@ namespace PlayersBook.Data.Repositories
         public async Task<Advertisement> SaveAdvertisement(Advertisement advertisement)
         {
             await _context.Advertisements.AddAsync(advertisement);
-            await AddGuestPlayer(advertisement);
             await _context.SaveChangesAsync();
 
             return advertisement;

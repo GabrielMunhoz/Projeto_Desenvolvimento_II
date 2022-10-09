@@ -1,9 +1,9 @@
 export interface IAdvertisement{
-    Id: string;
-    GameCategory : string; 
-    GroupCategory : string;
-    IsActive : boolean; 
-    PlayerHostId : string; 
-    PlayerHostName: string;
-    GuestCount : number;
+    id: string;
+    gameCategory : string; 
+    groupCategory : string;
+    isActive : boolean; 
+    playerHostId : string; 
+    playerHostName: string;
+    guestCount : number;
 }

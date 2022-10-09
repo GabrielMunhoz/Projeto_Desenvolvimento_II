@@ -6,3 +6,7 @@
 .example-full-width{
     width: 100%;
 }
+mat-spinner {
+    display: inline-block;
+    margin-left: 2px;
+}

@@ -29,12 +29,20 @@ namespace PlayersBook.Web.Controllers
         {
             return Ok(mapper.Map<List<AdvertisementViewModel>>(await advertisementService.GetAllAsync())); 
         }
+        
         [HttpGet("advertisementsGrouped")]
         public async Task<IActionResult> GetAdvertisementsGrouByCategorysAsync()
         {
             var itemsGrouped = mapper.Map<List<AdvertisementGroupedViewModel>>(await advertisementService.GetAdvertisementsGroupedAsync()); 
 
             return Ok(JsonConvert.SerializeObject(itemsGrouped)); 
+        }
+        [HttpGet("advertisementsGroupedWithArt")]
+        public async Task<IActionResult> GetAdvertisementsGrouByCategorysWithArtAsync()
+        {
+            var itemsGrouped = mapper.Map<List<AdvertisementGroupedWithArtViewModel>>(await advertisementService.GetAdvertisementsGroupedWithArtAsync()); 
+
+            return Ok(itemsGrouped); 
         }
         
         [HttpGet("{id}")]

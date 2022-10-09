@@ -29,5 +29,6 @@
 </div>
 <div mat-dialog-actions>
   <button mat-raised-button (click)="onCancelClick()">Cancelar</button>
-  <button mat-raised-button color="primary" (click)="publish()">Publicar</button>
+  <button mat-raised-button color="primary" (click)="publish()">Publicar<mat-spinner color="accent" diameter="20" *ngIf="spinner"></mat-spinner></button>
+  
 </div>

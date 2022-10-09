@@ -18,7 +18,7 @@ export class AdvertisementDataService{
         return this.http.get<IAdvertisement[]>(this.module);
     }
     getGrouped(): Observable<IAdvertisementGrouped[]>{
-        return this.http.get<IAdvertisementGrouped[]>(this.module + "/advertisementsGrouped");
+        return this.http.get<IAdvertisementGrouped[]>(this.module + "/advertisementsGroupedWithArt");
     }
     post(data: IAdvertisement){
         return this.http.post(this.module, data);

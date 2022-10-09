@@ -1,6 +1,7 @@
+import { IGameCategory } from "../IgameCategory";
 import {IAdvertisement} from "./Iadvertisement";
 
 export interface IAdvertisementGrouped{
-    GameCategory : string; 
-    Advertisements : IAdvertisement[]; 
+    gameCategory : IGameCategory; 
+    advertisements : IAdvertisement[]; 
 }

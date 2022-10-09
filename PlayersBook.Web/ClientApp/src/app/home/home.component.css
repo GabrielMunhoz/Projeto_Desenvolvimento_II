@@ -10,19 +10,35 @@
     width: 100%;
     height: 300px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: start;
+    align-items: center;
+
+}
+mat-spinner{
+    display: inline-block;
+    margin-left: 10px;
 }
 .cardCategory{
-    background-color: white;
+    background-color: transparent;
+    display: flex;
+    height: 500px;
+    width: 150px;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 10px;
+}
+.gameBoxArt{
     height: 200px;
     width: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
 }
 .cardTitle{
-    color: black;
+    color: white;
+    text-align: center;
+}
+.cardTitle h4{
+    margin-bottom: 0;
+    padding: 0;
 }
 .createAdvertisement{
     padding: 10px 10px;
@@ -37,10 +53,12 @@
     margin-bottom: 20px;
 }
 .createAdvertisement h4{
+    font-size: 1.5rem;
     color: white;
+    margin-bottom: 0;
 }
 .createAdvertisement strong{
-    color: #00D46E;
+    color: #55f0ae;
 }
 .createAdvertisement strong:hover{
     color: #067f45;

@@ -22,6 +22,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CreateAdvertisementDialogComponent } from './home/views/create-advertisement-dialog/create-advertisement-dialog.component';
 import { GameDataService } from './_data-services/gameCategoryDataService';
 import {MatButtonModule} from '@angular/material/button'
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +51,8 @@ import {MatButtonModule} from '@angular/material/button'
     FormsModule,
     ReactiveFormsModule,
     MatSelectModule,
-    MatButtonModule
+    MatButtonModule,
+    MatProgressSpinnerModule
   ],
   providers: [PlayerDataService, AdvertisementDataService, GameDataService],
   bootstrap: [AppComponent]
