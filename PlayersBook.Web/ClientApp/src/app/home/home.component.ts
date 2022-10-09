@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { IAdvertisementGrouped } from '../models/Advertisements/advertisementsGrouped';
+import { IAdvertisementGrouped } from '../models/Advertisements/IadvertisementsGrouped';
 import { AdvertisementDataService } from '../_data-services/advertisementDataService';
 import { CreateAdvertisementDialogComponent } from './views/create-advertisement-dialog/create-advertisement-dialog.component';
 @Component({
@@ -25,8 +25,6 @@ export class HomeComponent {
     this._advertisementData.getGrouped().subscribe(
       advertisementsGrouped => {
         this.advertisementsGrouped = advertisementsGrouped;
-        this.advertisementsGrouped.forEach(x => console.log(x))
-        console.log(this.advertisementsGrouped); 
     }, err => {
       console.log(err);
       alert("Erro interno");
@@ -39,7 +37,7 @@ export class HomeComponent {
 
   createAdvertisement(): void {
     const dialogRef = this.dialog.open(CreateAdvertisementDialogComponent, {
-      minWidth: '400px',
+      minWidth: '500px',
     });
 
     dialogRef.afterClosed().subscribe(result => {

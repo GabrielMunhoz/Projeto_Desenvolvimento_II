@@ -1,8 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Inject, Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { IAdvertisement } from "../models/Advertisements/advertisement";
-import { IAdvertisementGrouped } from "../models/Advertisements/advertisementsGrouped";
+import { IAdvertisement } from "../models/Advertisements/Iadvertisement";
+import { IAdvertisementGrouped } from "../models/Advertisements/IadvertisementsGrouped";
 
 @Injectable()
 export class AdvertisementDataService{

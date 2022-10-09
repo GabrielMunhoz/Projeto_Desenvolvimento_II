@@ -10,6 +10,7 @@ const PROXY_CONFIG = [
       "/api/player",
       "/api/advertisement",
       "/api/doc",
+      "/api/gamesCategory",
    ],
     target: target,
     secure: false,

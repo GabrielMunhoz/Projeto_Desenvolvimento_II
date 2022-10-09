@@ -1,15 +1,33 @@
-<h1 mat-dialog-title> New Advertisement</h1>
+<h1 mat-dialog-title>Novo anuncio</h1>
 <div mat-dialog-content>
-    <form class="example-form" [formGroup]="advertisementForm">
-        <mat-form-field appearance="fill">
-            <mat-label>Input</mat-label>
-            <input matInput>
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label>Select</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let item of playersName"  value="{{item}}">{{item}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-    </form>
+  <form class="example-form" [formGroup]="advertisementForm">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>PlayerHostName</mat-label>
+      <input matInput formControlName="PlayerHostName" name="PlayerHostName" />
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Qual jogo?</mat-label>
+      <mat-select formControlName="GameCategory" name="GameCategory">
+        <mat-option *ngFor="let gc of gamesCategories" value="{{ gc.name }}">{{
+          gc.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Tipo de grupo?</mat-label>
+      <mat-select formControlName="GroupCategory" name="GroupCategory">
+        <mat-option *ngFor="let gc of groupCategories" value="{{ gc }}">{{
+          gc
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill" hidden>
+      <mat-label>PlayerHostId</mat-label>
+      <input matInput formControlName="PlayerHostId" name="PlayerHostId"/>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="onCancelClick()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="publish()">Publicar</button>
 </div>

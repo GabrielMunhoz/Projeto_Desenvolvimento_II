@@ -20,7 +20,8 @@ namespace PlayersBook.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> GetTopGamesCategory()
         {
-            return Ok(await gamesCategoryService.GetTopGamesCategoryTwitchAsync()); 
+            var categories = await gamesCategoryService.GetTopGamesCategoryTwitchAsync();
+            return Ok(categories.GamesCategories); 
         }
     }
 }

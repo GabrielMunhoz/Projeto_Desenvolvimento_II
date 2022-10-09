@@ -10,7 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { PlayersComponent } from './players/players.component';
-import { PlayerDataService } from './_data-services/players.data-service';
+import { PlayerDataService } from './_data-services/playerDataService';
 import { Interceptor } from './interceptor/app.interceptor.module';
 import { AdvertisementDataService } from './_data-services/advertisementDataService';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,6 +20,8 @@ import {MatSelectModule} from '@angular/material/select'
 import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CreateAdvertisementDialogComponent } from './home/views/create-advertisement-dialog/create-advertisement-dialog.component';
+import { GameDataService } from './_data-services/gameCategoryDataService';
+import {MatButtonModule} from '@angular/material/button'
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,9 +49,10 @@ import { CreateAdvertisementDialogComponent } from './home/views/create-advertis
     MatNativeDateModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatButtonModule
   ],
-  providers: [PlayerDataService, AdvertisementDataService],
+  providers: [PlayerDataService, AdvertisementDataService, GameDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
