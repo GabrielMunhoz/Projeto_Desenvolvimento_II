@@ -1,3 +1,3 @@
-<h1>Backend Archteture</h1>
+<h1>Arquitetura Backend</h1>
 
-![Canvas MVP](BackendArchteture.jpeg)
+![Arquitetura Backend](BackendArchteture.jpeg)

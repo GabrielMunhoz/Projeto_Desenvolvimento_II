@@ -1,3 +1,3 @@
-<h1>Canvas MVP</h1>
+<h1>Protótipos de Telas</h1>
 
-![Canvas MVP](InterfacePrototypePlayersBook.pdf)
+![Protótipo de Interfaces](InterfacePrototypePlayersBook.pdf)

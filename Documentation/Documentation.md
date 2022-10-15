@@ -6,11 +6,11 @@ Esse documento tem como objetivo apresentar e descrever o projeto final, fornece
 
 ## [É - Não é - Faz - Não Faz](ENaoEFazNaoFaz/ENaoEFazNaoFaz.md)
 
-## [Diagrama de Atividade](ActivityDiagram/ActivityDiagramPlayersBook.md)
+## [Diagrama de Atividade](ActivityDiagram/ActivityDiagram.md)
 
 ## [Arquitetura Backend](BackendArchteture/BackendArchteture.md)
 ## [Diagrama Entidade Relacionamento](ClassDiagramERPlayersBook/ClassDiagramERPlayersBook.md)
 
 ## [Respostas Formulário PlayersBook](FormsValidationPlayersBook/FormsValidationPlayersBook.md)
-## [ Protótipo de Interfaces](InterfacePrototypePlayersBook/InterfacePrototypePlayersBook.md)
+## [Protótipo de Interfaces](InterfacePrototypePlayersBook/InterfacePrototypePlayersBook.md)
 

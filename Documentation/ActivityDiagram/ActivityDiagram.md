@@ -1,3 +1,3 @@
-<h1>Canvas MVP</h1>
+<h1>Diagrama de Atividade</h1>
 
-![Canvas MVP](ActivityDiagramPlayersBook.png)
+![Diagrama de Atividade](ActivityDiagramPlayersBook.png)

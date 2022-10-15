@@ -1,3 +1,3 @@
 <h1>Diagrama ER PlayersBook</h1>
 
-![Canvas MVP](ClassDiagramERPlayersBook.png)
+![Diagrama Entidade Relacionamento](ClassDiagramERPlayersBook.png)
