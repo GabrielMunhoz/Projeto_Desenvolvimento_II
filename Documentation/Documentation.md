@@ -4,12 +4,14 @@ Este documento tem como objetivo apresentar e descrever o Projeto Final, fornece
 
 [<h2>Canvas MVP</h2>](PlayersBook/Documentation/Canvas/canvasMvp.md)
 
-[<h2>É - Não é - Faz - Não Faz</h2>](https://github.com/danielandrade47/projetoFinal_Daniel/blob/main/e-naoe-faz-naofaz.md)
+[<h2>É - Não é - Faz - Não Faz</h2>](PlayersBook/Documentation/ENaoEFazNaoFaz/ENaoEFazNaoFaz.md)
 
-[<h2>JSON Schemas</h2>](https://github.com/danielandrade47/projetoFinal_Daniel/blob/main/json-schemas.md)
+[<h2>Diagrama de Atividade</h2>](PlayersBook/Documentation/ActivityDiagram/ActivityDiagramPlayersBook.md)
 
-[<h2>Modelo de Arquitetura</h2>](https://github.com/danielandrade47/projetoFinal_Daniel/blob/main/modelo-de-arquitetura.md)
+[<h2>Arquitetura Backend</h2>](PlayersBook/Documentation/BackendArchteture/BackendArchteture.md)
 
-[<h2>Personas</h2>](https://github.com/danielandrade47/projetoFinal_Daniel/blob/main/personas.md)
+[<h2>Diagrama Entidade Relacionamento</h2>](PlayersBook/Documentation/ClassDiagramERPlayersBook/ClassDiagramERPlayersBook.md)
 
-[<h2>Protótipo de Interface</h2>](https://github.com/danielandrade47/projetoFinal_Daniel/blob/main/prototipo-interface.md)
+[<h2>Respostas Formulário PlayersBook</h2>](PlayersBook/Documentation/FormsValidationPlayersBook/FormsValidationPlayersBook.md)
+
+[<h2> Protótipo de Interfaces</h2>](PlayersBook/Documentation/InterfacePrototypePlayersBook/InterfacePrototypePlayersBook.md)
