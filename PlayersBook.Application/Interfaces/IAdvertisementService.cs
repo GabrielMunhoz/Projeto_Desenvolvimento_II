@@ -1,4 +1,5 @@
-﻿using PlayersBook.Domain.Entities;
+﻿using PlayersBook.Domain.DTOs;
+using PlayersBook.Domain.Entities;
 
 namespace PlayersBook.Application.Interfaces
 {
@@ -9,6 +10,9 @@ namespace PlayersBook.Application.Interfaces
         Task<Advertisement> PutAsync(Advertisement advertisement);
         Task<Advertisement> PostAsync(Advertisement advertisement);
         Task<bool> DeleteAsync(string id);
-        
+        Task<IList<AdvertisementsGroupedByGame>> GetAdvertisementsGroupedAsync();
+        Task<IList<AdvertisementsGroupedByGame>> GetAdvertisementsGroupedWithArtAsync();
+
+
     }
 }

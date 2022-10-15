@@ -23,6 +23,22 @@ namespace PlayersBook.Data.Repositories
                 .Where(x => x.IsActive)
                 .ToListAsync();
         }
+        public async Task<ICollection<Advertisement>> GetAdvertisementsActiveWithHostAsync()
+        {
+             var result = await Query(x => x.IsActive)
+                .Include(x => x.Guests)
+                .AsNoTracking()
+                .Where(x => x.IsActive)
+                .ToListAsync();
+            
+            if (result != null)
+                foreach(var item in result)
+                {
+                    item.Host = await _context.Players.FirstAsync(x => x.Id.ToString() == item.PlayerHostId);
+                }
+            
+            return result; 
+        }
 
         public async Task<ICollection<Advertisement>> GetAllAdvertisementsAsync()
         {
@@ -105,7 +121,6 @@ namespace PlayersBook.Data.Repositories
         public async Task<Advertisement> SaveAdvertisement(Advertisement advertisement)
         {
             await _context.Advertisements.AddAsync(advertisement);
-            await AddGuestPlayer(advertisement);
             await _context.SaveChangesAsync();
 
             return advertisement;

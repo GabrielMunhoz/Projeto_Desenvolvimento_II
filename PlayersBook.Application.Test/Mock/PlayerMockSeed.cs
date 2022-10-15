@@ -15,7 +15,7 @@ namespace PlayersBook.Application.Test.Mock
                 LastName = "Gmunho",
                 Nickname = "Munhoz",
                 Email = "gabrielmunhoz@playersbook.com",
-                Password = "2E6F9B0D5885B6010F9167787445617F553A735F"
+                Password = "2E6F9B0D5885B6010F9167787445617F553A735F" //teste
             }
         };
         public static PlayerAuthenticateResponseViewModel GetPlayerAuthenticateResponseViewModel() =>
@@ -28,7 +28,7 @@ namespace PlayersBook.Application.Test.Mock
                     LastName = "Gmunho",
                     Nickname = "Munhoz",
                     Email = "gabrielmunhoz@playersbook.com",
-                    Password = "2E6F9B0D5885B6010F9167787445617F553A735F"
+                    //Password = "2E6F9B0D5885B6010F9167787445617F553A735F"
                 },
                 token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiR2FicmllbCIsImVtYWlsIjoiZ2FicmllbG11bmhvekBwbGF5ZXJzYm9vay5jb20iLCJuYW1laWQiOiJkMGY2MDZhMi02MjJjLTQ2YjgtYTg0NC1hZTBlODE3YjE4MzkiLCJuYmYiOjE2NjM3MTkyMjgsImV4cCI6MTY2MzczNzIyOCwiaWF0IjoxNjYzNzE5MjI4fQ.P5E5-lr94NuywsktgAxGOL-PY3vYZipfOy3kCE8gNC8");
     }

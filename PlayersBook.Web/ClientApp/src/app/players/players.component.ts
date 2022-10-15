@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PlayerDataService } from '../_data-services/players.data-service';
+import { PlayerDataService } from '../_data-services/playerDataService';
 
 @Component({
   selector: 'app-players',

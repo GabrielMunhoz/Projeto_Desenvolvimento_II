@@ -1,0 +1,89 @@
+.heroHeader{
+    margin-top: 30px;
+    color: white;
+    font-family: "Lemonada", sans-serif;
+    margin-bottom: 30px;
+}
+.categories{
+    padding: 10px 10px;
+    background-color: #231923;
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+}
+mat-spinner{
+    display: inline-block;
+    margin-left: 10px;
+}
+.cardCategory{
+    background-color: transparent;
+    display: flex;
+    height: 500px;
+    width: 150px;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 10px;
+}
+.gameBoxArt{
+    height: 200px;
+    width: 150px;
+}
+.cardTitle{
+    color: white;
+    text-align: center;
+}
+.cardTitle h4{
+    margin-bottom: 0;
+    padding: 0;
+}
+.createAdvertisement{
+    padding: 10px 10px;
+    background-color: #231923;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.createAdvertisement h4{
+    font-size: 1.5rem;
+    color: white;
+    margin-bottom: 0;
+}
+.createAdvertisement strong{
+    color: #55f0ae;
+}
+.createAdvertisement strong:hover{
+    color: #067f45;
+    cursor: pointer;
+}
+.gamesCategories{
+    width: 100%;
+    color: white;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+}
+.categoriesAdvertisements{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.advertisement{
+    padding: 30px;
+    background-color: #231923;
+    color: white;
+    width: 300px;
+    height: 230px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+}

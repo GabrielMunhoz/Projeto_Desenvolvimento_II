@@ -8,9 +8,21 @@ a {
 code {
   color: #e01a76;
 }
+body{
+  background-color: #2d292c;
+  height: 100vh;
+}
 
 .btn-primary {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+footer{
+  height: 30px;
+  margin-top: 30px;
 }

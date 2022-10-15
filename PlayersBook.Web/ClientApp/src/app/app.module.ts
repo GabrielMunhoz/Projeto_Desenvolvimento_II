@@ -10,9 +10,19 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { PlayersComponent } from './players/players.component';
-import { PlayerDataService } from './_data-services/players.data-service';
+import { PlayerDataService } from './_data-services/playerDataService';
 import { Interceptor } from './interceptor/app.interceptor.module';
-
+import { AdvertisementDataService } from './_data-services/advertisementDataService';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatInputModule} from '@angular/material/input'
+import {MatSelectModule} from '@angular/material/select'
+import { MatNativeDateModule } from '@angular/material/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CreateAdvertisementDialogComponent } from './home/views/create-advertisement-dialog/create-advertisement-dialog.component';
+import { GameDataService } from './_data-services/gameCategoryDataService';
+import {MatButtonModule} from '@angular/material/button'
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +30,8 @@ import { Interceptor } from './interceptor/app.interceptor.module';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    PlayersComponent
+    PlayersComponent,
+    CreateAdvertisementDialogComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -32,9 +43,18 @@ import { Interceptor } from './interceptor/app.interceptor.module';
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'players', component: PlayersComponent },
     ]),
-    Interceptor
+    Interceptor,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatInputModule,
+    MatNativeDateModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatProgressSpinnerModule
   ],
-  providers: [PlayerDataService],
+  providers: [PlayerDataService, AdvertisementDataService, GameDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -14,6 +14,7 @@ namespace PlayersBook.Application.AutoMapper
 
             CreateMap<PlayerViewModel, Player>();
             CreateMap<NewPlayerViewModel, Player>();
+            CreateMap<UpdatePlayerViewModel, Player>();
             CreateMap<PlayerAuthenticateRequestViewModel, Player>();
             
 

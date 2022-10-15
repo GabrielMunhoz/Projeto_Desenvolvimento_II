@@ -31,7 +31,7 @@ namespace PlayersBook.Data.Migrations
                     b.Property<DateTime>("DateCreate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 9, 23, 18, 39, 48, 958, DateTimeKind.Local).AddTicks(3229));
+                        .HasDefaultValue(new DateTime(2022, 10, 8, 17, 2, 57, 33, DateTimeKind.Local).AddTicks(4074));
 
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime2");
@@ -58,7 +58,7 @@ namespace PlayersBook.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Advertisements", (string)null);
+                    b.ToTable("Advertisements");
                 });
 
             modelBuilder.Entity("PlayersBook.Domain.Entities.AdvertisementPlayers", b =>
@@ -73,7 +73,7 @@ namespace PlayersBook.Data.Migrations
 
                     b.HasIndex("PlayerId");
 
-                    b.ToTable("AdvertisementPlayers", (string)null);
+                    b.ToTable("AdvertisementPlayers");
                 });
 
             modelBuilder.Entity("PlayersBook.Domain.Entities.GamesCategory", b =>
@@ -83,6 +83,10 @@ namespace PlayersBook.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("BoxArtUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -95,7 +99,7 @@ namespace PlayersBook.Data.Migrations
 
                     b.HasIndex("ProfileId");
 
-                    b.ToTable("GamesCategory", (string)null);
+                    b.ToTable("GamesCategory");
                 });
 
             modelBuilder.Entity("PlayersBook.Domain.Entities.GamesTags", b =>
@@ -117,7 +121,7 @@ namespace PlayersBook.Data.Migrations
 
                     b.HasIndex("ProfileId");
 
-                    b.ToTable("GamesTags", (string)null);
+                    b.ToTable("GamesTags");
                 });
 
             modelBuilder.Entity("PlayersBook.Domain.Entities.Player", b =>
@@ -129,7 +133,7 @@ namespace PlayersBook.Data.Migrations
                     b.Property<DateTime>("DateCreate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 9, 23, 18, 39, 48, 958, DateTimeKind.Local).AddTicks(3520));
+                        .HasDefaultValue(new DateTime(2022, 10, 8, 17, 2, 57, 33, DateTimeKind.Local).AddTicks(4369));
 
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime2");
@@ -161,7 +165,7 @@ namespace PlayersBook.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Players", (string)null);
+                    b.ToTable("Players");
 
                     b.HasData(
                         new
@@ -173,7 +177,7 @@ namespace PlayersBook.Data.Migrations
                             LastName = "Munhoz",
                             Name = "Gabriel",
                             Nickname = "Gmunho",
-                            Password = "teste"
+                            Password = "2E6F9B0D5885B6010F9167787445617F553A735F"
                         });
                 });
 
@@ -186,7 +190,7 @@ namespace PlayersBook.Data.Migrations
                     b.Property<DateTime>("DateCreate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 9, 23, 18, 39, 48, 958, DateTimeKind.Local).AddTicks(3653));
+                        .HasDefaultValue(new DateTime(2022, 10, 8, 17, 2, 57, 33, DateTimeKind.Local).AddTicks(4516));
 
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime2");
@@ -214,7 +218,7 @@ namespace PlayersBook.Data.Migrations
 
                     b.HasIndex("PlayerId");
 
-                    b.ToTable("Profiles", (string)null);
+                    b.ToTable("Profiles");
                 });
 
             modelBuilder.Entity("PlayersBook.Domain.Entities.AdvertisementPlayers", b =>
