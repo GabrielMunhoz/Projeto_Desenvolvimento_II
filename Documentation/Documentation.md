@@ -2,7 +2,7 @@
 
 Este documento tem como objetivo apresentar e descrever o Projeto Final, fornecendo informações e artefatos sobre a concepção do projeto, o planejamento, o desenvolvimento, testes/validação e as conclusões finais.
 
-[<h2>Canvas MVP</h2>](./Canvas/canvasMvp.md)
+![<h2>Canvas MVP</h2>](./Canvas/canvasMvp.md)
 
 [<h2>É - Não é - Faz - Não Faz</h2>](https://github.com/danielandrade47/projetoFinal_Daniel/blob/main/e-naoe-faz-naofaz.md)
 
