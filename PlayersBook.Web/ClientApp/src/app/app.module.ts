@@ -23,6 +23,8 @@ import { CreateAdvertisementDialogComponent } from './home/views/create-advertis
 import { GameDataService } from './_data-services/gameCategoryDataService';
 import {MatButtonModule} from '@angular/material/button'
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
+import { RegisterComponent } from './players/register/register.component';
+import { LoginComponent } from './players/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +34,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
     FetchDataComponent,
     PlayersComponent,
     CreateAdvertisementDialogComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -42,6 +46,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'players', component: PlayersComponent },
+      { path: 'register', component: RegisterComponent },
+      { path: 'login', component: LoginComponent },
     ]),
     Interceptor,
     BrowserAnimationsModule,

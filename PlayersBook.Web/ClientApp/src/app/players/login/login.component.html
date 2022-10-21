@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="centralize">
+        <h1>PlayersBook</h1>
+        <div class="principalContent">
+            <h3>Novo por aqui? <strong (click)="register()">Cadastre-se</strong> agora!</h3>
+            <div class="form">
+                <form class="example-form" [formGroup]="loginForm">
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label color="accent">Apelido</mat-label>
+                        <input matInput formControlName="nickname" name="nickname" />
+                      </mat-form-field>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label color="accent">Senha</mat-label>
+                        <input matInput type="password" formControlName="password" name="password" />
+                      </mat-form-field>
+                      <button mat-raised-button color="accent" class="example-sixty-width" (click)="login()">Logar<mat-spinner color="primary" diameter="20" *ngIf="spinner"></mat-spinner></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

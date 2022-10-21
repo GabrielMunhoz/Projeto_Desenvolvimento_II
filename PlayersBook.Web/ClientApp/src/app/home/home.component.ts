@@ -26,7 +26,6 @@ export class HomeComponent {
     this._advertisementData.getGrouped().subscribe(
       advertisementsGrouped => {
         this.advertisementsGrouped = advertisementsGrouped;
-        console.log(advertisementsGrouped);
         this.showFilterButton = false;
         this.showSpinnerButtonFilter = false;
     }, err => {
