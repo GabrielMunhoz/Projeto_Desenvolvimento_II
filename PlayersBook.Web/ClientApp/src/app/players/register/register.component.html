@@ -3,15 +3,35 @@
         <div class="principalContent">
             <div class="form">
                 <form class="example-form" [formGroup]="registerForm">
+                    <div class="half-fields">
+                        <mat-form-field class="example-fifty-width" appearance="fill">
+                            <mat-label color="accent">Nome</mat-label>
+                            <input matInput formControlName="name" name="name" />
+                          </mat-form-field>
+                        <mat-form-field class="example-fifty-width" appearance="fill">
+                            <mat-label color="accent">Sobrenome</mat-label>
+                            <input matInput formControlName="lastname" name="lastname" />
+                          </mat-form-field>
+                    </div>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label color="accent">Email</mat-label>
+                        <input matInput formControlName="email" name="email" />
+                      </mat-form-field>
                     <mat-form-field class="example-full-width" appearance="fill">
                         <mat-label color="accent">Apelido</mat-label>
                         <input matInput formControlName="nickname" name="nickname" />
                       </mat-form-field>
-                    <mat-form-field class="example-full-width" appearance="fill">
-                        <mat-label color="accent">Senha</mat-label>
-                        <input matInput type="password" formControlName="password" name="password" />
-                      </mat-form-field>
-                      <button mat-raised-button color="accent" class="example-sixty-width" (click)="register()">Logar<mat-spinner color="primary" diameter="20" *ngIf="spinner"></mat-spinner></button>
+                    <div class="half-fields">
+                        <mat-form-field class="example-fifty-width" appearance="fill">
+                            <mat-label color="accent">Senha</mat-label>
+                            <input matInput type="password" formControlName="password" name="password" />
+                          </mat-form-field>
+                        <mat-form-field class="example-fifty-width" appearance="fill">
+                            <mat-label color="accent">Confirmar Senha</mat-label>
+                            <input matInput type="password" formControlName="confirmPassword" name="confirmPassword" />
+                          </mat-form-field>
+                    </div>
+                      <button mat-raised-button color="accent" class="button-fifty-width" (click)="register()">Registrar<mat-spinner color="primary" diameter="20" *ngIf="spinner"></mat-spinner></button>
                 </form>
             </div>
         </div>

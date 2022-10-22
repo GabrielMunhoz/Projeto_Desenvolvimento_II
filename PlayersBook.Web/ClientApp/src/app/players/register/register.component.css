@@ -1,0 +1,36 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 30px;
+}
+.centralize{
+    transform: translatey(20%);
+}
+.example-form{
+    max-width: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+.half-fields{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+.example-full-width{
+    width: 100%;
+}
+.example-fifty-width{
+    width: 50%;
+}
+.button-fifty-width{
+    width: 50%;
+    font-size: 1.5em;
+}
+mat-spinner {
+    display: inline-block;
+    margin-left: 2px;
+}

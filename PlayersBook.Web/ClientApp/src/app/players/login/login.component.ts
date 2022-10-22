@@ -31,11 +31,10 @@ export class LoginComponent implements OnInit {
 
   login(){
     this.playerLogin = this.loginForm.value;
-    console.log(this.playerLogin);
     this.playerDataService.authenticate(this.playerLogin).subscribe(
       suc => {
         if(suc){
-          sessionStorage.setItem("playerLogged", JSON.stringify(suc));
+          localStorage.setItem("PlayerLogged", JSON.stringify(suc));
           this.router.navigate(['/']);
         }
     }, 

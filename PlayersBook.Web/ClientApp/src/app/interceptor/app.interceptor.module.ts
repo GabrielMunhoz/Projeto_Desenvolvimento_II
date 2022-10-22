@@ -5,7 +5,9 @@ import { Observable } from "rxjs";
 @Injectable()
 export class HttpsRequestInterceptor implements HttpInterceptor{
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        var _user = JSON.parse(localStorage.getItem("PlayerLogged") ?? '');
+        if(localStorage.getItem("PlayerLogged")){
+            var _user = JSON.parse(localStorage.getItem("PlayerLogged") ?? '');
+        }
         const dupReq = req.clone({
             headers: req.headers.set("authorization", (_user && _user.token) ? "Bearer " + _user.token : "" ),
         });

@@ -16,8 +16,6 @@ export class PlayersComponent implements OnInit {
   constructor(private playerDataService: PlayerDataService) { }
 
   ngOnInit(): void {
-    
-    this.authenticate()
   }
 
   get(){
@@ -52,9 +50,8 @@ export class PlayersComponent implements OnInit {
       if(data1 != null){
         localStorage.setItem("PlayerLogged", JSON.stringify(data1));
         this.get();
-        alert("Üsuario logado: "+ data1.player.name);
       }else{
-        alert("Üsuario não cadastrado: "+ data1.name);
+        alert("usuario não cadastrado: "+ data1.name);
       }
     }, err => {
       console.log(err);
