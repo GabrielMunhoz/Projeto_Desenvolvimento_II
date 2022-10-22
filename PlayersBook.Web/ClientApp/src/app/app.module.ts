@@ -27,6 +27,7 @@ import { RegisterComponent } from './players/register/register.component';
 import { LoginComponent } from './players/login/login.component';
 import { ConnectDialogComponent } from './home/views/connect-dialog/connect-dialog.component';
 import {ClipboardModule} from '@angular/cdk/clipboard';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,6 +64,7 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
     MatButtonModule,
     MatProgressSpinnerModule,
     ClipboardModule,
+    FontAwesomeModule,
   ],
   providers: [PlayerDataService, AdvertisementDataService, GameDataService],
   bootstrap: [AppComponent]

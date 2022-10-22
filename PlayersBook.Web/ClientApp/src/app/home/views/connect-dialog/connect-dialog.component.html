@@ -4,13 +4,13 @@
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Tag Host</mat-label>
       <input matInput formControlName="TagHostGame" name="TagHostGame"/>
-      
     </mat-form-field>
+    <fa-icon title="Copiar" [cdkCopyToClipboard]="data.tagHostGame" [icon]="iconClipboardTag" (click)="changeIconTag()"></fa-icon>
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Link Discord</mat-label>
       <input matInput formControlName="LinkDiscord" name="LinkDiscord"/>
-      <button [cdkCopyToClipboard]="data.linkDiscord"></button>
     </mat-form-field>   
+    <fa-icon title="Copiar" [cdkCopyToClipboard]="data.linkDiscord" [icon]="iconClipboardLink" (click)="changeIconLink()"></fa-icon>
   </form>
 </div>
 <div mat-dialog-actions>
