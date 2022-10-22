@@ -32,6 +32,8 @@ export class CreateAdvertisementDialogComponent implements OnInit {
     this.advertisementForm = this.fb.group({
       GameCategory : ['', [Validators.required]],
       GroupCategory : ['', [Validators.required]],
+      TagHostGame : ['',],
+      LinkDiscord : ['',],
       IsActive : [true, [Validators.required]],
       PlayerHostId : [this.getIdPlayerLoged(), [Validators.required]],
       PlayerHostName : [{value : this.getNicknamePlayerLoged(), disabled:true}, [Validators.required]],
@@ -58,9 +60,9 @@ export class CreateAdvertisementDialogComponent implements OnInit {
     },
     err => {
       this.spinner = !this.spinner;
-      this.dialogRef.close();
-    this.advertisementForm.reset();
-      console.log(err);
+      console.log(err.error)
+      let error = JSON.parse(err.error.message)
+      alert(error[0]);
     })
 
   }

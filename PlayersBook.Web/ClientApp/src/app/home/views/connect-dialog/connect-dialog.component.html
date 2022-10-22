@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Conectar-se</h1>
+<div mat-dialog-content>
+  <form class="example-form" [formGroup]="connectForm">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Tag Host</mat-label>
+      <input matInput formControlName="TagHostGame" name="TagHostGame"/>
+      
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Link Discord</mat-label>
+      <input matInput formControlName="LinkDiscord" name="LinkDiscord"/>
+      <button [cdkCopyToClipboard]="data.linkDiscord"></button>
+    </mat-form-field>   
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="onOkClick()">Fechar</button>
+</div>

@@ -25,6 +25,8 @@ import {MatButtonModule} from '@angular/material/button'
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 import { RegisterComponent } from './players/register/register.component';
 import { LoginComponent } from './players/login/login.component';
+import { ConnectDialogComponent } from './home/views/connect-dialog/connect-dialog.component';
+import {ClipboardModule} from '@angular/cdk/clipboard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +38,7 @@ import { LoginComponent } from './players/login/login.component';
     CreateAdvertisementDialogComponent,
     LoginComponent,
     RegisterComponent,
+    ConnectDialogComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -58,7 +61,8 @@ import { LoginComponent } from './players/login/login.component';
     ReactiveFormsModule,
     MatSelectModule,
     MatButtonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    ClipboardModule,
   ],
   providers: [PlayerDataService, AdvertisementDataService, GameDataService],
   bootstrap: [AppComponent]

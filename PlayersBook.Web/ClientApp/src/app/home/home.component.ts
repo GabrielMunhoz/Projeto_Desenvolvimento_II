@@ -1,7 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { IAdvertisement } from '../models/Advertisements/Iadvertisement';
 import { IAdvertisementGrouped } from '../models/Advertisements/IadvertisementsGrouped';
 import { AdvertisementDataService } from '../_data-services/advertisementDataService';
+import { ConnectDialogComponent } from './views/connect-dialog/connect-dialog.component';
 import { CreateAdvertisementDialogComponent } from './views/create-advertisement-dialog/create-advertisement-dialog.component';
 @Component({
   selector: 'app-home',
@@ -34,11 +36,25 @@ export class HomeComponent {
     })
   }
 
-  alert(id: string, idPlayer : string){
+  connectClicked(id: string, idPlayer : string){
     if(idPlayer == this.getIdPlayerLoged())
       return alert("Não é possivel conectar você a este grupo.");
-    
-      alert(id)
+
+      this._advertisementData.getById(id).subscribe(advertisementCurrent => {
+        if(advertisementCurrent){
+          const dialogRef = this.dialog.open(ConnectDialogComponent, {
+            minWidth: '500px',
+            data: advertisementCurrent
+          });
+          
+          dialogRef.afterClosed().subscribe(result => {
+            console.log('The dialog was closed');
+            this.get(); 
+          });
+        }
+      }, err => {
+        console.log(err)
+      })
   }
 
   testeFiltroCategory(adGrouped : IAdvertisementGrouped){
