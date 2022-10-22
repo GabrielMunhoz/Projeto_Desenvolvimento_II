@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IPlayerLogin } from 'src/app/models/IPlayerLogin';
 import { IPlayer } from 'src/app/models/Player/IPlayer';
@@ -12,11 +12,11 @@ import { PlayerDataService } from 'src/app/_data-services/playerDataService';
 })
 export class RegisterComponent implements OnInit {
 
-  registerForm: FormGroup = this.fb.group({});
+  registerForm: UntypedFormGroup = this.fb.group({});
   spinner: boolean = false; 
   player: IPlayer = { id:'', name: '', lastname: '', email: '', nickname: '', password: '' }
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private playerDataService: PlayerDataService,
     private router: Router) { }
 

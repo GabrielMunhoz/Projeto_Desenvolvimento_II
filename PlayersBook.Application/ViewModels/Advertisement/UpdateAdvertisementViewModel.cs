@@ -9,6 +9,9 @@ namespace PlayersBook.Application.ViewModels.Advertisement
         public string GroupCategory { get; set; }
         public bool IsActive { get; set; }
         public string PlayerHostId { get; set; }
+        public string TagHostGame { get; set; }
+        public string LinkDiscord { get; set; }
+        public DateTime ExpireIn { get; set; }
         public ICollection<PlayerReferenceViewModel> Guests { get; set; }
     }
 }

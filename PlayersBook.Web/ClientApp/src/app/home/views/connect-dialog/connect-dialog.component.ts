@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IAdvertisement } from 'src/app/models/Advertisements/Iadvertisement';
 
@@ -10,10 +10,10 @@ import { IAdvertisement } from 'src/app/models/Advertisements/Iadvertisement';
 })
 export class ConnectDialogComponent implements OnInit {
 
-  connectForm : FormGroup = this.fb.group({});
+  connectForm : UntypedFormGroup = this.fb.group({});
 
   constructor(
-    private fb : FormBuilder,
+    private fb : UntypedFormBuilder,
     public dialogRef: MatDialogRef<ConnectDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: IAdvertisement,
   ) { }

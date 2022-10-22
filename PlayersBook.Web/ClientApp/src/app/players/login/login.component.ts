@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IPlayerLogin } from 'src/app/models/IPlayerLogin';
 import { PlayerDataService } from 'src/app/_data-services/playerDataService';
@@ -15,9 +15,9 @@ export class LoginComponent implements OnInit {
 
   spinner: boolean = false; 
 
-  loginForm :FormGroup = this.fb.group({})
+  loginForm :UntypedFormGroup = this.fb.group({})
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private playerDataService: PlayerDataService,
     private router: Router ) { }
   

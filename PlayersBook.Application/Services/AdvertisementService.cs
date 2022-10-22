@@ -1,5 +1,9 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using ExceptionHandler.Extensions;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using PlayersBook.Application.Interfaces;
+using PlayersBook.Application.Validation;
+using PlayersBook.Application.Validation.Validator;
 using PlayersBook.Domain.DTOs;
 using PlayersBook.Domain.Entities;
 using PlayersBook.Domain.Interfaces;
@@ -17,6 +21,7 @@ namespace PlayersBook.Application.Services
             this.advertisementRepository = advertisementRepository;
             this.gamesCategoryService = gamesCategoryService;
             this.logger = logger;
+        
         }
 
         public async Task<ICollection<Advertisement>> GetAllAsync()
@@ -43,14 +48,17 @@ namespace PlayersBook.Application.Services
         {
             try
             {
-                if (!(advertisement.PlayerHostId != null))
-                    throw new Exception("Host must be specified");
+
+                AdvertisementValidation validations = new AdvertisementValidation();
+                var validatorResult = FluentResultAdapter.VerificaErros(validations.Validate(advertisement));
+
+                if (validatorResult != null && validatorResult.Erros.Any())
+                    throw new ApiException(JsonConvert.SerializeObject(validatorResult.Erros));
 
                 var result = await advertisementRepository.SaveAdvertisement(advertisement);
 
                 if (result == null)
                     throw new Exception("Create Failed");
-
 
                 return result;
             }
@@ -131,7 +139,7 @@ namespace PlayersBook.Application.Services
 
                 List<AdvertisementsGroupedByGame> itemsGrupedByGameCategory = GroupedItemsByGameCategory(advertisements);
 
-                await metodoquefazascoisas(itemsGrupedByGameCategory);
+                await FillGameCategoryForListAdvertisementsGroupedByGameCategory(itemsGrupedByGameCategory);
 
                 return itemsGrupedByGameCategory;
 
@@ -143,7 +151,7 @@ namespace PlayersBook.Application.Services
             }
         }
 
-        private async Task metodoquefazascoisas(List<AdvertisementsGroupedByGame> itemsGrupedByGameCategory)
+        private async Task FillGameCategoryForListAdvertisementsGroupedByGameCategory(List<AdvertisementsGroupedByGame> itemsGrupedByGameCategory)
         {
             RetTopGamesTwitchDto gamesCategories = await gamesCategoryService.GetTopGamesCategoryTwitchAsync();
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { IGameCategory } from 'src/app/models/IgameCategory';
 import { AdvertisementDataService } from 'src/app/_data-services/advertisementDataService';
@@ -12,7 +12,7 @@ import { GameDataService } from 'src/app/_data-services/gameCategoryDataService'
 })
 export class CreateAdvertisementDialogComponent implements OnInit {
 
-  advertisementForm: FormGroup = this.fb.group({}); 
+  advertisementForm: UntypedFormGroup = this.fb.group({}); 
 
   groupCategories = ["DUO", "TRIO", "TIME"]
 
@@ -21,7 +21,7 @@ export class CreateAdvertisementDialogComponent implements OnInit {
   spinner : boolean = false;
 
   constructor(
-    private fb : FormBuilder,
+    private fb : UntypedFormBuilder,
     public dialogRef: MatDialogRef<CreateAdvertisementDialogComponent>,
     private gameDataService: GameDataService,
     private advertisementDataService : AdvertisementDataService
