@@ -34,6 +34,7 @@ export class CreateAdvertisementDialogComponent implements OnInit {
       GroupCategory : ['', [Validators.required]],
       TagHostGame : ['',],
       LinkDiscord : ['',],
+      VoiceChannel : [true, [Validators.required]],
       IsActive : [true, [Validators.required]],
       PlayerHostId : [this.getIdPlayerLoged(), [Validators.required]],
       PlayerHostName : [{value : this.getNicknamePlayerLoged(), disabled:true}, [Validators.required]],
@@ -51,7 +52,7 @@ export class CreateAdvertisementDialogComponent implements OnInit {
   publish(){
     this.spinner = true;
     let ad = this.advertisementForm.value; 
-
+    console.log(ad);
     this.advertisementDataService.post(ad).subscribe(result => {
       console.log(result);
       this.spinner = !this.spinner;

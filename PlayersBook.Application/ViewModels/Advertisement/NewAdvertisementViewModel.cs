@@ -9,6 +9,7 @@ namespace PlayersBook.Application.ViewModels.Advertisement
         public string? TagHostGame { get; set; }
         public string? LinkDiscord { get; set; }
         public DateTime? ExpireIn { get; set; }
+        public bool VoiceChannel { get; set; }
         public bool IsActive { get; set; }
         public string? PlayerHostId { get; set; }
     }

@@ -17,6 +17,9 @@ export class PlayerDataService{
     get(){
         return this.http.get(this.module);
     }
+    validateToken(){
+        return this.http.get(this.module + "/validateToken");
+    }
     post(data: any){
         return this.http.post(this.module, data);
     }

@@ -1,8 +1,8 @@
 <div class="heroHeader">
   <h2>Categorias</h2>
-  <button mat-button color="accent" (click)="limparFiltro()" *ngIf="showFilterButton">Limpar Filtro<mat-spinner color="primary" diameter="20" *ngIf="showSpinnerButtonFilter"></mat-spinner></button>
+  <button mat-button color="accent" (click)="clearFilter()" *ngIf="showFilterButton">Limpar Filtro<mat-spinner color="primary" diameter="20" *ngIf="showSpinnerButtonFilter"></mat-spinner></button>
   <div class="categories">
-    <div class="cardCategory" (click)="testeFiltroCategory(adGrouped)" *ngFor="let adGrouped of advertisementsGrouped">
+    <div class="cardCategory" (click)="filterCategory(adGrouped)" *ngFor="let adGrouped of advertisementsGrouped">
       <div class="gameBoxArt" style="background-image: url({{adGrouped.gameCategory.boxArtUrl}});" ></div>
       <div class="cardTitle">
         <h4>{{adGrouped.gameCategory.name}}</h4>
@@ -26,7 +26,7 @@
       <p>{{ad.groupCategory}}</p>
       <p>useVoice?: </p>
       <p>Guests: {{ad.guestCount}}</p>
-      <button mat-raised-button color="primary" (click)="connectClicked(ad.id, ad.playerHostId)">Conectar</button>
+      <button mat-raised-button color="primary" (click)="connectClicked(ad.id, ad.playerHostId)" *ngIf="checkUserConnected(ad.guests)">Conectar <mat-spinner  color="accent" diameter="20" id="{{ad.id}}" hidden></mat-spinner></button>
     </div>
   </div>
 </div>

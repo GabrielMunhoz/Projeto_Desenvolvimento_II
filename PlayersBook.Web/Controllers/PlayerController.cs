@@ -34,12 +34,17 @@ namespace PlayersBook.Web.Controllers
             return Ok(playerService.Authenticate(player));
         }
 
-        [HttpGet]
+        [HttpGet("validateToken")]
         public IActionResult Get()
         {
             _logger.LogInformation($"Method get {nameof(PlayerController)}"); 
 
             return Ok(mapper.Map<List<PlayerViewModel>>(playerService.Get()));
+        }
+        [HttpGet]
+        public IActionResult ValidateToken()
+        {
+            return Ok();
         }
 
         [HttpGet("{id}")]

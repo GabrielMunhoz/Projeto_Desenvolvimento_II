@@ -11,6 +11,7 @@ namespace PlayersBook.Application.ViewModels.Advertisement
         public string PlayerHostId { get; set; }
         public string TagHostGame { get; set; }
         public string LinkDiscord { get; set; }
+        public bool VoiceChannel { get; set; }
         public DateTime ExpireIn { get; set; }
         public ICollection<PlayerReferenceViewModel> Guests { get; set; }
     }

@@ -1,3 +1,6 @@
+import { IPlayer } from "../Player/IPlayer";
+import { IPlayerReference } from "../Player/IPlayerReference";
+
 export interface IAdvertisement{
     id: string;
     gameCategory : string; 
@@ -6,7 +9,9 @@ export interface IAdvertisement{
     tagHostGame : string;
     ExpireIn : Date;
     isActive : boolean; 
+    voiceChannel : boolean; 
     playerHostId : string; 
     playerHostName: string;
     guestCount : number;
+    guests: IPlayerReference[];
 }

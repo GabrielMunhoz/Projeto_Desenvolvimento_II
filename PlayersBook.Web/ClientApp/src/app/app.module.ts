@@ -28,6 +28,7 @@ import { LoginComponent } from './players/login/login.component';
 import { ConnectDialogComponent } from './home/views/connect-dialog/connect-dialog.component';
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {MatCheckboxModule} from '@angular/material/checkbox'
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,6 +66,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatProgressSpinnerModule,
     ClipboardModule,
     FontAwesomeModule,
+    MatCheckboxModule,
   ],
   providers: [PlayerDataService, AdvertisementDataService, GameDataService],
   bootstrap: [AppComponent]
