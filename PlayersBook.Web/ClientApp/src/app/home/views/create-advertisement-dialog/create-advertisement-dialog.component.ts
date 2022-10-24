@@ -52,10 +52,9 @@ export class CreateAdvertisementDialogComponent implements OnInit {
   publish(){
     this.spinner = true;
     let ad = this.advertisementForm.value; 
-    console.log(ad);
     this.advertisementDataService.post(ad).subscribe(result => {
-      console.log(result);
       this.spinner = !this.spinner;
+      sessionStorage.setItem("ownerAdvertisement", JSON.stringify(result))
       this.dialogRef.close();
       this.advertisementForm.reset();
     },

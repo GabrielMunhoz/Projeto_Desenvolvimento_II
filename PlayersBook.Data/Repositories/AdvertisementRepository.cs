@@ -13,6 +13,23 @@ namespace PlayersBook.Data.Repositories
 
         public AdvertisementRepository(PlayersBookDBContext context) : base(context)
         {
+            ClearAdvertisementByExpireDate().ConfigureAwait(false);
+        }
+
+        private async Task ClearAdvertisementByExpireDate()
+        {
+            var adsExpired =
+                Query(x => x.IsActive)
+                .Include(x => x.Guests)
+                .AsNoTracking()
+                .Where(x => !x.IsDeleted && x.IsActive && x.ExpireIn < DateTime.Now);
+            
+            if(adsExpired.Any())
+                adsExpired.ForEachAsync(x =>
+                {
+                    x.IsActive = false;
+                    _context.Update(x);
+                });
         }
 
         public async Task<ICollection<Advertisement>> GetAdvertisementsActiveAsync()
