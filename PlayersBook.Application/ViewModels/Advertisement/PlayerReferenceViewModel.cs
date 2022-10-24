@@ -2,6 +2,6 @@
 {
     public class PlayerReferenceViewModel
     {
-        public string PlayerId { get; set; }
+        public string? PlayerId { get; set; }
     }
 }

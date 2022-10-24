@@ -8,6 +8,7 @@ import { AdvertisementDataService } from '../_data-services/advertisementDataSer
 import { PlayerDataService } from '../_data-services/playerDataService';
 import { ConnectDialogComponent } from './views/connect-dialog/connect-dialog.component';
 import { CreateAdvertisementDialogComponent } from './views/create-advertisement-dialog/create-advertisement-dialog.component';
+import { faMicrophone, faMicrophoneSlash} from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -19,6 +20,8 @@ export class HomeComponent {
   showFilterButton: boolean = false;
   showSpinnerButtonFilter: boolean = false;
   spinner:boolean = false;
+  iconVoiceOn = faMicrophone;
+  iconVoiceOff = faMicrophoneSlash;
   /**
    *
    */
@@ -35,7 +38,6 @@ export class HomeComponent {
     this._advertisementData.getGrouped().subscribe(
       advertisementsGrouped => {
         this.advertisementsGrouped = advertisementsGrouped;
-        console.log(this.advertisementsGrouped)
         this.showFilterButton = false;
         this.showSpinnerButtonFilter = false;
     }, err => {
@@ -44,17 +46,16 @@ export class HomeComponent {
     })
   }
 
-  connectClicked(id: string, idPlayer : string){
+  connectClicked(id: string){
     let teste = document.getElementById(id);
     teste?.removeAttribute("hidden");
-    
+    let idPlayer = this.getIdPlayerLoged();
 
-    this._playerData.validateToken().subscribe(suc => {
-      if(idPlayer == this.getIdPlayerLoged())
-      return alert("Não é possivel conectar você a este grupo.");
-    
+    this._playerData.validateToken().subscribe(suc => {  
       this._advertisementData.getById(id).subscribe(advertisementCurrent => {
         if(advertisementCurrent){
+          if(advertisementCurrent.playerHostId == this.getIdPlayerLoged())
+              return alert("Não é possivel conectar você a este grupo.");
           advertisementCurrent.guests.push({playerId : idPlayer});
           this._advertisementData.put(advertisementCurrent).subscribe(suc => {
             const dialogRef = this.dialog.open(ConnectDialogComponent, {
@@ -92,15 +93,80 @@ export class HomeComponent {
     
   }
 
-  
-  checkUserConnected(guests: IPlayerReference[]){
+  desconnectGroup(id: string){
+    let teste = document.getElementById(id);
+    teste?.removeAttribute("hidden");
+
+    let idPlayer = this.getIdPlayerLoged();
+
+    this._playerData.validateToken().subscribe(logged => {
+      this._advertisementData.getById(id).subscribe(advertisementCurrent => {
+        if(advertisementCurrent){
+          advertisementCurrent.guests = advertisementCurrent.guests.filter(x => x.playerId != idPlayer).length > 0 ? advertisementCurrent.guests.filter(x => x.playerId != idPlayer) : null as any ;
+          
+          this._advertisementData.put(advertisementCurrent).subscribe(suc => {
+            
+              teste?.setAttribute("hidden","true");
+              this.get();
+            
+          }, err => {
+            console.log(err)
+            alert("Falha ao desconectar a este grupo");
+            teste?.setAttribute("hidden","true");
+          })
+          
+        }
+      }, err => {
+        console.log(err)
+        alert(err.error.message);
+        teste?.setAttribute("hidden","true");
+      })
+    }, 
+    err => {
+      if(err.status == 401){
+        teste?.setAttribute("hidden","true");
+        this.router.navigate(['/login']);
+      }else{
+        alert("Falha interna no servidor");
+        teste?.setAttribute("hidden","true");
+      }
+    })
+    
+  }
+
+  showConnectButton(ad: IAdvertisement){
+    //não pode ser o host
+    //não pode estar entre os participantes 
+    //pode estar zerado os participantes 
+    let isHost = this.checkPlayerHost(ad.playerHostId);
+    let isConnected = !this.checkUserConnected(ad);
+    let isEmpty = ad.guestCount == 0; 
+
+    return !isHost && isConnected && isEmpty
+  }
+
+  showDesconnectButton(ad: IAdvertisement){
+    //não pode ser o host
+    //Deve estar entre os participantes 
+    //não pode estar zerado os participantes 
+    let isHost = this.checkPlayerHost(ad.playerHostId);
+    let isConnected = this.checkUserConnected(ad); 
+    let notEmpty = ad.guestCount > 0; 
+    console.log("Show desconnect button"+ (!isHost && isConnected && notEmpty))
+    return !isHost && isConnected && notEmpty
+  }
+
+  ///Return true if user is connected
+  checkUserConnected(ad: IAdvertisement){
     let playerLoggedId = this.getIdPlayerLoged();
+    let some = ad.guests.find(x => x.playerId == playerLoggedId);
+    return some;  
+  }
 
-    console.log(guests)
-
-    let some = guests.some(x => x.playerId == playerLoggedId);
-
-    return some;
+  ///Return true if user is host
+  checkPlayerHost(idHost:string){
+    let playerLoggedId = this.getIdPlayerLoged();
+    return playerLoggedId.toLocaleLowerCase() === idHost.toLocaleLowerCase()
   }
 
   filterCategory(adGrouped : IAdvertisementGrouped){
@@ -114,8 +180,12 @@ export class HomeComponent {
   }
 
   getIdPlayerLoged(){
-    let session = JSON.parse(localStorage.getItem("PlayerLogged") || ''); 
-    return session?.player?.id; 
+    let playerLogged = localStorage.getItem("PlayerLogged");
+    if (playerLogged){
+      let session = JSON.parse(playerLogged); 
+      return session?.player?.id; 
+    }
+    return null; 
   }
 
   createAdvertisement(): void {

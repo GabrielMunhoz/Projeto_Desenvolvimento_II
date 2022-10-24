@@ -19,14 +19,26 @@
 
 
 <div class="gamesCategories" *ngFor="let adGrouped of advertisementsGrouped">
-  <h4>{{adGrouped.gameCategory.name}}</h4>
+  <h4 class="titleCategory">{{adGrouped.gameCategory.name}}</h4>
   <div class="categoriesAdvertisements">
     <div class="advertisement" *ngFor="let ad of adGrouped.advertisements">
-      <h4>{{ad.playerHostName}}</h4>
-      <p>{{ad.groupCategory}}</p>
-      <p>useVoice?: </p>
-      <p>Guests: {{ad.guestCount}}</p>
-      <button mat-raised-button color="primary" (click)="connectClicked(ad.id, ad.playerHostId)" *ngIf="checkUserConnected(ad.guests)">Conectar <mat-spinner  color="accent" diameter="20" id="{{ad.id}}" hidden></mat-spinner></button>
+      <div class="iconVoice">
+        <fa-icon class="iconVoiceOn" title="Voz" [icon]="iconVoiceOn" *ngIf="ad.voiceChannel"></fa-icon>
+        <fa-icon class="iconVoiceOff" title="Voz" [icon]="iconVoiceOff" *ngIf="!ad.voiceChannel"></fa-icon>
+      </div>
+      <h4><strong>Host:</strong> {{ad.playerHostName}}</h4>
+      <p><strong>Grupo:</strong> {{ad.groupCategory}}</p>
+      <p><strong>Participantes:</strong> {{ad.guestCount}}</p>
+      <div class="adAction" *ngIf="getIdPlayerLoged()">
+          <button mat-raised-button color="primary" (click)="connectClicked(ad.id)" *ngIf="showConnectButton(ad)">
+            Conectar 
+            <mat-spinner  color="accent" diameter="20" id="{{ad.id}}" hidden></mat-spinner>
+          </button>
+          <button mat-raised-button color="warn" (click)="desconnectGroup(ad.id)" *ngIf="showDesconnectButton(ad)">
+            Desconectar 
+            <mat-spinner  color="accent" diameter="20" id="{{ad.id}}" hidden></mat-spinner>
+          </button>
+      </div>
     </div>
   </div>
 </div>

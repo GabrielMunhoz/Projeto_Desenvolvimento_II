@@ -84,15 +84,20 @@ namespace PlayersBook.Data.Repositories
         {
             advertisementConsulted.Guests.Clear(); 
 
-            foreach(AdvertisementPlayers guest in advertisement.Guests)
+            foreach(AdvertisementPlayers guest in advertisement?.Guests)
             {
-                var guestConsulted = await _context.Players.FindAsync(guest.PlayerId);
-                advertisementConsulted.Guests.Add(
-                    new AdvertisementPlayers { 
-                    Player = guestConsulted, PlayerId =  guestConsulted.Id,
-                    advertisementId = advertisementConsulted.Id,
-                    Advertisement = advertisementConsulted
-                });
+                if (guest.PlayerId != Guid.Empty)
+                {
+                    var guestConsulted = await _context.Players.FindAsync(guest?.PlayerId);
+                    advertisementConsulted.Guests.Add(
+                        new AdvertisementPlayers
+                        {
+                            Player = guestConsulted,
+                            PlayerId = guestConsulted.Id,
+                            advertisementId = advertisementConsulted.Id,
+                            Advertisement = advertisementConsulted
+                        });
+                }
             }
         }
 
