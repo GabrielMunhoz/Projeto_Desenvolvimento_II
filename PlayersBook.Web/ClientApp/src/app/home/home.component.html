@@ -29,13 +29,17 @@
       <h4><strong>Host:</strong> {{ad.playerHostName}}</h4>
       <p><strong>Grupo:</strong> {{ad.groupCategory}}</p>
       <p><strong>Participantes:</strong> {{ad.guestCount}}</p>
-      <div class="adAction" *ngIf="getIdPlayerLoged()">
+      <div class="adAction" *ngIf="validatedToken">
           <button mat-raised-button color="primary" (click)="connectClicked(ad.id)" *ngIf="showConnectButton(ad)">
             Conectar 
             <mat-spinner  color="accent" diameter="20" id="{{ad.id}}" hidden></mat-spinner>
           </button>
           <button mat-raised-button color="warn" (click)="desconnectGroup(ad.id)" *ngIf="showDesconnectButton(ad)">
             Desconectar 
+            <mat-spinner  color="accent" diameter="20" id="{{ad.id}}" hidden></mat-spinner>
+          </button>
+          <button mat-raised-button color="warn" (click)="finishAdvertisement(ad)" *ngIf="checkPlayerHost(ad.playerHostId)">
+            Finalizar 
             <mat-spinner  color="accent" diameter="20" id="{{ad.id}}" hidden></mat-spinner>
           </button>
       </div>

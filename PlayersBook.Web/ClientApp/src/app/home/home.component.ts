@@ -8,7 +8,7 @@ import { AdvertisementDataService } from '../_data-services/advertisementDataSer
 import { PlayerDataService } from '../_data-services/playerDataService';
 import { ConnectDialogComponent } from './views/connect-dialog/connect-dialog.component';
 import { CreateAdvertisementDialogComponent } from './views/create-advertisement-dialog/create-advertisement-dialog.component';
-import { faMicrophone, faMicrophoneSlash} from '@fortawesome/free-solid-svg-icons';
+import { faL, faMicrophone, faMicrophoneSlash} from '@fortawesome/free-solid-svg-icons';
 import { SafeSubscriber } from 'rxjs/internal/Subscriber';
 @Component({
   selector: 'app-home',
@@ -23,6 +23,7 @@ export class HomeComponent {
   spinner:boolean = false;
   iconVoiceOn = faMicrophone;
   iconVoiceOff = faMicrophoneSlash;
+  validatedToken: boolean = false;
   /**
    *
    */
@@ -32,6 +33,7 @@ export class HomeComponent {
     private _playerData : PlayerDataService,
     public dialog: MatDialog,
     private router: Router) {
+    this.validateToken(); 
     this.get(); 
   }
 
@@ -48,8 +50,8 @@ export class HomeComponent {
   }
 
   connectClicked(id: string){
-    let teste = document.getElementById(id);
-    teste?.removeAttribute("hidden");
+    let buttonConnect = document.getElementById(id);
+    buttonConnect?.removeAttribute("hidden");
     let idPlayer = this.getIdPlayerLoged();
 
     this._playerData.validateToken().subscribe(suc => {  
@@ -69,40 +71,40 @@ export class HomeComponent {
                 console.log('The dialog was closed');
                 sessionStorage.setItem("advertisementConnected", "true");
                 this.get(); 
-                teste?.setAttribute("hidden","true");
+                buttonConnect?.setAttribute("hidden","true");
               });
             }, err => {
               console.log(err)
               alert("Falha ao conectar a este grupo");
-              teste?.setAttribute("hidden","true");
+              buttonConnect?.setAttribute("hidden","true");
             })
             
           }
         }, err => {
           console.log(err)
           alert(err.error.message);
-          teste?.setAttribute("hidden","true");
+          buttonConnect?.setAttribute("hidden","true");
         })
       }else{
         alert("Voce ja está conectado a outro anuncio"); 
-        teste?.setAttribute("hidden","true");
+        buttonConnect?.setAttribute("hidden","true");
       }
     }, 
     err => {
       if(err.status == 401){
-        teste?.setAttribute("hidden","true");
+        buttonConnect?.setAttribute("hidden","true");
         this.router.navigate(['/login']);
       }else{
         alert("Falha interna no servidor");
-        teste?.setAttribute("hidden","true");
+        buttonConnect?.setAttribute("hidden","true");
       }
     })
     
   }
 
   desconnectGroup(id: string){
-    let teste = document.getElementById(id);
-    teste?.removeAttribute("hidden");
+    let buttonDesconnect = document.getElementById(id);
+    buttonDesconnect?.removeAttribute("hidden");
 
     let idPlayer = this.getIdPlayerLoged();
 
@@ -113,33 +115,52 @@ export class HomeComponent {
           
           this._advertisementData.put(advertisementCurrent).subscribe(suc => {
             
-              teste?.setAttribute("hidden","true");
+              buttonDesconnect?.setAttribute("hidden","true");
               sessionStorage.setItem("advertisementConnected", "false");
               this.get();
             
           }, err => {
             console.log(err)
             alert("Falha ao desconectar a este grupo");
-            teste?.setAttribute("hidden","true");
+            buttonDesconnect?.setAttribute("hidden","true");
           })
           
         }
       }, err => {
         console.log(err)
         alert(err.error.message);
-        teste?.setAttribute("hidden","true");
+        buttonDesconnect?.setAttribute("hidden","true");
       })
     }, 
     err => {
       if(err.status == 401){
-        teste?.setAttribute("hidden","true");
+        buttonDesconnect?.setAttribute("hidden","true");
         this.router.navigate(['/login']);
       }else{
         alert("Falha interna no servidor");
-        teste?.setAttribute("hidden","true");
+        buttonDesconnect?.setAttribute("hidden","true");
       }
     })
     
+  }
+
+  finishAdvertisement(ad: IAdvertisement){
+    let buttonFinish = document.getElementById(ad.id);
+    buttonFinish?.removeAttribute("hidden");
+    ad.isActive = false; 
+    this._advertisementData.delete(ad.id).subscribe(
+    suc=>{
+      alert("Anuncio Finalizado")
+      sessionStorage.removeItem("ownerAdvertisement");
+      buttonFinish?.setAttribute("hidden","true");
+      this.get(); 
+    }, 
+    err=>{
+      console.log(err);
+      alert(err?.error?.message)
+      this.get(); 
+      buttonFinish?.setAttribute("hidden","true");
+    })
   }
 
   showConnectButton(ad: IAdvertisement){
@@ -196,19 +217,14 @@ export class HomeComponent {
   }
 
   getAdvertisementOwner(): boolean{
-    console.log("Entrou aqui")
     let sessionAdvertisement = sessionStorage.getItem("ownerAdvertisement") ? JSON.parse(sessionStorage.getItem("ownerAdvertisement") || '') : "";
     let userLoggedId = this.getIdPlayerLoged(); 
-
-    console.log(sessionAdvertisement.playerHostId+"   "+userLoggedId)
-
     if(sessionAdvertisement.playerHostId == userLoggedId)
       return true; 
     return false;
   }
 
   createAdvertisement() {
-    console.log("Entrou aqui")
     this._playerData.validateToken().subscribe(suc => {
         let haveAdvertisement = this.getAdvertisementOwner();
         if(!haveAdvertisement){
@@ -237,5 +253,13 @@ export class HomeComponent {
   checkConnectedAnotherAdvertisement() : boolean{
     let isConnected = JSON.parse(sessionStorage.getItem("advertisementConnected") || '') || false
     return  isConnected;
+  }
+
+  validateToken() {
+    this._playerData.validateToken().subscribe(suc => {
+      this.validatedToken =  true;
+    }, err => {
+      this.validatedToken =  false;
+    });
   }
 }
