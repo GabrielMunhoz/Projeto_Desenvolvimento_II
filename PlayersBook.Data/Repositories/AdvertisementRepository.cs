@@ -25,11 +25,12 @@ namespace PlayersBook.Data.Repositories
                 .Where(x => !x.IsDeleted && x.IsActive && x.ExpireIn < DateTime.Now);
             
             if(adsExpired.Any())
-                adsExpired.ForEachAsync(x =>
+                await adsExpired.ForEachAsync(x =>
                 {
                     x.IsActive = false;
-                    _context.Update(x);
+                    _context.Update(x); 
                 });
+            _context.SaveChanges();
         }
 
         public async Task<ICollection<Advertisement>> GetAdvertisementsActiveAsync()

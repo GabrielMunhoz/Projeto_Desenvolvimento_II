@@ -54,6 +54,9 @@ namespace PlayersBook.Application.Services
 
                 if (validatorResult != null && validatorResult.Erros.Any())
                     throw new ApiException(JsonConvert.SerializeObject(validatorResult.Erros));
+                
+                advertisement.DateCreate = DateTime.Now; 
+                advertisement.ExpireIn = DateTime.Now.AddDays(1);
 
                 var result = await advertisementRepository.SaveAdvertisement(advertisement);
 

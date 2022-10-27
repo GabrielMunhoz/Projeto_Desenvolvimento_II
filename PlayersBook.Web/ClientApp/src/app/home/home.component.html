@@ -29,6 +29,7 @@
       <h4><strong>Host:</strong> {{ad.playerHostName}}</h4>
       <p><strong>Grupo:</strong> {{ad.groupCategory}}</p>
       <p><strong>Participantes:</strong> {{ad.guestCount}}</p>
+      <p><strong>Jogo:</strong> {{adGrouped.gameCategory.name}}</p>
       <div class="adAction" *ngIf="validatedToken">
           <button mat-raised-button color="primary" (click)="connectClicked(ad.id)" *ngIf="showConnectButton(ad)">
             Conectar 

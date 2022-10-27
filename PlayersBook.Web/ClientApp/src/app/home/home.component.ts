@@ -3,13 +3,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { IAdvertisement } from '../models/Advertisements/Iadvertisement';
 import { IAdvertisementGrouped } from '../models/Advertisements/IadvertisementsGrouped';
-import { IPlayerReference } from '../models/Player/IPlayerReference';
+
 import { AdvertisementDataService } from '../_data-services/advertisementDataService';
 import { PlayerDataService } from '../_data-services/playerDataService';
 import { ConnectDialogComponent } from './views/connect-dialog/connect-dialog.component';
 import { CreateAdvertisementDialogComponent } from './views/create-advertisement-dialog/create-advertisement-dialog.component';
-import { faL, faMicrophone, faMicrophoneSlash} from '@fortawesome/free-solid-svg-icons';
-import { SafeSubscriber } from 'rxjs/internal/Subscriber';
+import { faMicrophone, faMicrophoneSlash} from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -251,8 +250,15 @@ export class HomeComponent {
   }
   
   checkConnectedAnotherAdvertisement() : boolean{
-    let isConnected = JSON.parse(sessionStorage.getItem("advertisementConnected") || '') || false
-    return  isConnected;
+    let session = sessionStorage.getItem("advertisementConnected");
+    if(session)
+    {
+      if(this.getAdvertisementOwner()) return true;
+      
+      let isConnected = JSON.parse(session);
+        return  isConnected;
+    }
+    return false;
   }
 
   validateToken() {

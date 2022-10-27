@@ -29,10 +29,6 @@ namespace PlayersBook.Data.Extensions
                             property.IsNullable = false;
                             property.SetDefaultValue(false);
                             break;
-                        case nameof(Advertisement.ExpireIn):
-                            property.IsNullable = false;
-                            property.SetDefaultValue(DateTime.Now.AddDays(1));
-                            break;
                         default:
                             break;
                     }
