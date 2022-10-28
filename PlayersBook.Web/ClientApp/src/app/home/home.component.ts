@@ -62,7 +62,7 @@ export class HomeComponent {
             advertisementCurrent.guests.push({playerId : idPlayer});
             this._advertisementData.put(advertisementCurrent).subscribe(suc => {
               const dialogRef = this.dialog.open(ConnectDialogComponent, {
-                minWidth: '500px',
+                minWidth: '300px',
                 data: advertisementCurrent
               });
               
