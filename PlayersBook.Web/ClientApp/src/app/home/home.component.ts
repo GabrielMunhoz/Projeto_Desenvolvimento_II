@@ -228,7 +228,7 @@ export class HomeComponent {
         let haveAdvertisement = this.getAdvertisementOwner();
         if(!haveAdvertisement){
           const dialogRef = this.dialog.open(CreateAdvertisementDialogComponent, {
-            minWidth: '500px',
+            minWidth: '400px',
             minHeight: '40em'
           });
       

@@ -32,5 +32,12 @@ export class PlayerDataService{
     authenticate(data:IPlayerLogin): Observable<IPlayerResponse>{
         return this.http.post<IPlayerResponse>(this.module+"/authenticate", data);
     }
+    userLogged(){
+        let user = localStorage.getItem("PlayerLogged")
+        if(user) {
+          return true;
+        }
+        return false;
+      }
 
 }

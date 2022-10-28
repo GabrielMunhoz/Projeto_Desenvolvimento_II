@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IPlayerLogin } from 'src/app/models/IPlayerLogin';
 import { IPlayer } from 'src/app/models/Player/IPlayer';
@@ -12,7 +12,7 @@ import { PlayerDataService } from 'src/app/_data-services/playerDataService';
 })
 export class RegisterComponent implements OnInit {
 
-  registerForm: UntypedFormGroup = this.fb.group({});
+  registerForm: FormGroup = this.fb.group({});
   spinner: boolean = false; 
   player: IPlayer = { id:'', name: '', lastname: '', email: '', nickname: '', password: '' }
   constructor(
@@ -26,12 +26,25 @@ export class RegisterComponent implements OnInit {
       lastname : ['', [Validators.required]],
       email : ['', [Validators.required]],
       nickname : ['', [Validators.required]],
-      password : ['', [Validators.required]],
-      confirmPassword : ['', [Validators.required]],
-    })
+      password: ['', [Validators.required]],
+      confirmPassword: ['', [Validators.compose([Validators.required, this.validateAreEqual.bind(this)])]],
+    },);
+
   }
 
+  validateAreEqual(fieldControl: FormControl) {
+    return fieldControl.value === this.registerForm.controls?.password?.value ? null : {
+        NotEqual: true
+    };
+}
+
+
   register(){
+    console.log(this.registerForm)
+    if(this.registerForm.invalid){
+      console.log("invalido")
+      return; 
+    }
     this.spinner = true; 
     this.player = this.registerForm.value; 
     this.playerDataService.post(this.player).subscribe(
@@ -44,7 +57,6 @@ export class RegisterComponent implements OnInit {
         console.log(err)
       }
     )
-
   }
   
   login(playerLogin: IPlayerLogin){
