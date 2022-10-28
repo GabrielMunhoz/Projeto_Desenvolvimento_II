@@ -58,7 +58,7 @@ export class HomeComponent {
         this._advertisementData.getById(id).subscribe(advertisementCurrent => {
           if(advertisementCurrent){
             if(advertisementCurrent.playerHostId == this.getIdPlayerLoged())
-                return alert("Não é possivel conectar você a este grupo.");
+                return alert("Não é possivel conectar você a este grupo.");        
             advertisementCurrent.guests.push({playerId : idPlayer});
             this._advertisementData.put(advertisementCurrent).subscribe(suc => {
               const dialogRef = this.dialog.open(ConnectDialogComponent, {
@@ -168,7 +168,7 @@ export class HomeComponent {
     //pode estar zerado os participantes 
     let isHost = this.checkPlayerHost(ad.playerHostId);
     let isConnected = !this.checkUserConnected(ad);
-    let isEmpty = ad.guestCount == 0; 
+    let isEmpty = ad.guestCount >= 0; 
 
     return !isHost && isConnected && isEmpty
   }
@@ -228,7 +228,7 @@ export class HomeComponent {
         let haveAdvertisement = this.getAdvertisementOwner();
         if(!haveAdvertisement){
           const dialogRef = this.dialog.open(CreateAdvertisementDialogComponent, {
-            minWidth: '400px',
+            minWidth: '350px',
             minHeight: '40em'
           });
       
