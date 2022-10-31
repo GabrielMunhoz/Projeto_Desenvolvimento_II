@@ -1,0 +1,50 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 30px;
+}
+.centralize{
+    transform: translatey(20%);
+}
+.example-form{
+    max-width: 500px;
+    min-height: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.half-fields{
+    margin-top: 4px;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+.example-full-width{
+    margin-top: 4px;
+    width: 100%;
+}
+.example-fifty-width{
+    width: 50%;
+}
+.button-fifty-width{
+    width: 50%;
+    font-size: 1.5em;
+}
+mat-spinner {
+    display: inline-block;
+    margin-left: 2px;
+}
+
+@media (max-width: 560px) {
+    html {
+      font-size: 16px;
+    }
+    .half-fields{
+        flex-wrap: wrap;
+    }
+    .example-fifty-width{
+        width: 100%;
+    }
+  }

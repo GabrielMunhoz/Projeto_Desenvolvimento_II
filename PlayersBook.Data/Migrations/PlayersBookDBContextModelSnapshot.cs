@@ -31,10 +31,15 @@ namespace PlayersBook.Data.Migrations
                     b.Property<DateTime>("DateCreate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 10, 8, 17, 2, 57, 33, DateTimeKind.Local).AddTicks(4074));
+                        .HasDefaultValue(new DateTime(2022, 10, 24, 19, 21, 2, 135, DateTimeKind.Local).AddTicks(6578));
 
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ExpireIn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2022, 10, 25, 19, 21, 2, 135, DateTimeKind.Local).AddTicks(6749));
 
                     b.Property<string>("GameCategory")
                         .IsRequired()
@@ -52,9 +57,20 @@ namespace PlayersBook.Data.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
 
+                    b.Property<string>("LinkDiscord")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PlayerHostId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TagHostGame")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("VoiceChannel")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -133,7 +149,7 @@ namespace PlayersBook.Data.Migrations
                     b.Property<DateTime>("DateCreate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 10, 8, 17, 2, 57, 33, DateTimeKind.Local).AddTicks(4369));
+                        .HasDefaultValue(new DateTime(2022, 10, 24, 19, 21, 2, 135, DateTimeKind.Local).AddTicks(6968));
 
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime2");
@@ -190,7 +206,7 @@ namespace PlayersBook.Data.Migrations
                     b.Property<DateTime>("DateCreate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 10, 8, 17, 2, 57, 33, DateTimeKind.Local).AddTicks(4516));
+                        .HasDefaultValue(new DateTime(2022, 10, 24, 19, 21, 2, 135, DateTimeKind.Local).AddTicks(7099));
 
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime2");

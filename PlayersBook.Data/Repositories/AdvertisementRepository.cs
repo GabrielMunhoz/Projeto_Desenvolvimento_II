@@ -13,6 +13,24 @@ namespace PlayersBook.Data.Repositories
 
         public AdvertisementRepository(PlayersBookDBContext context) : base(context)
         {
+            ClearAdvertisementByExpireDate().ConfigureAwait(false);
+        }
+
+        private async Task ClearAdvertisementByExpireDate()
+        {
+            var adsExpired =
+                Query(x => x.IsActive)
+                .Include(x => x.Guests)
+                .AsNoTracking()
+                .Where(x => !x.IsDeleted && x.IsActive && x.ExpireIn < DateTime.Now);
+            
+            if(adsExpired.Any())
+                await adsExpired.ForEachAsync(x =>
+                {
+                    x.IsActive = false;
+                    _context.Update(x); 
+                });
+            _context.SaveChanges();
         }
 
         public async Task<ICollection<Advertisement>> GetAdvertisementsActiveAsync()
@@ -84,15 +102,20 @@ namespace PlayersBook.Data.Repositories
         {
             advertisementConsulted.Guests.Clear(); 
 
-            foreach(AdvertisementPlayers guest in advertisement.Guests)
+            foreach(AdvertisementPlayers guest in advertisement?.Guests)
             {
-                var guestConsulted = await _context.Players.FindAsync(guest.PlayerId);
-                advertisementConsulted.Guests.Add(
-                    new AdvertisementPlayers { 
-                    Player = guestConsulted, PlayerId =  guestConsulted.Id,
-                    advertisementId = advertisementConsulted.Id,
-                    Advertisement = advertisementConsulted
-                });
+                if (guest.PlayerId != Guid.Empty)
+                {
+                    var guestConsulted = await _context.Players.FindAsync(guest?.PlayerId);
+                    advertisementConsulted.Guests.Add(
+                        new AdvertisementPlayers
+                        {
+                            Player = guestConsulted,
+                            PlayerId = guestConsulted.Id,
+                            advertisementId = advertisementConsulted.Id,
+                            Advertisement = advertisementConsulted
+                        });
+                }
             }
         }
 

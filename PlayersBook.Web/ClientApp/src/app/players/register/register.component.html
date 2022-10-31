@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="centralize">
+        <div class="principalContent">
+            <div class="form">
+                <form class="example-form" [formGroup]="registerForm">
+                    <div class="half-fields">
+                        <mat-form-field class="example-fifty-width" appearance="fill">
+                            <mat-label color="accent">Nome</mat-label>
+                            <input matInput formControlName="name" name="name" />
+                            <mat-error *ngIf="registerForm.controls.name.errors?.required">Nome Obrigatório</mat-error>
+                          </mat-form-field>
+                        <mat-form-field class="example-fifty-width" appearance="fill">
+                            <mat-label color="accent">Sobrenome</mat-label>
+                            <input matInput formControlName="lastname" name="lastname" />
+                            <mat-error *ngIf="registerForm.controls.lastname.errors?.required">Sobrenome Obrigatório</mat-error>
+                          </mat-form-field>
+                    </div>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label color="accent">Email</mat-label>
+                        <input matInput formControlName="email" name="email" />
+                        <mat-error *ngIf="registerForm.controls.email.errors?.required">Email Obrigatório</mat-error>
+                      </mat-form-field>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label color="accent">Apelido</mat-label>
+                        <input matInput formControlName="nickname" name="nickname" />
+                        <mat-error *ngIf="registerForm.controls.nickname.errors?.required">Apelido Obrigatório</mat-error>
+                      </mat-form-field>
+                    <div class="half-fields">
+                        <mat-form-field class="example-fifty-width" appearance="fill">
+                            <mat-label color="accent">Senha</mat-label>
+                            <input matInput type="password" formControlName="password" name="password" />
+                            <mat-error *ngIf="registerForm.controls.password.errors?.required">Senha Obrigatória</mat-error>
+                          </mat-form-field>
+                        <mat-form-field class="example-fifty-width" appearance="fill">
+                            <mat-label color="accent">Confirmar Senha</mat-label>
+                            <input matInput type="password" formControlName="confirmPassword" name="confirmPassword" />
+                            <mat-error *ngIf="registerForm.controls.confirmPassword.errors?.NotEqual">Senhas divergentes</mat-error>
+                            <mat-error *ngIf="registerForm.controls.confirmPassword.errors?.required">Senha Obrigatória</mat-error>
+                          </mat-form-field>
+                    </div>
+                      <button mat-raised-button color="accent" class="button-fifty-width" (click)="register()">Registrar<mat-spinner color="primary" diameter="20" *ngIf="spinner"></mat-spinner></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

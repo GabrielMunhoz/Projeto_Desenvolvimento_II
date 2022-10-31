@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { IGameCategory } from 'src/app/models/IgameCategory';
 import { AdvertisementDataService } from 'src/app/_data-services/advertisementDataService';
@@ -12,7 +12,7 @@ import { GameDataService } from 'src/app/_data-services/gameCategoryDataService'
 })
 export class CreateAdvertisementDialogComponent implements OnInit {
 
-  advertisementForm: FormGroup = this.fb.group({}); 
+  advertisementForm: UntypedFormGroup = this.fb.group({}); 
 
   groupCategories = ["DUO", "TRIO", "TIME"]
 
@@ -21,7 +21,7 @@ export class CreateAdvertisementDialogComponent implements OnInit {
   spinner : boolean = false;
 
   constructor(
-    private fb : FormBuilder,
+    private fb : UntypedFormBuilder,
     public dialogRef: MatDialogRef<CreateAdvertisementDialogComponent>,
     private gameDataService: GameDataService,
     private advertisementDataService : AdvertisementDataService
@@ -32,6 +32,9 @@ export class CreateAdvertisementDialogComponent implements OnInit {
     this.advertisementForm = this.fb.group({
       GameCategory : ['', [Validators.required]],
       GroupCategory : ['', [Validators.required]],
+      TagHostGame : ['',],
+      LinkDiscord : ['',],
+      VoiceChannel : [true, [Validators.required]],
       IsActive : [true, [Validators.required]],
       PlayerHostId : [this.getIdPlayerLoged(), [Validators.required]],
       PlayerHostName : [{value : this.getNicknamePlayerLoged(), disabled:true}, [Validators.required]],
@@ -49,18 +52,17 @@ export class CreateAdvertisementDialogComponent implements OnInit {
   publish(){
     this.spinner = true;
     let ad = this.advertisementForm.value; 
-
     this.advertisementDataService.post(ad).subscribe(result => {
-      console.log(result);
       this.spinner = !this.spinner;
+      sessionStorage.setItem("ownerAdvertisement", JSON.stringify(result))
       this.dialogRef.close();
       this.advertisementForm.reset();
     },
     err => {
       this.spinner = !this.spinner;
-      this.dialogRef.close();
-    this.advertisementForm.reset();
-      console.log(err);
+      console.log(err.error)
+      let error = JSON.parse(err.error.message)
+      alert(error[0]);
     })
 
   }

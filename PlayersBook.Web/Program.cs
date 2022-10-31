@@ -1,3 +1,4 @@
+using ExceptionHandler.Providers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -59,7 +60,7 @@ var app = builder.Build();
 //}
 
 
-
+app.UseExceptionHandlerMiddleware();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();

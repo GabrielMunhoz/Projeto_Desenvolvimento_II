@@ -23,6 +23,12 @@ import { CreateAdvertisementDialogComponent } from './home/views/create-advertis
 import { GameDataService } from './_data-services/gameCategoryDataService';
 import {MatButtonModule} from '@angular/material/button'
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
+import { RegisterComponent } from './players/register/register.component';
+import { LoginComponent } from './players/login/login.component';
+import { ConnectDialogComponent } from './home/views/connect-dialog/connect-dialog.component';
+import {ClipboardModule} from '@angular/cdk/clipboard';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {MatCheckboxModule} from '@angular/material/checkbox'
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +38,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
     FetchDataComponent,
     PlayersComponent,
     CreateAdvertisementDialogComponent,
+    LoginComponent,
+    RegisterComponent,
+    ConnectDialogComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -42,6 +51,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'players', component: PlayersComponent },
+      { path: 'register', component: RegisterComponent },
+      { path: 'login', component: LoginComponent },
     ]),
     Interceptor,
     BrowserAnimationsModule,
@@ -52,7 +63,10 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
     ReactiveFormsModule,
     MatSelectModule,
     MatButtonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    ClipboardModule,
+    FontAwesomeModule,
+    MatCheckboxModule,
   ],
   providers: [PlayerDataService, AdvertisementDataService, GameDataService],
   bootstrap: [AppComponent]

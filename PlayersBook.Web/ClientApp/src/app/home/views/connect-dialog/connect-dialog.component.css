@@ -1,0 +1,19 @@
+.example-form{
+    min-width: 150px;
+    min-width: 300px;
+    width: 100%;
+}
+.example-full-width{
+    width: 90%;
+}
+fa-icon{
+    margin-top: 6px;
+    float: right;
+    color: #55f0ae;
+    font-size: 2em;
+    width: 5%;
+    height: 10px;
+}
+fa-icon:hover{
+    cursor: pointer;
+}

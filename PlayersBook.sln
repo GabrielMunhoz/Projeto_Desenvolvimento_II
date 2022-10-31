@@ -31,7 +31,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlayersBook.Web", "PlayersB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0-Test", "0-Test", "{FA6F6D9C-3728-4D1A-A978-B8AF6907834E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayersBook.Application.Test", "PlayersBook.Application.Test\PlayersBook.Application.Test.csproj", "{0A139A80-819F-4D77-BD2C-F38B70DDACE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlayersBook.Application.Test", "PlayersBook.Application.Test\PlayersBook.Application.Test.csproj", "{0A139A80-819F-4D77-BD2C-F38B70DDACE3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExceptionHandler", "ExceptionHandler\ExceptionHandler.csproj", "{DF5BFAB5-CB17-40BC-8658-3C1290647612}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +73,10 @@ Global
 		{0A139A80-819F-4D77-BD2C-F38B70DDACE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A139A80-819F-4D77-BD2C-F38B70DDACE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A139A80-819F-4D77-BD2C-F38B70DDACE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF5BFAB5-CB17-40BC-8658-3C1290647612}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF5BFAB5-CB17-40BC-8658-3C1290647612}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF5BFAB5-CB17-40BC-8658-3C1290647612}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF5BFAB5-CB17-40BC-8658-3C1290647612}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +92,7 @@ Global
 		{D54A231B-75D8-4F57-981F-6290AB0EFA2C} = {42E017E9-6295-4DA6-B1A8-6A2410265824}
 		{6719E04C-EB3A-47A3-BBBB-5B1EA30D0F11} = {317BF1FE-E6E7-498C-BF40-705A7726413E}
 		{0A139A80-819F-4D77-BD2C-F38B70DDACE3} = {FA6F6D9C-3728-4D1A-A978-B8AF6907834E}
+		{DF5BFAB5-CB17-40BC-8658-3C1290647612} = {42E017E9-6295-4DA6-B1A8-6A2410265824}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3A51ADDE-6253-42F1-8B79-7A5BC303BC7F}

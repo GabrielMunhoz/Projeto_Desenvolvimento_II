@@ -1,5 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Inject, Injectable } from "@angular/core";
+import { Observable } from "rxjs/internal/Observable";
+import { IPlayerLogin } from "../models/IPlayerLogin";
+import { IPlayerResponse } from "../models/Player/IPlayerResponse";
 
 @Injectable()
 export class PlayerDataService{
@@ -14,6 +17,9 @@ export class PlayerDataService{
     get(){
         return this.http.get(this.module);
     }
+    validateToken(){
+        return this.http.get(this.module + "/validateToken");
+    }
     post(data: any){
         return this.http.post(this.module, data);
     }
@@ -23,8 +29,15 @@ export class PlayerDataService{
     delete(playerId: string){
         return this.http.delete(this.module +"/"+ playerId);
     }
-    authenticate(data:any){
-        return this.http.post(this.module+"/authenticate", data);
+    authenticate(data:IPlayerLogin): Observable<IPlayerResponse>{
+        return this.http.post<IPlayerResponse>(this.module+"/authenticate", data);
     }
+    userLogged(){
+        let user = localStorage.getItem("PlayerLogged")
+        if(user) {
+          return true;
+        }
+        return false;
+      }
 
 }
