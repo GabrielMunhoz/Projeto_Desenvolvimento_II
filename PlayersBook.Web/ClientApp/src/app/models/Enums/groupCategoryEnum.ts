@@ -1,5 +1,5 @@
-export enum GroupCategory {
+export enum GroupCategoryEnum {
     DUO = 1,
     TRIO = 2,
-    TIME = 3
+    TEAM = 4
   }

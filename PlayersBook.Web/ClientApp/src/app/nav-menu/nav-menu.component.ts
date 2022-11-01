@@ -28,6 +28,7 @@ export class NavMenuComponent {
 
   logout(){
     localStorage.clear();
+    sessionStorage.clear();
     location.reload();
   }
 }

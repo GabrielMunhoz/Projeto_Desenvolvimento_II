@@ -37,6 +37,7 @@ namespace PlayersBook.Web.Controllers
 
             return Ok(JsonConvert.SerializeObject(itemsGrouped)); 
         }
+
         [HttpGet("advertisementsGroupedWithArt"), AllowAnonymous]
         public async Task<IActionResult> GetAdvertisementsGrouByCategorysWithArtAsync()
         {
@@ -52,7 +53,15 @@ namespace PlayersBook.Web.Controllers
 
             return Ok(result); 
         }
-        
+
+        [HttpGet("getDetailed/{id}")]
+        public async Task<IActionResult> GetByIdReferenceAsync(string id)
+        {
+            var result = mapper.Map<AdvertisementViewModel>(await advertisementService.GetById(id));
+
+            return Ok(result);
+        }
+
         [HttpPost]
         public async Task<IActionResult> PostAdvertisementsAsync(NewAdvertisementViewModel newAdvertisementViewModel)
         {
