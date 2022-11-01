@@ -9,6 +9,7 @@ import { PlayerDataService } from '../_data-services/playerDataService';
 import { ConnectDialogComponent } from './views/connect-dialog/connect-dialog.component';
 import { CreateAdvertisementDialogComponent } from './views/create-advertisement-dialog/create-advertisement-dialog.component';
 import { faMicrophone, faMicrophoneSlash} from '@fortawesome/free-solid-svg-icons';
+import { GroupCategoryEnum } from '../models/Enums/groupCategoryEnum';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -55,10 +56,11 @@ export class HomeComponent {
 
     this._playerData.validateToken().subscribe(suc => {  
       if(!this.checkConnectedAnotherAdvertisement()){
-        this._advertisementData.getById(id).subscribe(advertisementCurrent => {
+        this._advertisementData.getByIdReferenceAsync(id).subscribe(advertisementCurrent => {
           if(advertisementCurrent){
             if(advertisementCurrent.playerHostId == this.getIdPlayerLoged())
-                return alert("Não é possivel conectar você a este grupo.");        
+                return alert("Não é possivel conectar você a este grupo.");  
+            console.log(advertisementCurrent)      
             advertisementCurrent.guests.push({playerId : idPlayer});
             this._advertisementData.put(advertisementCurrent).subscribe(suc => {
               const dialogRef = this.dialog.open(ConnectDialogComponent, {
@@ -170,7 +172,20 @@ export class HomeComponent {
     let isConnected = !this.checkUserConnected(ad);
     let isEmpty = ad.guestCount >= 0; 
 
-    return !isHost && isConnected && isEmpty
+    return !isHost && isConnected && isEmpty && this.validGroupCountGuest(ad)
+  }
+  validGroupCountGuest(ad: IAdvertisement) {
+    switch(ad.groupCategory) {
+      case "DUO":
+        return ad.guestCount <= 1;
+      case "TRIO":
+        return ad.guestCount <= 2;
+      case "TEAM":
+        return ad.guestCount <= 4; 
+        default:
+          return true;
+    }
+
   }
 
   showDesconnectButton(ad: IAdvertisement){

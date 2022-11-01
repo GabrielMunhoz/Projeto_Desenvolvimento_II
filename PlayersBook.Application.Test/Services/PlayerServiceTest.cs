@@ -95,14 +95,14 @@ namespace PlayersBook.Application.Test.Services
             var result = _playerService.Get();
             //Assert
 
-            Assert.True(result.Count == 0);
+            Assert.Null(result); 
 
         }
         [Fact]
         public  void GetById_SendingInValidId_Error()
         {
             //Arranje
-            string messageExpected = "user id is not valid";
+            string messageExpected = "Player id is not valid";
 
             _playerRepository.Setup(x => x.Find(It.IsAny<Expression<Func<Player, bool>>>())).Returns(PlayerMockSeed.GetPlayers().FirstOrDefault());
 

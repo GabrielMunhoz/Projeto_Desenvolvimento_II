@@ -20,6 +20,9 @@ export class AdvertisementDataService{
     getById(id: string): Observable<IAdvertisement>{
         return this.http.get<IAdvertisement>(this.module +"/"+id);
     }
+    getByIdReferenceAsync(id : string): Observable<IAdvertisement>{
+        return this.http.get<IAdvertisement>(this.module+"/getDetailed/"+id)
+    }
     getGrouped(): Observable<IAdvertisementGrouped[]>{
         return this.http.get<IAdvertisementGrouped[]>(this.module + "/advertisementsGroupedWithArt");
     }

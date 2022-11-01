@@ -1,4 +1,3 @@
-import { IPlayer } from "../Player/IPlayer";
 import { IPlayerReference } from "../Player/IPlayerReference";
 
 export interface IAdvertisement{
