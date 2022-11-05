@@ -29,5 +29,6 @@ namespace PlayersBook.Application.Services
                 throw;
             }
         }
+
     }
 }

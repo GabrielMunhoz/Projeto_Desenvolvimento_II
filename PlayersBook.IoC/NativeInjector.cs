@@ -17,6 +17,7 @@ namespace PlayersBook.IoC
             services.AddScoped<IAdvertisementService, AdvertisementService>();
             services.AddScoped<IGamesCategoryService, GamesCategoryService>();
             services.AddScoped<IPlayerProfileService, PlayerProfileService>();
+            services.AddScoped<IFileService, FileService>();
 
             #endregion
 

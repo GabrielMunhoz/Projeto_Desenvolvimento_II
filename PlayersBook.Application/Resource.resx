@@ -120,6 +120,18 @@
   <data name="ATRIBUTO_OBRIGATORIO" xml:space="preserve">
     <value>O atributo {0} é obrigatório</value>
   </data>
+  <data name="ERROR_LOG" xml:space="preserve">
+    <value>Method: {0} -- Service: {1} -- Ex: {2}</value>
+  </data>
+  <data name="FALHA_AO_RECUPERAR_VALORES" xml:space="preserve">
+    <value>Falha ao recuperar os dados!</value>
+  </data>
+  <data name="INFORMATION_LOG" xml:space="preserve">
+    <value>Method: {0} -- Service: {1}</value>
+  </data>
+  <data name="NAO_ENCONTRADO" xml:space="preserve">
+    <value>Não foi localizado nenhum registro com essa informação: {0}</value>
+  </data>
   <data name="VALOR_INVALIDO" xml:space="preserve">
     <value>O atributo {0} está com o valor invalido</value>
   </data>

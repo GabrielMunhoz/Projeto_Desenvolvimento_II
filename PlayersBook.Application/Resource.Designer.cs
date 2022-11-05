@@ -70,6 +70,42 @@ namespace PlayersBook.Application {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Method: {0} -- Service: {1} -- Ex: {2}.
+        /// </summary>
+        internal static string ERROR_LOG {
+            get {
+                return ResourceManager.GetString("ERROR_LOG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Falha ao recuperar os dados!.
+        /// </summary>
+        internal static string FALHA_AO_RECUPERAR_VALORES {
+            get {
+                return ResourceManager.GetString("FALHA_AO_RECUPERAR_VALORES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Method: {0} -- Service: {1}.
+        /// </summary>
+        internal static string INFORMATION_LOG {
+            get {
+                return ResourceManager.GetString("INFORMATION_LOG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Não foi localizado nenhum registro com essa informação: {0}.
+        /// </summary>
+        internal static string NAO_ENCONTRADO {
+            get {
+                return ResourceManager.GetString("NAO_ENCONTRADO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to O atributo {0} está com o valor invalido.
         /// </summary>
         internal static string VALOR_INVALIDO {

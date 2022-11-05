@@ -9,11 +9,13 @@ namespace PlayersBook.Web.Controllers
     public class PlayerProfileController : ControllerBase
     {
         private readonly IPlayerProfileService playerProfileService;
+        private readonly IFileService fileService;
         private readonly ILogger<PlayerProfileController> logger;
 
-        public PlayerProfileController(IPlayerProfileService playerProfileService, ILogger<PlayerProfileController> logger)
+        public PlayerProfileController(IPlayerProfileService playerProfileService, IFileService fileService, ILogger<PlayerProfileController> logger)
         {
             this.playerProfileService = playerProfileService;
+            this.fileService = fileService;
             this.logger = logger;
         }
         [HttpGet]
@@ -23,5 +25,28 @@ namespace PlayersBook.Web.Controllers
 
             return Ok(await playerProfileService.GetallAsync()); 
         }
+
+        [HttpPost("uploadprofilepicture")]
+        public async Task<IActionResult> PostImagePlayerProfile(List<IFormFile> files)
+        {
+            try
+            {
+                if (files.Count > 0)
+                {
+                    
+                    return Ok(await fileService.SaveFilesAsync(files.FirstOrDefault(), ""));
+                }
+                else
+                {
+                    return StatusCode(204, "Any file were sent!");
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex.Message);
+                throw;
+            }
+        }
+        
     }
 }

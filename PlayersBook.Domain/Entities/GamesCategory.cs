@@ -1,4 +1,4 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace PlayersBook.Domain.Entities
 {
@@ -6,7 +6,7 @@ namespace PlayersBook.Domain.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        [JsonPropertyName("box_art_url")]
+        [JsonProperty("box_art_url")]
         public string BoxArtUrl { get; set; }
     }
 }
