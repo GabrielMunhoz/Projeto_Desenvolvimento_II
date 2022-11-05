@@ -31,15 +31,13 @@ namespace PlayersBook.Data.Migrations
                     b.Property<DateTime>("DateCreate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 10, 24, 19, 21, 2, 135, DateTimeKind.Local).AddTicks(6578));
+                        .HasDefaultValue(new DateTime(2022, 11, 4, 21, 34, 13, 581, DateTimeKind.Local).AddTicks(8072));
 
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("ExpireIn")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 10, 25, 19, 21, 2, 135, DateTimeKind.Local).AddTicks(6749));
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("GameCategory")
                         .IsRequired()
@@ -92,6 +90,43 @@ namespace PlayersBook.Data.Migrations
                     b.ToTable("AdvertisementPlayers");
                 });
 
+            modelBuilder.Entity("PlayersBook.Domain.Entities.ChannelStreams", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateCreate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2022, 11, 4, 21, 34, 13, 581, DateTimeKind.Local).AddTicks(8401));
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ImageProfile")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("PlayerProfileId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PlayerProfileId");
+
+                    b.ToTable("ChannelStreams");
+                });
+
             modelBuilder.Entity("PlayersBook.Domain.Entities.GamesCategory", b =>
                 {
                     b.Property<int>("Id")
@@ -108,36 +143,14 @@ namespace PlayersBook.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("ProfileId")
+                    b.Property<Guid?>("PlayerProfileId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProfileId");
+                    b.HasIndex("PlayerProfileId");
 
                     b.ToTable("GamesCategory");
-                });
-
-            modelBuilder.Entity("PlayersBook.Domain.Entities.GamesTags", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("ProfileId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProfileId");
-
-                    b.ToTable("GamesTags");
                 });
 
             modelBuilder.Entity("PlayersBook.Domain.Entities.Player", b =>
@@ -149,7 +162,7 @@ namespace PlayersBook.Data.Migrations
                     b.Property<DateTime>("DateCreate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 10, 24, 19, 21, 2, 135, DateTimeKind.Local).AddTicks(6968));
+                        .HasDefaultValue(new DateTime(2022, 11, 4, 21, 34, 13, 581, DateTimeKind.Local).AddTicks(8706));
 
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime2");
@@ -197,7 +210,7 @@ namespace PlayersBook.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("PlayersBook.Domain.Entities.Profile", b =>
+            modelBuilder.Entity("PlayersBook.Domain.Entities.PlayerProfile", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -206,7 +219,7 @@ namespace PlayersBook.Data.Migrations
                     b.Property<DateTime>("DateCreate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 10, 24, 19, 21, 2, 135, DateTimeKind.Local).AddTicks(7099));
+                        .HasDefaultValue(new DateTime(2022, 11, 4, 21, 34, 13, 581, DateTimeKind.Local).AddTicks(8865));
 
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime2");
@@ -215,6 +228,10 @@ namespace PlayersBook.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
@@ -234,7 +251,7 @@ namespace PlayersBook.Data.Migrations
 
                     b.HasIndex("PlayerId");
 
-                    b.ToTable("Profiles");
+                    b.ToTable("PlayerProfile");
                 });
 
             modelBuilder.Entity("PlayersBook.Domain.Entities.AdvertisementPlayers", b =>
@@ -256,21 +273,21 @@ namespace PlayersBook.Data.Migrations
                     b.Navigation("Player");
                 });
 
+            modelBuilder.Entity("PlayersBook.Domain.Entities.ChannelStreams", b =>
+                {
+                    b.HasOne("PlayersBook.Domain.Entities.PlayerProfile", null)
+                        .WithMany("ChannelStreams")
+                        .HasForeignKey("PlayerProfileId");
+                });
+
             modelBuilder.Entity("PlayersBook.Domain.Entities.GamesCategory", b =>
                 {
-                    b.HasOne("PlayersBook.Domain.Entities.Profile", null)
+                    b.HasOne("PlayersBook.Domain.Entities.PlayerProfile", null)
                         .WithMany("GamesCategoryProfile")
-                        .HasForeignKey("ProfileId");
+                        .HasForeignKey("PlayerProfileId");
                 });
 
-            modelBuilder.Entity("PlayersBook.Domain.Entities.GamesTags", b =>
-                {
-                    b.HasOne("PlayersBook.Domain.Entities.Profile", null)
-                        .WithMany("GamesTagsProfile")
-                        .HasForeignKey("ProfileId");
-                });
-
-            modelBuilder.Entity("PlayersBook.Domain.Entities.Profile", b =>
+            modelBuilder.Entity("PlayersBook.Domain.Entities.PlayerProfile", b =>
                 {
                     b.HasOne("PlayersBook.Domain.Entities.Player", "Player")
                         .WithMany()
@@ -291,11 +308,11 @@ namespace PlayersBook.Data.Migrations
                     b.Navigation("Advertisements");
                 });
 
-            modelBuilder.Entity("PlayersBook.Domain.Entities.Profile", b =>
+            modelBuilder.Entity("PlayersBook.Domain.Entities.PlayerProfile", b =>
                 {
-                    b.Navigation("GamesCategoryProfile");
+                    b.Navigation("ChannelStreams");
 
-                    b.Navigation("GamesTagsProfile");
+                    b.Navigation("GamesCategoryProfile");
                 });
 #pragma warning restore 612, 618
         }

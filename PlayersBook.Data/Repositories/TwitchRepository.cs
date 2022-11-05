@@ -1,11 +1,10 @@
 ﻿using Newtonsoft.Json;
 using PlayersBook.Domain.DTOs;
-using PlayersBook.Domain.Entities;
 using PlayersBook.Domain.Interfaces;
 using System.Net.Http.Headers;
 using System.Text;
 
-namespace PlayersBook.Data.Repositories.Base
+namespace PlayersBook.Data.Repositories
 {
     public class TwitchRepository : ITwitchRespository
     {
@@ -40,7 +39,7 @@ namespace PlayersBook.Data.Repositories.Base
                         if (retorno != null)
                         {
                             TwitchConnected connected = JsonConvert.DeserializeObject<TwitchConnected>(retorno);
-                            return (connected);
+                            return connected;
                         }
                     }
                 }
@@ -67,10 +66,10 @@ namespace PlayersBook.Data.Repositories.Base
                     {
                         var retorno = await new StreamReader(responseStream).ReadToEndAsync().ConfigureAwait(false);
                         RetTopGamesTwitchDto gameCategory = JsonConvert.DeserializeObject<RetTopGamesTwitchDto>(retorno);
-                        return gameCategory; 
+                        return gameCategory;
                     }
                 }
-                return null; 
+                return null;
             }
         }
         public async Task<RetTopGamesTwitchDto> GetTopGamesCategoryAsync()

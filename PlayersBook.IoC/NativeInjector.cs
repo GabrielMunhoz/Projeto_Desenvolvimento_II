@@ -3,7 +3,6 @@ using PlayersBook.Application.Services;
 using PlayersBook.Data.Repositories;
 using PlayersBook.Domain.Interfaces;
 using PlayersBook.Application.Interfaces;
-using PlayersBook.Data.Repositories.Base;
 
 namespace PlayersBook.IoC
 {
@@ -17,6 +16,7 @@ namespace PlayersBook.IoC
             services.AddScoped<IPlayerService, PlayerService>();
             services.AddScoped<IAdvertisementService, AdvertisementService>();
             services.AddScoped<IGamesCategoryService, GamesCategoryService>();
+            services.AddScoped<IPlayerProfileService, PlayerProfileService>();
 
             #endregion
 
@@ -26,6 +26,7 @@ namespace PlayersBook.IoC
             services.AddScoped<IAdvertisementRepository, AdvertisementRepository>();
             services.AddScoped<IGamesCategoryRepository, GamesCategoryRepository>();
             services.AddScoped<ITwitchRespository, TwitchRepository>();
+            services.AddScoped<IPlayerProfileRepository, PlayerProfileRepository>();
             
             #endregion
 

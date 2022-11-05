@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PlayersBook.Data.Migrations
 {
-    public partial class addedExpireDate : Migration
+    public partial class Adjust : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,39 +14,40 @@ namespace PlayersBook.Data.Migrations
                 table: "PlayerProfile",
                 type: "datetime2",
                 nullable: false,
-                defaultValue: new DateTime(2022, 10, 24, 19, 21, 2, 135, DateTimeKind.Local).AddTicks(7099),
+                defaultValue: new DateTime(2022, 11, 4, 20, 17, 3, 494, DateTimeKind.Local).AddTicks(2061),
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValue: new DateTime(2022, 10, 23, 13, 27, 2, 75, DateTimeKind.Local).AddTicks(606));
+                oldDefaultValue: new DateTime(2022, 11, 4, 20, 12, 38, 643, DateTimeKind.Local).AddTicks(5186));
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "DateCreate",
                 table: "Players",
                 type: "datetime2",
                 nullable: false,
-                defaultValue: new DateTime(2022, 10, 24, 19, 21, 2, 135, DateTimeKind.Local).AddTicks(6968),
+                defaultValue: new DateTime(2022, 11, 4, 20, 17, 3, 494, DateTimeKind.Local).AddTicks(1871),
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValue: new DateTime(2022, 10, 23, 13, 27, 2, 75, DateTimeKind.Local).AddTicks(473));
+                oldDefaultValue: new DateTime(2022, 11, 4, 20, 12, 38, 643, DateTimeKind.Local).AddTicks(4995));
 
             migrationBuilder.AlterColumn<DateTime>(
-                name: "ExpireIn",
-                table: "Advertisements",
+                name: "DateCreate",
+                table: "ChannelStreams",
                 type: "datetime2",
                 nullable: false,
-                defaultValue: new DateTime(2022, 10, 25, 19, 21, 2, 135, DateTimeKind.Local).AddTicks(6749),
+                defaultValue: new DateTime(2022, 11, 4, 20, 17, 3, 494, DateTimeKind.Local).AddTicks(1588),
                 oldClrType: typeof(DateTime),
-                oldType: "datetime2");
+                oldType: "datetime2",
+                oldDefaultValue: new DateTime(2022, 11, 4, 20, 12, 38, 643, DateTimeKind.Local).AddTicks(4680));
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "DateCreate",
                 table: "Advertisements",
                 type: "datetime2",
                 nullable: false,
-                defaultValue: new DateTime(2022, 10, 24, 19, 21, 2, 135, DateTimeKind.Local).AddTicks(6578),
+                defaultValue: new DateTime(2022, 11, 4, 20, 17, 3, 494, DateTimeKind.Local).AddTicks(1329),
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValue: new DateTime(2022, 10, 23, 13, 27, 2, 75, DateTimeKind.Local).AddTicks(171));
+                oldDefaultValue: new DateTime(2022, 11, 4, 20, 12, 38, 643, DateTimeKind.Local).AddTicks(4385));
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -56,39 +57,40 @@ namespace PlayersBook.Data.Migrations
                 table: "PlayerProfile",
                 type: "datetime2",
                 nullable: false,
-                defaultValue: new DateTime(2022, 10, 23, 13, 27, 2, 75, DateTimeKind.Local).AddTicks(606),
+                defaultValue: new DateTime(2022, 11, 4, 20, 12, 38, 643, DateTimeKind.Local).AddTicks(5186),
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValue: new DateTime(2022, 10, 24, 19, 21, 2, 135, DateTimeKind.Local).AddTicks(7099));
+                oldDefaultValue: new DateTime(2022, 11, 4, 20, 17, 3, 494, DateTimeKind.Local).AddTicks(2061));
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "DateCreate",
                 table: "Players",
                 type: "datetime2",
                 nullable: false,
-                defaultValue: new DateTime(2022, 10, 23, 13, 27, 2, 75, DateTimeKind.Local).AddTicks(473),
+                defaultValue: new DateTime(2022, 11, 4, 20, 12, 38, 643, DateTimeKind.Local).AddTicks(4995),
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValue: new DateTime(2022, 10, 24, 19, 21, 2, 135, DateTimeKind.Local).AddTicks(6968));
+                oldDefaultValue: new DateTime(2022, 11, 4, 20, 17, 3, 494, DateTimeKind.Local).AddTicks(1871));
 
             migrationBuilder.AlterColumn<DateTime>(
-                name: "ExpireIn",
-                table: "Advertisements",
+                name: "DateCreate",
+                table: "ChannelStreams",
                 type: "datetime2",
                 nullable: false,
+                defaultValue: new DateTime(2022, 11, 4, 20, 12, 38, 643, DateTimeKind.Local).AddTicks(4680),
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValue: new DateTime(2022, 10, 25, 19, 21, 2, 135, DateTimeKind.Local).AddTicks(6749));
+                oldDefaultValue: new DateTime(2022, 11, 4, 20, 17, 3, 494, DateTimeKind.Local).AddTicks(1588));
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "DateCreate",
                 table: "Advertisements",
                 type: "datetime2",
                 nullable: false,
-                defaultValue: new DateTime(2022, 10, 23, 13, 27, 2, 75, DateTimeKind.Local).AddTicks(171),
+                defaultValue: new DateTime(2022, 11, 4, 20, 12, 38, 643, DateTimeKind.Local).AddTicks(4385),
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValue: new DateTime(2022, 10, 24, 19, 21, 2, 135, DateTimeKind.Local).AddTicks(6578));
+                oldDefaultValue: new DateTime(2022, 11, 4, 20, 17, 3, 494, DateTimeKind.Local).AddTicks(1329));
         }
     }
 }

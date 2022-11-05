@@ -9,7 +9,7 @@ namespace PlayersBook.Data.Context
     {
         #region DBSETS
         public DbSet<Player> Players { get; set; }
-        public DbSet<Profile> Profiles { get; set; }
+        public DbSet<PlayerProfile> PlayerProfile { get; set; }
         public DbSet<Advertisement> Advertisements { get; set; }
 
         #endregion
@@ -25,7 +25,8 @@ namespace PlayersBook.Data.Context
         {
             modelBuilder.ApplyConfiguration(new PlayerMap());
             modelBuilder.ApplyConfiguration(new AdvertisementMap());
-            modelBuilder.ApplyConfiguration(new ProfileMap());
+            modelBuilder.ApplyConfiguration(new PlayerProfileMap());
+            modelBuilder.ApplyConfiguration(new ChannelStreamsMap());
 
             modelBuilder.ApplyGlobalConfiguration();
             modelBuilder.SeedData();

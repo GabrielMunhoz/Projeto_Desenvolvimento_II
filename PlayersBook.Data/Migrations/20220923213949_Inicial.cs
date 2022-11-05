@@ -71,7 +71,7 @@ namespace PlayersBook.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Profiles",
+                name: "PlayerProfile",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -109,7 +109,7 @@ namespace PlayersBook.Data.Migrations
                     table.ForeignKey(
                         name: "FK_GamesCategory_Profiles_ProfileId",
                         column: x => x.ProfileId,
-                        principalTable: "Profiles",
+                        principalTable: "PlayerProfile",
                         principalColumn: "Id");
                 });
 
@@ -128,7 +128,7 @@ namespace PlayersBook.Data.Migrations
                     table.ForeignKey(
                         name: "FK_GamesTags_Profiles_ProfileId",
                         column: x => x.ProfileId,
-                        principalTable: "Profiles",
+                        principalTable: "PlayerProfile",
                         principalColumn: "Id");
                 });
 
@@ -154,7 +154,7 @@ namespace PlayersBook.Data.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Profiles_PlayerId",
-                table: "Profiles",
+                table: "PlayerProfile",
                 column: "PlayerId");
         }
 
@@ -173,7 +173,7 @@ namespace PlayersBook.Data.Migrations
                 name: "Advertisements");
 
             migrationBuilder.DropTable(
-                name: "Profiles");
+                name: "PlayerProfile");
 
             migrationBuilder.DropTable(
                 name: "Players");

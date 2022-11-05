@@ -12,8 +12,8 @@ using PlayersBook.Data.Context;
 namespace PlayersBook.Data.Migrations
 {
     [DbContext(typeof(PlayersBookDBContext))]
-    [Migration("20221023162702_Added voice channel field")]
-    partial class Addedvoicechannelfield
+    [Migration("20221104231238_Added channelStreams")]
+    partial class AddedchannelStreams
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,7 +33,7 @@ namespace PlayersBook.Data.Migrations
                     b.Property<DateTime>("DateCreate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 10, 23, 13, 27, 2, 75, DateTimeKind.Local).AddTicks(171));
+                        .HasDefaultValue(new DateTime(2022, 11, 4, 20, 12, 38, 643, DateTimeKind.Local).AddTicks(4385));
 
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime2");
@@ -92,6 +92,43 @@ namespace PlayersBook.Data.Migrations
                     b.ToTable("AdvertisementPlayers");
                 });
 
+            modelBuilder.Entity("PlayersBook.Domain.Entities.ChannelStreams", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateCreate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2022, 11, 4, 20, 12, 38, 643, DateTimeKind.Local).AddTicks(4680));
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ImageProfile")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("ProfileId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProfileId");
+
+                    b.ToTable("ChannelStreams");
+                });
+
             modelBuilder.Entity("PlayersBook.Domain.Entities.GamesCategory", b =>
                 {
                     b.Property<int>("Id")
@@ -118,28 +155,6 @@ namespace PlayersBook.Data.Migrations
                     b.ToTable("GamesCategory");
                 });
 
-            modelBuilder.Entity("PlayersBook.Domain.Entities.GamesTags", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("ProfileId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProfileId");
-
-                    b.ToTable("GamesTags");
-                });
-
             modelBuilder.Entity("PlayersBook.Domain.Entities.Player", b =>
                 {
                     b.Property<Guid>("Id")
@@ -149,7 +164,7 @@ namespace PlayersBook.Data.Migrations
                     b.Property<DateTime>("DateCreate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 10, 23, 13, 27, 2, 75, DateTimeKind.Local).AddTicks(473));
+                        .HasDefaultValue(new DateTime(2022, 11, 4, 20, 12, 38, 643, DateTimeKind.Local).AddTicks(4995));
 
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime2");
@@ -206,7 +221,7 @@ namespace PlayersBook.Data.Migrations
                     b.Property<DateTime>("DateCreate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 10, 23, 13, 27, 2, 75, DateTimeKind.Local).AddTicks(606));
+                        .HasDefaultValue(new DateTime(2022, 11, 4, 20, 12, 38, 643, DateTimeKind.Local).AddTicks(5186));
 
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime2");
@@ -215,6 +230,10 @@ namespace PlayersBook.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
@@ -256,17 +275,17 @@ namespace PlayersBook.Data.Migrations
                     b.Navigation("Player");
                 });
 
+            modelBuilder.Entity("PlayersBook.Domain.Entities.ChannelStreams", b =>
+                {
+                    b.HasOne("PlayersBook.Domain.Entities.PlayerProfile", null)
+                        .WithMany("ChannelStreams")
+                        .HasForeignKey("ProfileId");
+                });
+
             modelBuilder.Entity("PlayersBook.Domain.Entities.GamesCategory", b =>
                 {
                     b.HasOne("PlayersBook.Domain.Entities.PlayerProfile", null)
                         .WithMany("GamesCategoryProfile")
-                        .HasForeignKey("ProfileId");
-                });
-
-            modelBuilder.Entity("PlayersBook.Domain.Entities.GamesTags", b =>
-                {
-                    b.HasOne("PlayersBook.Domain.Entities.PlayerProfile", null)
-                        .WithMany("ChannelStreams")
                         .HasForeignKey("ProfileId");
                 });
 

@@ -11,7 +11,7 @@ namespace PlayersBook.Data.Migrations
         {
             migrationBuilder.AlterColumn<DateTime>(
                 name: "DateCreate",
-                table: "Profiles",
+                table: "PlayerProfile",
                 type: "datetime2",
                 nullable: false,
                 defaultValue: new DateTime(2022, 10, 8, 17, 2, 57, 33, DateTimeKind.Local).AddTicks(4516),
@@ -62,7 +62,7 @@ namespace PlayersBook.Data.Migrations
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "DateCreate",
-                table: "Profiles",
+                table: "PlayerProfile",
                 type: "datetime2",
                 nullable: false,
                 defaultValue: new DateTime(2022, 9, 23, 18, 39, 48, 958, DateTimeKind.Local).AddTicks(3653),

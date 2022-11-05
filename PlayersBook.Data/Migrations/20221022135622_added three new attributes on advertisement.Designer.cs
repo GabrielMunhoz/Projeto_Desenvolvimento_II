@@ -194,7 +194,7 @@ namespace PlayersBook.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("PlayersBook.Domain.Entities.Profile", b =>
+            modelBuilder.Entity("PlayersBook.Domain.Entities.PlayerProfile", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -231,7 +231,7 @@ namespace PlayersBook.Data.Migrations
 
                     b.HasIndex("PlayerId");
 
-                    b.ToTable("Profiles");
+                    b.ToTable("PlayerProfile");
                 });
 
             modelBuilder.Entity("PlayersBook.Domain.Entities.AdvertisementPlayers", b =>
@@ -255,19 +255,19 @@ namespace PlayersBook.Data.Migrations
 
             modelBuilder.Entity("PlayersBook.Domain.Entities.GamesCategory", b =>
                 {
-                    b.HasOne("PlayersBook.Domain.Entities.Profile", null)
+                    b.HasOne("PlayersBook.Domain.Entities.PlayerProfile", null)
                         .WithMany("GamesCategoryProfile")
                         .HasForeignKey("ProfileId");
                 });
 
             modelBuilder.Entity("PlayersBook.Domain.Entities.GamesTags", b =>
                 {
-                    b.HasOne("PlayersBook.Domain.Entities.Profile", null)
-                        .WithMany("GamesTagsProfile")
+                    b.HasOne("PlayersBook.Domain.Entities.PlayerProfile", null)
+                        .WithMany("ChannelStreams")
                         .HasForeignKey("ProfileId");
                 });
 
-            modelBuilder.Entity("PlayersBook.Domain.Entities.Profile", b =>
+            modelBuilder.Entity("PlayersBook.Domain.Entities.PlayerProfile", b =>
                 {
                     b.HasOne("PlayersBook.Domain.Entities.Player", "Player")
                         .WithMany()
@@ -288,11 +288,11 @@ namespace PlayersBook.Data.Migrations
                     b.Navigation("Advertisements");
                 });
 
-            modelBuilder.Entity("PlayersBook.Domain.Entities.Profile", b =>
+            modelBuilder.Entity("PlayersBook.Domain.Entities.PlayerProfile", b =>
                 {
                     b.Navigation("GamesCategoryProfile");
 
-                    b.Navigation("GamesTagsProfile");
+                    b.Navigation("ChannelStreams");
                 });
 #pragma warning restore 612, 618
         }

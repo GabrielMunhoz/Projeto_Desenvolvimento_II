@@ -71,9 +71,8 @@ namespace PlayersBook.Data.Extensions
                 .WithMany(p => p.Advertisements)
                 .HasForeignKey(ad => ad.PlayerId);
 
-            
-
             return builder;
         }
+
     }
 }

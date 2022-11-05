@@ -1,4 +1,4 @@
-﻿using PlayersBook.Data.Repositories.Base;
+﻿using PlayersBook.Data.Repositories;
 
 namespace PlayersBook.Application.Test.TestTwitch
 {

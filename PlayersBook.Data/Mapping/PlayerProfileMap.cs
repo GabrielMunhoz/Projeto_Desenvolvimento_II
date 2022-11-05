@@ -4,9 +4,9 @@ using PlayersBook.Domain.Entities;
 
 namespace PlayersBook.Data.Mapping
 {
-    public class ProfileMap : IEntityTypeConfiguration<Profile>
+    public class PlayerProfileMap : IEntityTypeConfiguration<PlayerProfile>
     {
-        public void Configure(EntityTypeBuilder<Profile> builder)
+        public void Configure(EntityTypeBuilder<PlayerProfile> builder)
         {
             builder.Property(x => x.Description).HasMaxLength(500);
             builder.HasOne(x => x.Player);
