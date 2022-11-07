@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PlayersBook.Data.Context;
 
@@ -11,9 +12,10 @@ using PlayersBook.Data.Context;
 namespace PlayersBook.Data.Migrations
 {
     [DbContext(typeof(PlayersBookDBContext))]
-    partial class PlayersBookDBContextModelSnapshot : ModelSnapshot
+    [Migration("20221106185446_relatioship games and channel")]
+    partial class relatioshipgamesandchannel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

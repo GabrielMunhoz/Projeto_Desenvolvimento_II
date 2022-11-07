@@ -126,6 +126,12 @@
   <data name="FALHA_AO_RECUPERAR_VALORES" xml:space="preserve">
     <value>Falha ao recuperar os dados!</value>
   </data>
+  <data name="FALHA_ATUALIZAR_REGISTRO" xml:space="preserve">
+    <value>Falha ao atualizar o registro</value>
+  </data>
+  <data name="FALHA_INSERIR_REGISTRO" xml:space="preserve">
+    <value>Falha ao inserir o registro {0} no banco de dados</value>
+  </data>
   <data name="INFORMATION_LOG" xml:space="preserve">
     <value>Method: {0} -- Service: {1}</value>
   </data>

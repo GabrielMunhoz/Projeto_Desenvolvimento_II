@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ExceptionHandler.Extensions;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using PlayersBook.Application.Interfaces;
-using PlayersBook.Domain.DTOs;
 
 namespace PlayersBook.Application.Services
 {
@@ -10,6 +10,7 @@ namespace PlayersBook.Application.Services
     {
         private readonly IConfiguration configuration;
         private readonly IPlayerProfileService playerProfileService;
+
         private readonly ILogger<FileService> logger;
 
         public FileService(IConfiguration configuration, IPlayerProfileService playerProfileService, ILogger<FileService> logger)
@@ -19,12 +20,12 @@ namespace PlayersBook.Application.Services
             this.logger = logger;
         }
 
-        public async Task<string> SaveFilesAsync(IFormFile file, string playerId)
+        public async Task<bool> SaveFilesAsync(IFormFile file, string playerId)
         {
             logger.LogInformation(String.Format(Resource.INFORMATION_LOG, nameof(SaveFilesAsync), nameof(FileService)));
             try
             {
-                string fileName = GenerateNewFileName(file.FileName);
+                string fileName = GenerateNewFileName(file.FileName, playerId);
                 string fileFormat = GetFileFormat(fileName);
 
                 byte[] bytesFile = ConvertFileInByteArray(file);
@@ -34,7 +35,12 @@ namespace PlayersBook.Application.Services
 
                 var url = GetFileUrl(fileName);
 
-                return url; 
+                var retornoUpdateProfile = await playerProfileService.UpdateProfilePictureByPlayerId(playerId, url);
+
+                if (!retornoUpdateProfile)
+                    throw new ApiException(String.Format(Resource.FALHA_AO_RECUPERAR_VALORES, playerId));
+
+                return retornoUpdateProfile; 
             }
             catch (Exception ex)
             {
@@ -44,6 +50,7 @@ namespace PlayersBook.Application.Services
 
         }
 
+
         #region Private Methods
         private string GetFileFormat(string fullFileName)
         {
@@ -52,10 +59,10 @@ namespace PlayersBook.Application.Services
             return "." + format;
         }
 
-        private string GenerateNewFileName(string fileName)
+        private string GenerateNewFileName(string fileName, string playerId)
         {
             logger.LogInformation(String.Format(Resource.INFORMATION_LOG, nameof(GenerateNewFileName), nameof(FileService)));
-            var newFileName = (Guid.NewGuid().ToString() + "_" + fileName).ToLower();
+            var newFileName = (playerId + "_" + fileName).ToLower();
             newFileName = newFileName.Replace("-", "").Replace(" ", "");
 
             return newFileName;

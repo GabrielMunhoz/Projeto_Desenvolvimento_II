@@ -11,5 +11,6 @@ namespace PlayersBook.Domain.Entities
         public string Password { get; set; }
         public string Email { get; set; }
         public ICollection<AdvertisementPlayers> Advertisements { get; set; }
+        public PlayerProfile PlayerProfile { get; set; }
     }
 }

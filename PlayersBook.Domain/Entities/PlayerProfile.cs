@@ -4,7 +4,8 @@ namespace PlayersBook.Domain.Entities
 {
     public class PlayerProfile : BaseEntity
     {
-        public Player? Player { get; set; }
+        public Guid PlayerId { get; set; }
+        public Player Player { get; set; }
         public ICollection<ChannelStreams>? ChannelStreams { get; set; }
         public string? Description { get; set; }
         public int? RatingPositive { get; set; }

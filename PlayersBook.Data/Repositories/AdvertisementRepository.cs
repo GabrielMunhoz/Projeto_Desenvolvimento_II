@@ -149,31 +149,6 @@ namespace PlayersBook.Data.Repositories
             return advertisement;
         }
 
-        private async Task AddGuestPlayer(Advertisement advertisement)
-        {
-            var playerConsulted = new List<Player>();
-            foreach (var guest in advertisement.Guests)
-            {
-                var especialidadeConsultada = await _context.Players.FindAsync(guest.PlayerId);
-                playerConsulted.Add(especialidadeConsultada);
-            }
-            advertisement.Guests = PlayerToAdvertisementPlayers(playerConsulted);
-        }
-
-        private ICollection<AdvertisementPlayers> PlayerToAdvertisementPlayers(List<Player> playerConsulted)
-        {
-            ICollection<AdvertisementPlayers> advertisementPlayers = new List<AdvertisementPlayers>();
-            playerConsulted.ForEach(p =>
-            {
-                advertisementPlayers.Add(new AdvertisementPlayers
-                {
-                    PlayerId = p.Id
-                });
-            });
-
-            return advertisementPlayers;
-        }
-
 
     }
 }

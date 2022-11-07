@@ -20,11 +20,29 @@ namespace PlayersBook.Data.Repositories
         {
             try
             {
-                return await _context.PlayerProfile.ToListAsync();
+                return await Query(x => !x.IsDeleted)
+                    .ToListAsync();
             }
             catch (Exception ex)
             {
                 logger.LogError(ex.Message); 
+                throw;
+            }
+        }
+
+        public async Task<PlayerProfile?> GetById(Guid id)
+        {
+            try
+            {
+                return await _context.PlayerProfile
+                    .Include(x => x.Player)
+                    .Include(x => x.ChannelStreams)
+                    .Include(x => x.GamesCategoryProfile)
+                    .FirstOrDefaultAsync(x => x.Id == id);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex.Message);
                 throw;
             }
         }

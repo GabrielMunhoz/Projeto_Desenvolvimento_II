@@ -6,5 +6,6 @@ namespace PlayersBook.Domain.Interfaces
     public interface IPlayerProfileRepository: IBaseRepository<PlayerProfile>
     {
         Task<List<PlayerProfile>> GetAllAsync();
+        Task<PlayerProfile?> GetById(Guid id);
     }
 }

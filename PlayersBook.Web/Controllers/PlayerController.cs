@@ -50,7 +50,7 @@ namespace PlayersBook.Web.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(string id)
         {
-            return Ok(mapper.Map<PlayerViewModel>(playerService.GetById(id)));
+            return Ok(mapper.Map<PlayerViewModel>(playerService.GetByIdAsync(id)));
         }
 
         [HttpPost, AllowAnonymous]

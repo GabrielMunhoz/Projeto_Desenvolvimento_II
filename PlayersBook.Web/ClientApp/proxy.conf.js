@@ -11,6 +11,7 @@ const PROXY_CONFIG = [
       "/api/advertisement",
       "/api/doc",
       "/api/gamesCategory",
+      "/image",
    ],
     target: target,
     secure: false,

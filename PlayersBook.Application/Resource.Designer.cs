@@ -88,6 +88,24 @@ namespace PlayersBook.Application {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Falha ao atualizar o registro.
+        /// </summary>
+        internal static string FALHA_ATUALIZAR_REGISTRO {
+            get {
+                return ResourceManager.GetString("FALHA_ATUALIZAR_REGISTRO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Falha ao inserir o registro {0} no banco de dados.
+        /// </summary>
+        internal static string FALHA_INSERIR_REGISTRO {
+            get {
+                return ResourceManager.GetString("FALHA_INSERIR_REGISTRO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Method: {0} -- Service: {1}.
         /// </summary>
         internal static string INFORMATION_LOG {

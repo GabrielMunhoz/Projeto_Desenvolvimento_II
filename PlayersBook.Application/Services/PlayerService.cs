@@ -52,7 +52,7 @@ namespace PlayersBook.Application.Services
             return playerRepository.GetAll();
         }
 
-        public Task<Player> GetById(string id)
+        public Task<Player> GetByIdAsync(string id)
         {
             if (!Guid.TryParse(id, out Guid playerId))
                 throw new Exception("Player id is not valid");

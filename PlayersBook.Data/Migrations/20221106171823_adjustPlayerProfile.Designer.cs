@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PlayersBook.Data.Context;
 
@@ -11,9 +12,10 @@ using PlayersBook.Data.Context;
 namespace PlayersBook.Data.Migrations
 {
     [DbContext(typeof(PlayersBookDBContext))]
-    partial class PlayersBookDBContextModelSnapshot : ModelSnapshot
+    [Migration("20221106171823_adjustPlayerProfile")]
+    partial class adjustPlayerProfile
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,7 +33,7 @@ namespace PlayersBook.Data.Migrations
                     b.Property<DateTime>("DateCreate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 11, 6, 15, 54, 45, 980, DateTimeKind.Local).AddTicks(9248));
+                        .HasDefaultValue(new DateTime(2022, 11, 6, 14, 18, 23, 389, DateTimeKind.Local).AddTicks(9164));
 
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime2");
@@ -99,7 +101,7 @@ namespace PlayersBook.Data.Migrations
                     b.Property<DateTime>("DateCreate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 11, 6, 15, 54, 45, 980, DateTimeKind.Local).AddTicks(9562));
+                        .HasDefaultValue(new DateTime(2022, 11, 6, 14, 18, 23, 389, DateTimeKind.Local).AddTicks(9509));
 
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime2");
@@ -165,7 +167,7 @@ namespace PlayersBook.Data.Migrations
                     b.Property<DateTime>("DateCreate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 11, 6, 15, 54, 45, 980, DateTimeKind.Local).AddTicks(9851));
+                        .HasDefaultValue(new DateTime(2022, 11, 6, 14, 18, 23, 389, DateTimeKind.Local).AddTicks(9847));
 
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime2");
@@ -222,7 +224,7 @@ namespace PlayersBook.Data.Migrations
                     b.Property<DateTime>("DateCreate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 11, 6, 15, 54, 45, 980, DateTimeKind.Local).AddTicks(9995));
+                        .HasDefaultValue(new DateTime(2022, 11, 6, 14, 18, 23, 389, DateTimeKind.Local).AddTicks(9999));
 
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime2");
