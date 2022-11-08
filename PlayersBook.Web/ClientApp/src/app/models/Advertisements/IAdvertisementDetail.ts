@@ -12,5 +12,6 @@ export interface IAdvertisementDetail{
     playerHostId : string; 
     playerHostName: string;
     guestCount : number;
+    host: IPlayer;
     guests: IPlayer[];
 }

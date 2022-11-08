@@ -13,13 +13,15 @@ namespace PlayersBook.Web.Controllers
     public class AdvertisementController : ControllerBase
     {
         private readonly IAdvertisementService advertisementService;
+        private readonly IPlayerProfileService playerProfileService;
         private readonly IMapper mapper;
         private readonly ILogger<AdvertisementController> logger;
 
-        public AdvertisementController(IAdvertisementService advertisementService, 
+        public AdvertisementController(IAdvertisementService advertisementService, IPlayerProfileService playerProfileService,
             IMapper mapper, ILogger<AdvertisementController> logger)
         {
             this.advertisementService = advertisementService;
+            this.playerProfileService = playerProfileService;
             this.mapper = mapper;
             this.logger = logger;
         }
@@ -76,6 +78,15 @@ namespace PlayersBook.Web.Controllers
             var advertisement = mapper.Map<Advertisement>(UpdateAdvertisementViewModel);
 
             var result = mapper.Map<AdvertisementViewModel>(await advertisementService.PutAsync(advertisement));
+
+            return Ok(result); 
+        }
+        
+        [HttpPost("avaliateGuest")]
+        public async Task<IActionResult> PostGuestsAvaliateAsync(AvaliateGuestViewModel avaliateGuestViewModel)
+        {
+
+            var result = await playerProfileService.PostAvaliateAsync(avaliateGuestViewModel);
 
             return Ok(result); 
         }

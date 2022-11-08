@@ -29,6 +29,7 @@ import { ConnectDialogComponent } from './home/views/connect-dialog/connect-dial
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {MatCheckboxModule} from '@angular/material/checkbox'
+import { AvaliateDialogComponent } from './home/views/avaliate-dialog/avaliate-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +42,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox'
     LoginComponent,
     RegisterComponent,
     ConnectDialogComponent,
+    AvaliateDialogComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

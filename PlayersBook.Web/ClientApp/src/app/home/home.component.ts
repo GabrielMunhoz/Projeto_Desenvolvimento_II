@@ -9,7 +9,7 @@ import { PlayerDataService } from '../_data-services/playerDataService';
 import { ConnectDialogComponent } from './views/connect-dialog/connect-dialog.component';
 import { CreateAdvertisementDialogComponent } from './views/create-advertisement-dialog/create-advertisement-dialog.component';
 import { faMicrophone, faMicrophoneSlash} from '@fortawesome/free-solid-svg-icons';
-import { GroupCategoryEnum } from '../models/Enums/groupCategoryEnum';
+import { AvaliateDialogComponent } from './views/avaliate-dialog/avaliate-dialog.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -110,16 +110,25 @@ export class HomeComponent {
     let idPlayer = this.getIdPlayerLoged();
 
     this._playerData.validateToken().subscribe(logged => {
-      this._advertisementData.getById(id).subscribe(advertisementCurrent => {
+      this._advertisementData.getByIdReferenceAsync(id).subscribe(advertisementCurrent => {
         if(advertisementCurrent){
           advertisementCurrent.guests = advertisementCurrent.guests.filter(x => x.playerId != idPlayer).length > 0 ? advertisementCurrent.guests.filter(x => x.playerId != idPlayer) : null as any ;
           
           this._advertisementData.put(advertisementCurrent).subscribe(suc => {
             
-              buttonDesconnect?.setAttribute("hidden","true");
-              sessionStorage.setItem("advertisementConnected", "false");
-              this.get();
+            const dialogRef = this.dialog.open(AvaliateDialogComponent, {
+              minWidth: '250px',
+              data: advertisementCurrent
+            });
             
+            dialogRef.afterClosed().subscribe(result => {
+              console.log('The dialog was closed');
+              
+              this.get(); 
+            });
+            
+            sessionStorage.setItem("advertisementConnected", "false");
+            buttonDesconnect?.setAttribute("hidden","true");
           }, err => {
             console.log(err)
             alert("Falha ao desconectar a este grupo");
@@ -174,6 +183,7 @@ export class HomeComponent {
 
     return !isHost && isConnected && isEmpty && this.validGroupCountGuest(ad)
   }
+  
   validGroupCountGuest(ad: IAdvertisement) {
     switch(ad.groupCategory) {
       case "DUO":

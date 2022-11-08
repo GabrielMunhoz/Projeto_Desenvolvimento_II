@@ -1,6 +1,7 @@
 ﻿using ExceptionHandler.Extensions;
 using Microsoft.Extensions.Logging;
 using PlayersBook.Application.Interfaces;
+using PlayersBook.Application.ViewModels.Advertisement;
 using PlayersBook.Domain.Entities;
 using PlayersBook.Domain.Interfaces;
 
@@ -135,6 +136,50 @@ namespace PlayersBook.Application.Services
             {
                 logger.LogInformation(Resource.ERROR_LOG, nameof(UpdateProfilePictureByPlayerId), nameof(PlayerProfileService), ex.Message);
                 return false; 
+            }
+        }
+
+        public async Task<bool> PostAvaliateAsync(AvaliateGuestViewModel avaliateGuestViewModel)
+        {
+            logger.LogInformation(String.Format(Resource.INFORMATION_LOG, nameof(PostAvaliateAsync), nameof(AdvertisementService)));
+            try
+            {
+                if (avaliateGuestViewModel.Avaliate.HasValue && (avaliateGuestViewModel.PlayerId != Guid.Empty))
+                {
+                    if (avaliateGuestViewModel.Avaliate.Value)
+                    {
+                        var profile = playerProfileRepository.Find(x => x.PlayerId == avaliateGuestViewModel.PlayerId);
+
+                        if (profile == null)
+                            throw new ApiException(String.Format(Resource.NAO_ENCONTRADO, avaliateGuestViewModel.PlayerId));
+
+                        profile.RatingPositive++; 
+
+                        var update = await playerProfileRepository.UpdateAsync(profile);
+
+                        return update;
+                    }
+                    else
+                    {
+                       var profile = playerProfileRepository.Find(x => x.PlayerId == avaliateGuestViewModel.PlayerId); 
+
+                        if (profile == null)
+                            throw new ApiException(String.Format(Resource.NAO_ENCONTRADO, avaliateGuestViewModel.PlayerId));
+
+                        profile.RatingNegative++;
+
+                        var update = await playerProfileRepository.UpdateAsync(profile);
+
+                        return update;
+                    }
+                }
+
+                return false; 
+            }
+            catch (Exception ex)
+            {
+                logger.LogInformation(String.Format(Resource.INFORMATION_LOG, nameof(PostAvaliateAsync), nameof(AdvertisementService), ex.Message));
+                throw;
             }
         }
     }

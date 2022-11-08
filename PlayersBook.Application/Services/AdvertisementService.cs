@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using PlayersBook.Application.Interfaces;
 using PlayersBook.Application.Validation;
 using PlayersBook.Application.Validation.Validator;
+using PlayersBook.Application.ViewModels.Advertisement;
 using PlayersBook.Domain.DTOs;
 using PlayersBook.Domain.Entities;
 using PlayersBook.Domain.Interfaces;
@@ -32,14 +33,14 @@ namespace PlayersBook.Application.Services
         public async Task<Advertisement> GetById(string id)
         {
             if (string.IsNullOrEmpty(id))
-                throw new Exception("Player Id is not valid");
+                throw new ApiException(String.Format(Resource.VALOR_INVALIDO, id));
 
             Guid.TryParse(id, out Guid userId);
 
             var result = await advertisementRepository.GetByIdAsync(userId);
 
             if (result == null)
-                throw new Exception("Not Found");
+                throw new ApiException(String.Format(Resource.NAO_ENCONTRADO, id));
 
             return result;
         }
@@ -171,5 +172,7 @@ namespace PlayersBook.Application.Services
             }
 
         }
+
+        
     }
 }

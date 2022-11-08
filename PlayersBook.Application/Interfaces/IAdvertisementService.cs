@@ -1,4 +1,5 @@
-﻿using PlayersBook.Domain.DTOs;
+﻿using PlayersBook.Application.ViewModels.Advertisement;
+using PlayersBook.Domain.DTOs;
 using PlayersBook.Domain.Entities;
 
 namespace PlayersBook.Application.Interfaces
@@ -12,7 +13,6 @@ namespace PlayersBook.Application.Interfaces
         Task<bool> DeleteAsync(string id);
         Task<IList<AdvertisementsGroupedByGame>> GetAdvertisementsGroupedAsync();
         Task<IList<AdvertisementsGroupedByGame>> GetAdvertisementsGroupedWithArtAsync();
-
 
     }
 }

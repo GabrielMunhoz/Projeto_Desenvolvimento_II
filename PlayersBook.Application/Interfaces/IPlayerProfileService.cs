@@ -1,4 +1,5 @@
-﻿using PlayersBook.Domain.Entities;
+﻿using PlayersBook.Application.ViewModels.Advertisement;
+using PlayersBook.Domain.Entities;
 
 namespace PlayersBook.Application.Interfaces
 {
@@ -9,5 +10,6 @@ namespace PlayersBook.Application.Interfaces
         Task<PlayerProfile> PostNewPlayerProfileAsync(PlayerProfile playerProfile);
         Task<bool> UpdateProfilePictureByPlayerId(string playerId, string url);
         Task<PlayerProfile> PutUpdatePlayerProfileAsync(PlayerProfile playerProfile);
+        Task<bool> PostAvaliateAsync(AvaliateGuestViewModel avaliateGuestViewModel);
     }
 }
