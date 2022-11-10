@@ -42,6 +42,14 @@ namespace PlayersBook.Web.Controllers
             var result = mapper.Map<PlayerProfileDetailViewModel>(await playerProfileService.GetByIdAsync(id)); 
             return Ok(result); 
         }
+        [HttpGet("getbyplayerid/{playerId}")]
+        public async Task<IActionResult> GetByPlayerIdAsync(string playerId)
+        {
+            logger.LogInformation($"Method: {nameof(GetByIdAsync)} -- Controller: {nameof(PlayerProfileController)}");
+
+            var result = mapper.Map<PlayerProfileDetailViewModel>(await playerProfileService.GetByPlayerIdAsync(playerId)); 
+            return Ok(result); 
+        }
 
         [HttpPost("uploadprofilepicture/{playerid}")]
         public async Task<IActionResult> PostImagePlayerProfile(List<IFormFile> files, string playerid)

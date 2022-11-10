@@ -3,7 +3,7 @@ import { AbstractControl, UntypedFormBuilder, FormGroup, Validators, FormControl
 import { Router } from '@angular/router';
 import { IPlayerLogin } from 'src/app/models/IPlayerLogin';
 import { IPlayer } from 'src/app/models/Player/IPlayer';
-import { PlayerDataService } from 'src/app/_data-services/playerDataService';
+import { PlayerDataService } from 'src/app/_data-services/player-Data.Service';
 
 @Component({
   selector: 'app-register',

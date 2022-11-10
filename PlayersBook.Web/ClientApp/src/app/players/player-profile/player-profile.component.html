@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="profile">
+    <div class="editButton">
+      <button mat-button color="primary">Editar</button>
+    </div>
+    <div class="pictureProfile" style="
+    background-image: url('Https://localhost:44393/{{playerProfile.imageUrl}}');
+    background-position: center;
+    background-size: cover;
+    "></div>
+    <div class="profileinfos">
+      <div class="nickname">
+        <h2>{{playerProfile.player.nickname}}</h2>
+      </div>
+      <div class="rating">
+        <fa-icon class="like" [icon]="faThumbsUp"> 1</fa-icon>
+        <fa-icon class="deslike" [icon]="faThumbsDown">2</fa-icon>
+      </div>
+      <div class="biografy"></div>
+      <div class="games" *ngFor="let gamesCategory of playerProfile.gamesCategoryProfile">
+        <div
+          class="cardGame"
+          style="
+            background-image: url({{gamesCategory.boxArtUrl}});
+            background-size: cover;
+            background-position: center top;
+            "
+        >
+          <p>GameName</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="streamers" *ngFor="let streams of playerProfile.channelStreams">
+      <div class="channel">
+        <img src="{{streams.imageProfile}}" alt="channel picture" />
+        <h3>{{streams.name}}</h3>
+      </div>
+    </div>
+    <div class="advertisementHistory">
+      <div class="advertisement">
+        <h4 class="gameCategory">Game <br><strong>GameName</strong></h4>
+        <div class="guestPlayer">
+          <img src="#" alt="guest picture" />
+          <h3>guestName</h3>
+        </div>
+        <h4 class="group">Game <br> <strong>GameName</strong></h4>
+      </div>
+    </div>
+  </div>
+</div>

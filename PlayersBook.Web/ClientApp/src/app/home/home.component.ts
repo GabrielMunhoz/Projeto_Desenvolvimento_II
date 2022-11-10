@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { IAdvertisement } from '../models/Advertisements/Iadvertisement';
 import { IAdvertisementGrouped } from '../models/Advertisements/IadvertisementsGrouped';
 
-import { AdvertisementDataService } from '../_data-services/advertisementDataService';
-import { PlayerDataService } from '../_data-services/playerDataService';
+import { AdvertisementDataService } from '../_data-services/advertisement-Data.Service';
+import { PlayerDataService } from '../_data-services/player-Data.Service';
 import { ConnectDialogComponent } from './views/connect-dialog/connect-dialog.component';
 import { CreateAdvertisementDialogComponent } from './views/create-advertisement-dialog/create-advertisement-dialog.component';
 import { faMicrophone, faMicrophoneSlash} from '@fortawesome/free-solid-svg-icons';

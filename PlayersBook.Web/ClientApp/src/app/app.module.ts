@@ -10,9 +10,9 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { PlayersComponent } from './players/players.component';
-import { PlayerDataService } from './_data-services/playerDataService';
+import { PlayerDataService } from './_data-services/player-Data.Service';
 import { Interceptor } from './interceptor/app.interceptor.module';
-import { AdvertisementDataService } from './_data-services/advertisementDataService';
+import { AdvertisementDataService } from './_data-services/advertisement-Data.Service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input'
@@ -20,7 +20,7 @@ import {MatSelectModule} from '@angular/material/select'
 import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CreateAdvertisementDialogComponent } from './home/views/create-advertisement-dialog/create-advertisement-dialog.component';
-import { GameDataService } from './_data-services/gameCategoryDataService';
+import { GameDataService } from './_data-services/game-Category-Data.Service';
 import {MatButtonModule} from '@angular/material/button'
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 import { RegisterComponent } from './players/register/register.component';
@@ -30,6 +30,7 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {MatCheckboxModule} from '@angular/material/checkbox'
 import { AvaliateDialogComponent } from './home/views/avaliate-dialog/avaliate-dialog.component';
+import { PlayerProfileComponent } from './players/player-profile/player-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +44,8 @@ import { AvaliateDialogComponent } from './home/views/avaliate-dialog/avaliate-d
     RegisterComponent,
     ConnectDialogComponent,
     AvaliateDialogComponent,
+    PlayerProfileComponent,
+    
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -55,6 +58,7 @@ import { AvaliateDialogComponent } from './home/views/avaliate-dialog/avaliate-d
       { path: 'players', component: PlayersComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'login', component: LoginComponent },
+      { path: 'profile', component: PlayerProfileComponent },
     ]),
     Interceptor,
     BrowserAnimationsModule,

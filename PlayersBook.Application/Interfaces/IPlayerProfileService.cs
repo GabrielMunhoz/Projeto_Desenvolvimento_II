@@ -7,6 +7,7 @@ namespace PlayersBook.Application.Interfaces
     {
         Task<List<PlayerProfile>> GetallAsync();
         Task<PlayerProfile> GetByIdAsync(string id);
+        Task<PlayerProfile> GetByPlayerIdAsync(string playerId);
         Task<PlayerProfile> PostNewPlayerProfileAsync(PlayerProfile playerProfile);
         Task<bool> UpdateProfilePictureByPlayerId(string playerId, string url);
         Task<PlayerProfile> PutUpdatePlayerProfileAsync(PlayerProfile playerProfile);

@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Inject, Injectable } from "@angular/core";
 import { Observable } from "rxjs/internal/Observable";
 import { IPlayerLogin } from "../models/IPlayerLogin";
+import { IPlayer } from "../models/Player/IPlayer";
 import { IPlayerResponse } from "../models/Player/IPlayerResponse";
 
 @Injectable()
@@ -39,5 +40,14 @@ export class PlayerDataService{
         }
         return false;
       }
+
+    userAuthenticated(): IPlayer|null {
+    let user = JSON.parse(localStorage.getItem("PlayerLogged") || "");
+
+    if(user) {
+        return user.player;
+    }
+    return null
+}
 
 }

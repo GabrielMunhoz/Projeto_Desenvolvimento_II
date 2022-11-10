@@ -43,7 +43,7 @@ namespace PlayersBook.Application.Services
                 if (!Guid.TryParse(id, out Guid profileId))
                     throw new ApiException(String.Format(Resource.VALOR_INVALIDO, id));
 
-                var result = await playerProfileRepository.GetById(profileId); 
+                var result = await playerProfileRepository.GetByIdAsync(profileId); 
 
                 if(result == null)
                     throw new ApiException(String.Format(Resource.NAO_ENCONTRADO, id));
@@ -90,7 +90,7 @@ namespace PlayersBook.Application.Services
                 if (!ret)
                     throw new ApiException(string.Format(Resource.FALHA_ATUALIZAR_REGISTRO));
                 
-                var profileBD = await playerProfileRepository.GetById(playerProfile.Id);
+                var profileBD = await playerProfileRepository.GetByIdAsync(playerProfile.Id);
 
                 if (profileBD == null)
                     throw new ApiException(string.Format(Resource.NAO_ENCONTRADO, playerProfile.Id.ToString()));
@@ -179,6 +179,28 @@ namespace PlayersBook.Application.Services
             catch (Exception ex)
             {
                 logger.LogInformation(String.Format(Resource.INFORMATION_LOG, nameof(PostAvaliateAsync), nameof(AdvertisementService), ex.Message));
+                throw;
+            }
+        }
+
+        public async Task<PlayerProfile> GetByPlayerIdAsync(string playerId)
+        {
+            logger.LogInformation($"Method: {nameof(GetByIdAsync)} -- Service: {nameof(PlayerProfileService)}");
+            try
+            {
+                if (!Guid.TryParse(playerId, out Guid playerprofileId))
+                    throw new ApiException(String.Format(Resource.VALOR_INVALIDO, playerprofileId));
+
+                var result = await playerProfileRepository.GetByPlayerIdAsync(playerprofileId);
+
+                if (result == null)
+                    throw new ApiException(String.Format(Resource.NAO_ENCONTRADO, playerprofileId));
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                logger.LogInformation(Resource.ERROR_LOG, nameof(GetallAsync), nameof(PlayerProfileService), ex.Message);
                 throw;
             }
         }

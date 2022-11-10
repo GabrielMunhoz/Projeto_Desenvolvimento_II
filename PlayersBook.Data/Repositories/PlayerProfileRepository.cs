@@ -30,7 +30,7 @@ namespace PlayersBook.Data.Repositories
             }
         }
 
-        public async Task<PlayerProfile?> GetById(Guid id)
+        public async Task<PlayerProfile?> GetByIdAsync(Guid id)
         {
             try
             {
@@ -39,6 +39,22 @@ namespace PlayersBook.Data.Repositories
                     .Include(x => x.ChannelStreams)
                     .Include(x => x.GamesCategoryProfile)
                     .FirstOrDefaultAsync(x => x.Id == id);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex.Message);
+                throw;
+            }
+        }
+        public async Task<PlayerProfile?> GetByPlayerIdAsync(Guid playerId)
+        {
+            try
+            {
+                return await _context.PlayerProfile
+                    .Include(x => x.Player)
+                    .Include(x => x.ChannelStreams)
+                    .Include(x => x.GamesCategoryProfile)
+                    .FirstOrDefaultAsync(x => x.PlayerId == playerId);
             }
             catch (Exception ex)
             {

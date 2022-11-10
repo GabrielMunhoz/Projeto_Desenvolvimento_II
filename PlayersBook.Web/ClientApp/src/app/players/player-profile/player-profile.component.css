@@ -1,0 +1,153 @@
+.container{
+    max-width: 1300px;
+    min-width: 340px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    transform: translate(0, 10%);
+}
+.profile{
+    min-width: 330px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #231923;
+    border-radius: 10px;
+    height: 820px;
+}
+.editButton{
+    display: flex;
+    color: white;
+    text-transform: uppercase;
+    justify-content: end;
+    min-height: 50px;
+    width: 100%;
+    border-radius: 10px;
+}
+.profileinfos{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+}
+.pictureProfile{
+    background-color: white;
+    min-height: 130px;
+    min-width: 130px;
+    border-radius: 50%;
+}
+
+.nickname{
+    width: 100%;
+    text-align: center;
+}
+.nickname h2{
+    color: #fff;
+    text-transform: uppercase;
+}
+.rating{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.like{
+    color: #55f0ae;
+}
+.deslike{
+    color: #f44336;
+}
+.biografy{
+    width: 100%;
+    color: white;
+    background-color: rgb(123, 121, 121);
+    border-radius: 10px;
+    min-height: 150px
+}
+
+.games{
+    min-height: 150px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.cardGame{
+    min-width: 40px;
+    min-height: 60px;
+}
+.content{
+    min-width:300px ;
+    width: 870px;
+    height: 820px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.streamers{
+    padding: 30px 10px;
+    background-color: #231923;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+    border-radius: 10px;
+}
+.channel{
+    width: 130px;
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 10px;
+}
+.channel img{
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    background-color: white;
+}
+.advertisementHistory{
+    padding: 30px 10px;
+    background-color: #231923;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;  
+    min-height: 530px;
+    border-radius: 10px;
+}
+.advertisement{
+    text-align: center;
+    padding: 10px;
+    background-color: white;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;  
+    min-height: 130px;
+    border-radius: 10px;
+}
+
+.guestPlayer{
+    width: 130px;
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 10px;
+}
+.guestPlayer img{
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    background-color: white;
+}

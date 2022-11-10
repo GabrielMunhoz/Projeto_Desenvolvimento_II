@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { IGameCategory } from 'src/app/models/IgameCategory';
-import { AdvertisementDataService } from 'src/app/_data-services/advertisementDataService';
-import { GameDataService } from 'src/app/_data-services/gameCategoryDataService';
+import { AdvertisementDataService } from 'src/app/_data-services/advertisement-Data.Service';
+import { GameDataService } from 'src/app/_data-services/game-Category-Data.Service';
 
 @Component({
   selector: 'app-create-advertisement-dialog',

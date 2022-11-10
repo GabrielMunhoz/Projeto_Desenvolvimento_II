@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IPlayerLogin } from 'src/app/models/IPlayerLogin';
-import { PlayerDataService } from 'src/app/_data-services/playerDataService';
+import { PlayerDataService } from 'src/app/_data-services/player-Data.Service';
 
 @Component({
   selector: 'app-login',
