@@ -200,7 +200,7 @@ namespace PlayersBook.Application.Services
             }
             catch (Exception ex)
             {
-                logger.LogInformation(Resource.ERROR_LOG, nameof(GetallAsync), nameof(PlayerProfileService), ex.Message);
+                logger.LogError(Resource.ERROR_LOG, nameof(GetallAsync), nameof(PlayerProfileService), ex.Message);
                 throw;
             }
         }

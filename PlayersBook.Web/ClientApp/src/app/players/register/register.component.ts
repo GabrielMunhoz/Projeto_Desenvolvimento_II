@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup = this.fb.group({});
   spinner: boolean = false; 
-  player: IPlayer = { id:'', name: '', lastname: '', email: '', nickname: '', password: '' }
+  player: IPlayer;
   constructor(
     private fb: UntypedFormBuilder,
     private playerDataService: PlayerDataService,
@@ -49,12 +49,10 @@ export class RegisterComponent implements OnInit {
     this.player = this.registerForm.value; 
     this.playerDataService.post(this.player).subscribe(
       suc => {
-        console.log(suc);
         this.login(this.player);
       },
       err => {
         this.spinner = !this.spinner
-        console.log(err)
       }
     )
   }

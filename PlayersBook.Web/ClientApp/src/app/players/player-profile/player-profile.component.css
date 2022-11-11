@@ -29,7 +29,8 @@
 .profileinfos{
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: start;
+    gap: 30px;
     align-items: center;
     width: 80%;
     height: 100%;
@@ -51,7 +52,8 @@
     text-transform: uppercase;
 }
 .rating{
-    width: 100%;
+    color: white;
+    width: 80%;
     display: flex;
     justify-content: space-evenly;
 }
@@ -73,13 +75,25 @@
     min-height: 150px;
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    flex-direction: row;
+    justify-content: start;
+    gap: 10px;
     flex-wrap: wrap;
 }
 .cardGame{
-    min-width: 40px;
-    min-height: 60px;
+    width: 40px;
+    height: 60px;
+    display: flex;
+    align-items: flex-end;
+    color: white;
 }
+/* .cardGame p{
+    background-color: rgba(0, 0, 0, 0.48);
+    margin-bottom: 0px;
+    padding: 0 5px;
+    word-wrap: break-word;
+    
+} */
 .content{
     min-width:300px ;
     width: 870px;
@@ -118,21 +132,28 @@
     background-color: #231923;
     width: 100%;
     display: flex;
-    align-items: flex-start;
-    justify-content: center;  
+    gap: 5px;
+    align-items: center;
+    justify-content: start;  
+    flex-direction: column;
     min-height: 530px;
+    max-height: 600px;
     border-radius: 10px;
+    overflow: hidden;
 }
 .advertisement{
     text-align: center;
     padding: 10px;
-    background-color: white;
+    background-color: #3c173c;
     width: 80%;
     display: flex;
     align-items: center;
     justify-content: space-between;  
     min-height: 130px;
     border-radius: 10px;
+    color: white;
+    text-align: center;
+    min-height: 150px;
 }
 
 .guestPlayer{

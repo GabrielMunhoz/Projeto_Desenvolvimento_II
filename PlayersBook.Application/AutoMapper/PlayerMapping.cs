@@ -16,7 +16,6 @@ namespace PlayersBook.Application.AutoMapper
             CreateMap<NewPlayerViewModel, Player>();
             CreateMap<UpdatePlayerViewModel, Player>();
             CreateMap<PlayerAuthenticateRequestViewModel, Player>();
-            
 
             #endregion
             #region DomainToViewModel

@@ -2,7 +2,7 @@
 
 namespace PlayersBook.Application.ViewModels.PlayerProfile
 {
-    public class PlayerProfileViewModel
+    public class UpdatePlayerProfileViewModel
     {
         public Guid Id { get; set; }
         public string PlayerId { get; set; }

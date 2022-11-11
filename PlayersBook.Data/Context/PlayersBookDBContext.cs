@@ -11,6 +11,7 @@ namespace PlayersBook.Data.Context
         public DbSet<Player> Players { get; set; }
         public DbSet<PlayerProfile> PlayerProfile { get; set; }
         public DbSet<Advertisement> Advertisements { get; set; }
+        public DbSet<AdvertisementPlayers> AdvertisementPlayers { get; set; }
 
         #endregion
 

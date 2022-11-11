@@ -15,14 +15,15 @@ namespace PlayersBook.Application.AutoMapper
             CreateMap<UpdatePlayerProfileViewModel, PlayerProfile>();
             CreateMap<NewPlayerProfileViewModel, PlayerProfile>();
             CreateMap<ChannelStreamViewModel, ChannelStreams>().ReverseMap();
-            
+            CreateMap<PlayerProfileDetailViewModel, PlayerProfile>();
+            CreateMap<PlayerProfileViewModel, PlayerProfile>();
 
             #endregion
 
             #region DomainToViewModel
             CreateMap<PlayerProfile, PlayerProfileAllViewModel>();
             CreateMap<PlayerProfile, PlayerProfileDetailViewModel>();
-
+            CreateMap<PlayerProfile , PlayerProfileViewModel>();
 
             #endregion
         }

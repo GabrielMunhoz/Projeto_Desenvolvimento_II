@@ -173,6 +173,27 @@ namespace PlayersBook.Application.Services
 
         }
 
-        
+        public async Task<List<Advertisement>> GetAdvertisementHistoryByPlayerId(string playerID)
+        {
+            logger.LogInformation($"Method: {nameof(GetAdvertisementHistoryByPlayerId)} -- Service: {nameof(PlayerProfileService)}");
+
+            try
+            {
+                if (!Guid.TryParse(playerID, out Guid playerAdId))
+                    throw new ApiException(String.Format(Resource.VALOR_INVALIDO, playerID));
+
+                var result = await advertisementRepository.GetHistoryByPlayerIdAsync(playerAdId);
+
+                if (result == null)
+                    throw new ApiException(String.Format(Resource.NAO_ENCONTRADO, playerID));
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(Resource.ERROR_LOG, nameof(GetAdvertisementHistoryByPlayerId), nameof(AdvertisementService), ex.Message);
+                throw;
+            }
+        }
     }
 }

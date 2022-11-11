@@ -1,5 +1,4 @@
-﻿using PlayersBook.Application.ViewModels.Advertisement;
-using PlayersBook.Domain.DTOs;
+﻿using PlayersBook.Domain.DTOs;
 using PlayersBook.Domain.Entities;
 
 namespace PlayersBook.Application.Interfaces
@@ -8,6 +7,7 @@ namespace PlayersBook.Application.Interfaces
     {
         Task<ICollection<Advertisement>> GetAllAsync(); 
         Task<Advertisement> GetById(string id);
+        Task<List<Advertisement>> GetAdvertisementHistoryByPlayerId(string playerID);
         Task<Advertisement> PutAsync(Advertisement advertisement);
         Task<Advertisement> PostAsync(Advertisement advertisement);
         Task<bool> DeleteAsync(string id);

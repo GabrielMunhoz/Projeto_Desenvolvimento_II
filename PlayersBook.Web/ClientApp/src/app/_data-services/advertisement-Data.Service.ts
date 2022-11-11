@@ -19,6 +19,9 @@ export class AdvertisementDataService{
     get(): Observable<IAdvertisement[]>{
         return this.http.get<IAdvertisement[]>(this.module);
     }
+    getbyHistoryPlayerId(playerId: string): Observable<IAdvertisementDetail[]>{
+        return this.http.get<IAdvertisementDetail[]>(this.module + "/getAdvertisementHistory/"+playerId);
+    }
     getById(id: string): Observable<IAdvertisementDetail>{
         return this.http.get<IAdvertisementDetail>(this.module +"/"+id);
     }

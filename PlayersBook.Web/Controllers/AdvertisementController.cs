@@ -47,6 +47,13 @@ namespace PlayersBook.Web.Controllers
 
             return Ok(itemsGrouped); 
         }
+        [HttpGet("getAdvertisementHistory/{playerId}"), AllowAnonymous]
+        public async Task<IActionResult> GetAdvertisementHistoryAsync(string playerId)
+        {
+            var itemsGrouped = mapper.Map<List<AdvertisementDetailViewModel>>(await advertisementService.GetAdvertisementHistoryByPlayerId(playerId)); 
+
+            return Ok(itemsGrouped); 
+        }
         
         [HttpGet("{id}")]
         public async Task<IActionResult> GetByIdAsync(string id)

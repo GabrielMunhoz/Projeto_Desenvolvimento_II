@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using PlayersBook.Domain.Entities;
+using System.Linq.Expressions;
 
 namespace PlayersBook.Domain.Interfaces.Base
 {
