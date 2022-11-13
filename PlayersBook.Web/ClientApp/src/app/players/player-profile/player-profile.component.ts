@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { faThumbsUp, faThumbsDown} from '@fortawesome/free-solid-svg-icons';
 import { IAdvertisementDetail } from 'src/app/models/Advertisements/IAdvertisementDetail';
 import { IPlayer } from 'src/app/models/Player/IPlayer';
@@ -6,6 +7,7 @@ import { IPlayerProfile } from 'src/app/models/PlayerProfile/iplayer-profile';
 import { AdvertisementDataService } from 'src/app/_data-services/advertisement-Data.Service';
 import { PlayerDataService } from 'src/app/_data-services/player-Data.Service';
 import { PlayerProfileDataServiceService } from 'src/app/_data-services/player-profile-data.service';
+import { EditProfileDialogComponent } from './edit-profile-dialog/edit-profile-dialog.component';
 
 @Component({
   selector: 'app-player-profile',
@@ -26,7 +28,8 @@ export class PlayerProfileComponent implements OnInit {
   constructor(
     private playerDataService : PlayerDataService,
     private profileDataService: PlayerProfileDataServiceService,
-    private advertisementDataService: AdvertisementDataService
+    private advertisementDataService: AdvertisementDataService,
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -67,6 +70,15 @@ export class PlayerProfileComponent implements OnInit {
     }
   }
 
-
+  editPlayerProfile(){
+    const dialogRef = this.dialog.open(EditProfileDialogComponent, {
+      minWidth: '500px',
+      data: this.playerProfile
+    });
+    
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
 
 }

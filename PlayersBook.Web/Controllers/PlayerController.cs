@@ -41,6 +41,7 @@ namespace PlayersBook.Web.Controllers
 
             return Ok(mapper.Map<List<PlayerViewModel>>(playerService.Get()));
         }
+        
         [HttpGet("validateToken")]
         public IActionResult ValidateToken()
         {

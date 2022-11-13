@@ -1,6 +1,7 @@
 ﻿using PlayersBook.Application.ViewModels.Advertisement;
 using PlayersBook.Application.ViewModels.GamesCategory;
 using PlayersBook.Application.ViewModels.PlayerProfile;
+using PlayersBook.Domain.DTOs;
 using PlayersBook.Domain.Entities;
 using Profile = AutoMapper.Profile;
 
@@ -15,6 +16,7 @@ namespace PlayersBook.Application.AutoMapper
             CreateMap<UpdatePlayerProfileViewModel, PlayerProfile>();
             CreateMap<NewPlayerProfileViewModel, PlayerProfile>();
             CreateMap<ChannelStreamViewModel, ChannelStreams>().ReverseMap();
+            CreateMap<ChannelStreamViewModel, ChannelStreamDto>().ReverseMap();
             CreateMap<PlayerProfileDetailViewModel, PlayerProfile>();
             CreateMap<PlayerProfileViewModel, PlayerProfile>();
 

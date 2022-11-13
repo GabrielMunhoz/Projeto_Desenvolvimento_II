@@ -8,5 +8,6 @@ namespace PlayersBook.Domain.Interfaces
         Task<List<PlayerProfile>> GetAllAsync();
         Task<PlayerProfile?> GetByIdAsync(Guid id);
         Task<PlayerProfile?> GetByPlayerIdAsync(Guid playerId);
+        Task<PlayerProfile> UpdatePlayerProfileAsync(PlayerProfile playerProfile);
     }
 }

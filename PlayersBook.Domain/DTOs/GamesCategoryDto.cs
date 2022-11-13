@@ -5,7 +5,7 @@ namespace PlayersBook.Domain.Entities
 {
     public class GamesCategoryDto
     {
-        public int Id { get; set; }
+        public int IdTwitch { get; set; }
         public string Name { get; set; }
         [JsonProperty("box_art_url")]
         public string BoxArtUrl { get; set; }

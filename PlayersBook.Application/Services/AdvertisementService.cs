@@ -166,7 +166,7 @@ namespace PlayersBook.Application.Services
                 if (gameCategory != null)
                 {
                     ItemGrouped.GameCategory.BoxArtUrl = gameCategory.BoxArtUrl.Replace("{height}", "200").Replace("{width}", "150");
-                    ItemGrouped.GameCategory.Id = gameCategory.Id;
+                    ItemGrouped.GameCategory.IdTwitch = gameCategory.IdTwitch;
                 }
 
             }

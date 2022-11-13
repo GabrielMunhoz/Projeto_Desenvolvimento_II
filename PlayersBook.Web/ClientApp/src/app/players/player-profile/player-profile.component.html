@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container" *ngIf="playerProfile">
   <div class="profile">
     <div class="editButton">
-      <button mat-button color="primary">Editar</button>
+      <button mat-button color="primary" (click)="editPlayerProfile()">Editar</button>
     </div>
     <div class="pictureProfile" style="
     background-image: url('Https://localhost:44393/{{playerProfile.imageUrl}}');
@@ -16,9 +16,17 @@
         <div><fa-icon class="like" [icon]="faThumbsUp"></fa-icon><p>2</p></div>
         <div><fa-icon class="deslike" [icon]="faThumbsDown"></fa-icon><p>1</p></div>
       </div>
-      <div class="biografy"></div>
-      <div class="games" >
-        <div
+      <div class="biografy">
+        <h3>Biografia</h3>
+        <div class="biografy-content">
+          <p *ngIf="playerProfile.description">{{playerProfile.description}}</p>
+          <p *ngIf="!playerProfile.description">Adicione uma biografia</p>
+        </div>
+      </div>
+      <div class="games">
+        <h3>Jogos</h3>
+        <div class="gamesorder">
+          <div
           *ngFor="let gamesCategory of playerProfile.gamesCategoryProfile"
           class="cardGame"
           style="
@@ -27,6 +35,7 @@
             background-position: center top;
             "
         >
+        </div>
           <!-- <p>{{gamesCategory.name}}</p> -->
         </div>
       </div>
@@ -34,23 +43,36 @@
   </div>
   <div class="content">
     <div class="streamers">
-      <div class="channel" *ngFor="let streams of playerProfile.channelStreams">
-        <img src="{{streams.imageProfile}}" alt="channel picture" />
-        <h3>{{streams.name}}</h3>
+      <h3>Lives Favoritas</h3>
+      <div class="lives">
+        <cdk-virtual-scroll-viewport orientation="horizontal" itemSize="50" class="example-viewport">
+          <div class="channel" *ngFor="let streams of playerProfile.channelStreams">
+            <img src="{{streams.imageProfile}}" alt="channel picture" />
+            <h3>{{streams.name}}</h3>
+          </div>
+        </cdk-virtual-scroll-viewport>
       </div>
     </div>
     <div class="advertisementHistory">
+      <h3>Histórico de anúncios</h3>
       <div class="advertisement" *ngFor="let ads of historyAds">
-        <h4 class="gameCategory">Game <br><strong>{{ads.gameCategory}}</strong></h4>
-        <div class="guestPlayer" *ngFor="let guest of ads.guests">
-          <img src="Https://localhost:44393/{{guest?.playerProfile?.imageUrl}}" alt="guest picture" />
-          <h3>{{guest?.name}}</h3>
+        <div class="adText">
+          <h4 class="gameCategory">Game <br> <strong>{{ads.gameCategory}}</strong></h4>
         </div>
-        <div class="guestPlayer">
+        <div class="guestsAdvertisements">
+          <div class="guestPlayer" *ngFor="let guest of ads.guests">
+            <img src="Https://localhost:44393/{{guest?.playerProfile?.imageUrl}}" alt="guest picture" />
+            <h3>{{guest?.name}}</h3>
+          </div>
+          <div class="guestPlayer">
           <img src="Https://localhost:44393/{{ads?.host?.playerProfile?.imageUrl}}" alt="guest picture" />
           <h3>{{ads?.host?.name}}</h3>
         </div>
-        <h4 class="group">Grupo <br> <strong>{{ads.groupCategory}}</strong></h4>
+        </div>
+        
+        <div class="adText">
+          <h4 class="group">Grupo <br> <strong>{{ads.groupCategory}}</strong></h4>
+        </div>
       </div>
     </div>
   </div>

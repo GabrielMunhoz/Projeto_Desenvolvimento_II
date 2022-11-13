@@ -47,6 +47,7 @@ namespace PlayersBook.Web.Controllers
 
             return Ok(itemsGrouped); 
         }
+        
         [HttpGet("getAdvertisementHistory/{playerId}"), AllowAnonymous]
         public async Task<IActionResult> GetAdvertisementHistoryAsync(string playerId)
         {

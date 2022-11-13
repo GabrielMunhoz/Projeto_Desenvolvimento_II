@@ -1,5 +1,6 @@
 export interface IGameCategory{
-    id: number;
+    id:string;
+    idTwitch: number;
     name: string;
     boxArtUrl: string;
 }

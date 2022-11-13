@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { IChannelStreams } from '../models/channelStreams/ichannel-streams';
 import { IPlayerProfile } from '../models/PlayerProfile/iplayer-profile';
 
 @Injectable({
@@ -37,5 +38,20 @@ export class PlayerProfileDataServiceService {
     }
     delete(playerId: string){
         return this.http.delete(this.module +"/"+ playerId);
+    }
+
+    getChannelStream(channelName:string): Observable<IChannelStreams[]>{ 
+        return this.http.get<IChannelStreams[]>(this.module+"/getchannelstreamsbyname/"+channelName);
+    }
+
+    uploadImageProfile(file: File, playerId:string):Observable<any> {
+  
+        const formData = new FormData(); 
+          
+        formData.append("files", file, file.name);
+          
+        // Make http post request over api
+        // with formData as req
+        return this.http.post(this.module+"/uploadprofilepicture/"+playerId, formData)
     }
 }

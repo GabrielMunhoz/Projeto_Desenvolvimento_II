@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using PlayersBook.Application.Interfaces;
 using PlayersBook.Application.ViewModels.Advertisement;
+using PlayersBook.Domain.DTOs;
 using PlayersBook.Domain.Entities;
 using PlayersBook.Domain.Interfaces;
 
@@ -12,12 +13,14 @@ namespace PlayersBook.Application.Services
     {
         private readonly IPlayerProfileRepository playerProfileRepository;
         private readonly IPlayerService playerService;
+        private readonly ITwitchRespository twitchRespository;
         private readonly ILogger<PlayerService> logger;
 
-        public PlayerProfileService(IPlayerProfileRepository playerProfileRepository, IPlayerService playerService,ILogger<PlayerService> logger)
+        public PlayerProfileService(IPlayerProfileRepository playerProfileRepository, IPlayerService playerService, ITwitchRespository twitchRespository, ILogger<PlayerService> logger)
         {
             this.playerProfileRepository = playerProfileRepository;
             this.playerService = playerService;
+            this.twitchRespository = twitchRespository;
             this.logger = logger;
         }
 
@@ -43,9 +46,9 @@ namespace PlayersBook.Application.Services
                 if (!Guid.TryParse(id, out Guid profileId))
                     throw new ApiException(String.Format(Resource.VALOR_INVALIDO, id));
 
-                var result = await playerProfileRepository.GetByIdAsync(profileId); 
+                var result = await playerProfileRepository.GetByIdAsync(profileId);
 
-                if(result == null)
+                if (result == null)
                     throw new ApiException(String.Format(Resource.NAO_ENCONTRADO, id));
 
                 return result;
@@ -64,12 +67,12 @@ namespace PlayersBook.Application.Services
             {
                 var profileBD = await playerProfileRepository.GetAsync(x => x.PlayerId == playerProfile.PlayerId);
 
-                if(profileBD != null)
+                if (profileBD != null)
                 {
-                    return playerProfile; 
+                    return playerProfile;
                 }
 
-                profileBD = await playerProfileRepository.CreateAsync(playerProfile); 
+                profileBD = await playerProfileRepository.CreateAsync(playerProfile);
 
                 return profileBD;
             }
@@ -79,23 +82,15 @@ namespace PlayersBook.Application.Services
                 throw;
             }
         }
-        
+
         public async Task<PlayerProfile> PutUpdatePlayerProfileAsync(PlayerProfile playerProfile)
         {
             logger.LogInformation($"Method: {nameof(PutUpdatePlayerProfileAsync)} -- Service: {nameof(PlayerProfileService)}");
             try
             {
-                var ret = await playerProfileRepository.UpdateAsync(playerProfile);
+                var ret = await playerProfileRepository.UpdatePlayerProfileAsync(playerProfile);
 
-                if (!ret)
-                    throw new ApiException(string.Format(Resource.FALHA_ATUALIZAR_REGISTRO));
-                
-                var profileBD = await playerProfileRepository.GetByIdAsync(playerProfile.Id);
-
-                if (profileBD == null)
-                    throw new ApiException(string.Format(Resource.NAO_ENCONTRADO, playerProfile.Id.ToString()));
-
-                return profileBD;
+                return ret;
             }
             catch (Exception ex)
             {
@@ -104,38 +99,42 @@ namespace PlayersBook.Application.Services
             }
         }
 
-        public async Task<bool> UpdateProfilePictureByPlayerId(string playerId, string url)
+        public async Task<string> UpdateProfilePictureByPlayerId(string playerId, string url)
         {
             logger.LogInformation(Resource.INFORMATION_LOG, nameof(UpdateProfilePictureByPlayerId), nameof(PlayerProfileService));
             try
             {
-                var profileBd = await playerProfileRepository.GetAsync(x=> x.Player.Id.ToString() == playerId); 
+                var profileBd = await playerProfileRepository.GetAsync(x => x.Player.Id.ToString() == playerId);
 
-                if(profileBd == null)
+                if (profileBd == null)
                 {
                     Player player = await playerService.GetByIdAsync(playerId);
                     if (player == null)
                         throw new ApiException(String.Format(Resource.NAO_ENCONTRADO, playerId));
 
-                    PlayerProfile playerProfile = new PlayerProfile { PlayerId = player.Id, ImageUrl = url }; 
+                    PlayerProfile playerProfile = new PlayerProfile { PlayerId = player.Id, ImageUrl = url };
 
                     var playerBD = await playerProfileRepository.CreateAsync(playerProfile);
 
-                    if(playerBD == null)
-                        throw new ApiException(String.Format(Resource.FALHA_INSERIR_REGISTRO, "PlayerProfile PlayerID: "+ playerId));
+                    if (playerBD == null)
+                        throw new ApiException(String.Format(Resource.FALHA_INSERIR_REGISTRO, "PlayerProfile PlayerID: " + playerId));
 
-                    return true; 
+                    return playerBD.ImageUrl;
                 }
 
                 profileBd.ImageUrl = url;
 
-                return await playerProfileRepository.UpdateAsync(profileBd); 
+                var result = await playerProfileRepository.UpdateAsync(profileBd); 
+                if(!result)
+                    throw new ApiException(String.Format(Resource.FALHA_INSERIR_REGISTRO, "PlayerProfile PlayerID: " + playerId));
+                
+                return url;
 
             }
             catch (Exception ex)
             {
                 logger.LogInformation(Resource.ERROR_LOG, nameof(UpdateProfilePictureByPlayerId), nameof(PlayerProfileService), ex.Message);
-                return false; 
+                throw; 
             }
         }
 
@@ -153,7 +152,7 @@ namespace PlayersBook.Application.Services
                         if (profile == null)
                             throw new ApiException(String.Format(Resource.NAO_ENCONTRADO, avaliateGuestViewModel.PlayerId));
 
-                        profile.RatingPositive++; 
+                        profile.RatingPositive++;
 
                         var update = await playerProfileRepository.UpdateAsync(profile);
 
@@ -161,7 +160,7 @@ namespace PlayersBook.Application.Services
                     }
                     else
                     {
-                       var profile = playerProfileRepository.Find(x => x.PlayerId == avaliateGuestViewModel.PlayerId); 
+                        var profile = playerProfileRepository.Find(x => x.PlayerId == avaliateGuestViewModel.PlayerId);
 
                         if (profile == null)
                             throw new ApiException(String.Format(Resource.NAO_ENCONTRADO, avaliateGuestViewModel.PlayerId));
@@ -174,7 +173,7 @@ namespace PlayersBook.Application.Services
                     }
                 }
 
-                return false; 
+                return false;
             }
             catch (Exception ex)
             {
@@ -201,6 +200,20 @@ namespace PlayersBook.Application.Services
             catch (Exception ex)
             {
                 logger.LogError(Resource.ERROR_LOG, nameof(GetallAsync), nameof(PlayerProfileService), ex.Message);
+                throw;
+            }
+        }
+
+        public async Task<List<ChannelStreamDto>> GetChannelsStreamsByNameAsync(string channelName)
+        {
+            logger.LogInformation($"Method: {nameof(GetChannelsStreamsByNameAsync)} -- Service: {nameof(PlayerProfileService)}");
+            try
+            {
+                return await twitchRespository.GetChannelsStreamsByNameAsync(channelName);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(Resource.ERROR_LOG, nameof(GetChannelsStreamsByNameAsync), nameof(PlayerProfileService), ex.Message);
                 throw;
             }
         }

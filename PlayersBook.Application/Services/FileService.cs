@@ -20,7 +20,7 @@ namespace PlayersBook.Application.Services
             this.logger = logger;
         }
 
-        public async Task<bool> SaveFilesAsync(IFormFile file, string playerId)
+        public async Task<string> SaveFilesAsync(IFormFile file, string playerId)
         {
             logger.LogInformation(String.Format(Resource.INFORMATION_LOG, nameof(SaveFilesAsync), nameof(FileService)));
             try
@@ -37,7 +37,7 @@ namespace PlayersBook.Application.Services
 
                 var retornoUpdateProfile = await playerProfileService.UpdateProfilePictureByPlayerId(playerId, url);
 
-                if (!retornoUpdateProfile)
+                if (string.IsNullOrEmpty(retornoUpdateProfile))
                     throw new ApiException(String.Format(Resource.FALHA_AO_RECUPERAR_VALORES, playerId));
 
                 return retornoUpdateProfile; 

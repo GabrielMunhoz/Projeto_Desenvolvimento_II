@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using PlayersBook.Application.Interfaces;
 using PlayersBook.Application.ViewModels.Advertisement;
+using PlayersBook.Application.ViewModels.GamesCategory;
 using PlayersBook.Application.ViewModels.PlayerProfile;
 using PlayersBook.Domain.Entities;
 
@@ -42,6 +44,7 @@ namespace PlayersBook.Web.Controllers
             var result = mapper.Map<PlayerProfileDetailViewModel>(await playerProfileService.GetByIdAsync(id)); 
             return Ok(result); 
         }
+        
         [HttpGet("getbyplayerid/{playerId}")]
         public async Task<IActionResult> GetByPlayerIdAsync(string playerId)
         {
@@ -51,6 +54,18 @@ namespace PlayersBook.Web.Controllers
             return Ok(result); 
         }
 
+        [HttpGet("getchannelstreamsbyname/{channelName}")]
+        public async Task<IActionResult> GetChannelsByNameAsync(string channelName)
+        {
+            logger.LogInformation($"Method: {nameof(GetChannelsByNameAsync)} -- Controller: {nameof(PlayerProfileController)}");
+
+            //var result = mapper.Map<PlayerProfileDetailViewModel>(await playerProfileService.GetByPlayerIdAsync(playerId));
+
+            var result = mapper.Map<List<ChannelStreamViewModel>>(await playerProfileService.GetChannelsStreamsByNameAsync(channelName));
+
+            return Ok(result);
+        }
+
         [HttpPost("uploadprofilepicture/{playerid}")]
         public async Task<IActionResult> PostImagePlayerProfile(List<IFormFile> files, string playerid)
         {
@@ -58,8 +73,8 @@ namespace PlayersBook.Web.Controllers
             {
                 if (files.Count > 0)
                 {
-                    
-                    return Ok(await fileService.SaveFilesAsync(files.FirstOrDefault(), playerid));
+                    var result = await fileService.SaveFilesAsync(files.FirstOrDefault(), playerid); 
+                    return Ok(JsonConvert.SerializeObject(result));
                 }
                 else
                 {
