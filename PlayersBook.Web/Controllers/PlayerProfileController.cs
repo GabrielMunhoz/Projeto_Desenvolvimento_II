@@ -1,0 +1,128 @@
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using PlayersBook.Application.Interfaces;
+using PlayersBook.Application.ViewModels.Advertisement;
+using PlayersBook.Application.ViewModels.GamesCategory;
+using PlayersBook.Application.ViewModels.PlayerProfile;
+using PlayersBook.Domain.Entities;
+
+namespace PlayersBook.Web.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController, Authorize]
+    public class PlayerProfileController : ControllerBase
+    {
+        private readonly IPlayerProfileService playerProfileService;
+        private readonly IFileService fileService;
+        private readonly ILogger<PlayerProfileController> logger;
+        private readonly IMapper mapper;
+
+        public PlayerProfileController(IPlayerProfileService playerProfileService, IFileService fileService, ILogger<PlayerProfileController> logger, IMapper mapper)
+        {
+            this.playerProfileService = playerProfileService;
+            this.fileService = fileService;
+            this.logger = logger;
+            this.mapper = mapper;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllAsync()
+        {
+            logger.LogInformation($"Method: {nameof(GetAllAsync)} -- Controller: {nameof(PlayerProfileController)}");
+
+            var result = mapper.Map<List<PlayerProfileAllViewModel>>(await playerProfileService.GetallAsync());
+            return Ok(result);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetByIdAsync(string id)
+        {
+            logger.LogInformation($"Method: {nameof(GetByIdAsync)} -- Controller: {nameof(PlayerProfileController)}");
+
+            var result = mapper.Map<PlayerProfileDetailViewModel>(await playerProfileService.GetByIdAsync(id)); 
+            return Ok(result); 
+        }
+        
+        [HttpGet("getbyplayerid/{playerId}")]
+        public async Task<IActionResult> GetByPlayerIdAsync(string playerId)
+        {
+            logger.LogInformation($"Method: {nameof(GetByIdAsync)} -- Controller: {nameof(PlayerProfileController)}");
+
+            var result = mapper.Map<PlayerProfileDetailViewModel>(await playerProfileService.GetByPlayerIdAsync(playerId)); 
+            return Ok(result); 
+        }
+
+        [HttpGet("getchannelstreamsbyname/{channelName}")]
+        public async Task<IActionResult> GetChannelsByNameAsync(string channelName)
+        {
+            logger.LogInformation($"Method: {nameof(GetChannelsByNameAsync)} -- Controller: {nameof(PlayerProfileController)}");
+
+            //var result = mapper.Map<PlayerProfileDetailViewModel>(await playerProfileService.GetByPlayerIdAsync(playerId));
+
+            var result = mapper.Map<List<ChannelStreamViewModel>>(await playerProfileService.GetChannelsStreamsByNameAsync(channelName));
+
+            return Ok(result);
+        }
+
+        [HttpPost("uploadprofilepicture/{playerid}")]
+        public async Task<IActionResult> PostImagePlayerProfile(List<IFormFile> files, string playerid)
+        {
+            try
+            {
+                if (files.Count > 0)
+                {
+                    var result = await fileService.SaveFilesAsync(files.FirstOrDefault(), playerid); 
+                    return Ok(JsonConvert.SerializeObject(result));
+                }
+                else
+                {
+                    return NoContent();
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PostPlayerProfile(NewPlayerProfileViewModel newPlayerProfile)
+        {
+            try
+            {
+                PlayerProfile playerProfile = mapper.Map<PlayerProfile>(newPlayerProfile);
+
+                var result = mapper.Map<PlayerProfileDetailViewModel>(await playerProfileService.PostNewPlayerProfileAsync(playerProfile));
+
+                return Ok(result); 
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> PutPlayerProfile(UpdatePlayerProfileViewModel updatePlayerProfileViewModel)
+        {
+            try
+            {
+                PlayerProfile playerProfile = mapper.Map<PlayerProfile>(updatePlayerProfileViewModel);
+
+                var result = mapper.Map<PlayerProfileDetailViewModel>(await playerProfileService.PutUpdatePlayerProfileAsync(playerProfile));
+
+                return Ok(result); 
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
+        }
+
+    }
+}

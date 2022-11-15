@@ -55,7 +55,7 @@ namespace PlayersBook.Application.Test.Services
             _playerRepository.Setup(x => x.Find(It.IsAny<Expression<Func<Player, bool>>>())).Returns(PlayerMockSeed.GetPlayers().FirstOrDefault());
 
             //Act
-            var result = _playerService.GetById(idExpected);
+            var result = _playerService.GetByIdAsync(idExpected);
             //Assert
 
             Assert.Equal(idExpected, result.Id.ToString());
@@ -107,7 +107,7 @@ namespace PlayersBook.Application.Test.Services
             _playerRepository.Setup(x => x.Find(It.IsAny<Expression<Func<Player, bool>>>())).Returns(PlayerMockSeed.GetPlayers().FirstOrDefault());
 
             //Act
-            var ex = Assert.Throws<Exception>(() =>  _playerService.GetById(It.IsAny<string>()).Result);
+            var ex = Assert.Throws<Exception>(() =>  _playerService.GetByIdAsync(It.IsAny<string>()).Result);
             //Assert
             Assert.Equal(ex.Message, messageExpected);
         }
@@ -121,7 +121,7 @@ namespace PlayersBook.Application.Test.Services
             _playerRepository.Setup(x => x.Find(It.IsAny<Expression<Func<Player, bool>>>()));
 
             //Act
-            var ex = Assert.Throws<Exception>(() => _playerService.GetById(validId).Result);
+            var ex = Assert.Throws<Exception>(() => _playerService.GetByIdAsync(validId).Result);
             //Assert
             Assert.Equal(ex.Message, messageExpected);
         }

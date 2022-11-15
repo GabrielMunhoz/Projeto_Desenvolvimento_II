@@ -1,0 +1,233 @@
+.container{
+    max-width: 1300px;
+    min-width: 340px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    transform: translate(0, 10%);
+}
+h2{
+
+    color: #55f0ae;
+}
+h3{
+    margin: 0;
+    text-transform: uppercase;
+    font-size: .8em;
+    color: #55f0ae;
+}
+.profile{
+    min-width: 330px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #231923;
+    border-radius: 10px;
+    height: 820px;
+}
+.editButton{
+    display: flex;
+    color: white;
+    text-transform: uppercase;
+    justify-content: end;
+    min-height: 50px;
+    width: 100%;
+    border-radius: 10px;
+}
+.profileinfos{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 30px;
+    align-items: center;
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+}
+.pictureProfile{
+    background-color: white;
+    min-height: 130px;
+    min-width: 130px;
+    border-radius: 50%;
+}
+
+.nickname{
+    width: 100%;
+    text-align: center;
+}
+.nickname h2{
+    color: #fff;
+    text-transform: uppercase;
+}
+.rating{
+    color: white;
+    width: 80%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.like{
+    color: #55f0ae;
+}
+.deslike{
+    color: #f44336;
+}
+
+.biografy{
+    padding: 5px;
+    width: 100%;
+    color: white;
+    border-radius: 10px;
+    text-align: justify;
+}
+
+.biografy-content{
+    padding: 5px;
+    width: 100%;
+    color: white;
+    border-radius: 10px;
+    min-height: 150px;
+    text-align: justify;
+    background-color: rgb(123, 121, 121);
+}
+
+.games{
+    min-height: 150px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    color: white;
+}
+
+.gamesorder{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.cardGame{
+    width: 40px;
+    height: 60px;
+    display: flex;
+    align-items: flex-end;
+    color: white;
+}
+
+.content{
+    min-width:300px ;
+    width: 870px;
+    height: 820px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.streamers{
+    background-color: #231923;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;  
+    border-radius: 10px;
+}
+
+.lives{
+    margin-top: 10px;
+    display: flex;
+}
+
+
+.channel{
+    width: 120px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.channel img{
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.advertisementHistory{
+    padding: 30px 10px;
+    background-color: #231923;
+    width: 100%;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: start;  
+    flex-direction: column;
+    min-height: 530px;
+    max-height: 600px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.advertisement{
+    text-align: center;
+    padding: 10px;
+    background-color: #3c173c;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;  
+    min-height: 130px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    min-height: 150px;
+}
+.adText{
+    min-width: 30%;
+}
+.guestsAdvertisements{
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+}
+.guestPlayer{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 10px;
+}
+.guestPlayer img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+
+.example-viewport {
+    height: 200px;
+    width: 200px;
+    border: 1px solid black;
+}
+
+.example-viewport .cdk-virtual-scroll-content-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.example-item {
+    width: 50px;
+    height: 100%;
+    writing-mode: vertical-lr;
+}

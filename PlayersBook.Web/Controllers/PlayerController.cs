@@ -41,6 +41,7 @@ namespace PlayersBook.Web.Controllers
 
             return Ok(mapper.Map<List<PlayerViewModel>>(playerService.Get()));
         }
+        
         [HttpGet("validateToken")]
         public IActionResult ValidateToken()
         {
@@ -50,7 +51,7 @@ namespace PlayersBook.Web.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(string id)
         {
-            return Ok(mapper.Map<PlayerViewModel>(playerService.GetById(id)));
+            return Ok(mapper.Map<PlayerViewModel>(playerService.GetByIdAsync(id)));
         }
 
         [HttpPost, AllowAnonymous]

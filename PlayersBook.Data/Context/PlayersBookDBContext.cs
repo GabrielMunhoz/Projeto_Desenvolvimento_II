@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using PlayersBook.Data.Extensions;
 using PlayersBook.Data.Mapping;
 using PlayersBook.Domain.Entities;
@@ -9,8 +10,11 @@ namespace PlayersBook.Data.Context
     {
         #region DBSETS
         public DbSet<Player> Players { get; set; }
-        public DbSet<Profile> Profiles { get; set; }
+        public DbSet<PlayerProfile> PlayerProfile { get; set; }
         public DbSet<Advertisement> Advertisements { get; set; }
+        public DbSet<AdvertisementPlayers> AdvertisementPlayers { get; set; }
+        public DbSet<ChannelStreams> ChannelStreams { get; set; }
+        public DbSet<GamesCategory> GamesCategory { get; set; }
 
         #endregion
 
@@ -23,9 +27,11 @@ namespace PlayersBook.Data.Context
         #region Confs
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             modelBuilder.ApplyConfiguration(new PlayerMap());
             modelBuilder.ApplyConfiguration(new AdvertisementMap());
-            modelBuilder.ApplyConfiguration(new ProfileMap());
+            modelBuilder.ApplyConfiguration(new PlayerProfileMap());
+            modelBuilder.ApplyConfiguration(new ChannelStreamsMap());
 
             modelBuilder.ApplyGlobalConfiguration();
             modelBuilder.SeedData();

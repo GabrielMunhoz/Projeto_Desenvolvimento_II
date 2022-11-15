@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { PlayerDataService } from '../_data-services/playerDataService';
+import { PlayerDataService } from '../_data-services/player-Data.Service';
 
 @Component({
   selector: 'app-nav-menu',

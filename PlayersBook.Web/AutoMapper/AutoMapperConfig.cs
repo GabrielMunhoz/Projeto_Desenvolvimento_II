@@ -9,7 +9,8 @@ namespace PlayersBook.Web.AutoMapper
             services.AddAutoMapper(
                 typeof(AdvertisementMapping),
                 typeof(PlayerMapping),
-                typeof(GamesCategoryMapping)
+                typeof(GamesCategoryMapping),
+                typeof(PlayerProfileMapping)
                 );
         }
     }

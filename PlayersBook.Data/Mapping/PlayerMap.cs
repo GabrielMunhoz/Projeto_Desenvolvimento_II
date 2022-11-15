@@ -13,6 +13,7 @@ namespace PlayersBook.Data.Mapping
             builder.Property(x => x.Email).IsRequired();
             builder.Property(x => x.LastName).IsRequired();
             builder.Property(x => x.Password).IsRequired();
+            builder.HasOne(x => x.PlayerProfile).WithOne(x => x.Player).HasForeignKey<PlayerProfile>(x => x.PlayerId);
         }
     }
 }

@@ -2,7 +2,9 @@ import { HttpClient } from "@angular/common/http";
 import { Inject, Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { IAdvertisement } from "../models/Advertisements/Iadvertisement";
+import { IAdvertisementDetail } from "../models/Advertisements/IAdvertisementDetail";
 import { IAdvertisementGrouped } from "../models/Advertisements/IadvertisementsGrouped";
+import { IAvaliateGuest } from "../models/Advertisements/IavaliatePlayerGuest";
 
 @Injectable()
 export class AdvertisementDataService{
@@ -17,8 +19,11 @@ export class AdvertisementDataService{
     get(): Observable<IAdvertisement[]>{
         return this.http.get<IAdvertisement[]>(this.module);
     }
-    getById(id: string): Observable<IAdvertisement>{
-        return this.http.get<IAdvertisement>(this.module +"/"+id);
+    getbyHistoryPlayerId(playerId: string): Observable<IAdvertisementDetail[]>{
+        return this.http.get<IAdvertisementDetail[]>(this.module + "/getAdvertisementHistory/"+playerId);
+    }
+    getById(id: string): Observable<IAdvertisementDetail>{
+        return this.http.get<IAdvertisementDetail>(this.module +"/"+id);
     }
     getByIdReferenceAsync(id : string): Observable<IAdvertisement>{
         return this.http.get<IAdvertisement>(this.module+"/getDetailed/"+id)
@@ -37,4 +42,7 @@ export class AdvertisementDataService{
         return this.http.delete(this.module +"/"+ advertisementId);
     }
 
+    avaliateGuest(avaliate : IAvaliateGuest){
+        return this.http.post(this.module +"/avaliateGuest", avaliate)
+    }
 }

@@ -1,12 +1,15 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
+using PlayersBook.Domain.Models.Base;
 
 namespace PlayersBook.Domain.Entities
 {
-    public class GamesCategory
+    public class GamesCategory : BaseEntity
     {
-        public int Id { get; set; }
+
+        [JsonProperty("id")]
+        public int IdTwitch { get; set; }
         public string Name { get; set; }
-        [JsonPropertyName("box_art_url")]
+        [JsonProperty("box_art_url")]
         public string BoxArtUrl { get; set; }
     }
 }

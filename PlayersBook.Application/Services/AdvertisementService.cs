@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using PlayersBook.Application.Interfaces;
 using PlayersBook.Application.Validation;
 using PlayersBook.Application.Validation.Validator;
+using PlayersBook.Application.ViewModels.Advertisement;
 using PlayersBook.Domain.DTOs;
 using PlayersBook.Domain.Entities;
 using PlayersBook.Domain.Interfaces;
@@ -32,14 +33,14 @@ namespace PlayersBook.Application.Services
         public async Task<Advertisement> GetById(string id)
         {
             if (string.IsNullOrEmpty(id))
-                throw new Exception("Player Id is not valid");
+                throw new ApiException(String.Format(Resource.VALOR_INVALIDO, id));
 
             Guid.TryParse(id, out Guid userId);
 
             var result = await advertisementRepository.GetByIdAsync(userId);
 
             if (result == null)
-                throw new Exception("Not Found");
+                throw new ApiException(String.Format(Resource.NAO_ENCONTRADO, id));
 
             return result;
         }
@@ -165,11 +166,34 @@ namespace PlayersBook.Application.Services
                 if (gameCategory != null)
                 {
                     ItemGrouped.GameCategory.BoxArtUrl = gameCategory.BoxArtUrl.Replace("{height}", "200").Replace("{width}", "150");
-                    ItemGrouped.GameCategory.Id = gameCategory.Id;
+                    ItemGrouped.GameCategory.IdTwitch = gameCategory.IdTwitch;
                 }
 
             }
 
+        }
+
+        public async Task<List<Advertisement>> GetAdvertisementHistoryByPlayerId(string playerID)
+        {
+            logger.LogInformation($"Method: {nameof(GetAdvertisementHistoryByPlayerId)} -- Service: {nameof(PlayerProfileService)}");
+
+            try
+            {
+                if (!Guid.TryParse(playerID, out Guid playerAdId))
+                    throw new ApiException(String.Format(Resource.VALOR_INVALIDO, playerID));
+
+                var result = await advertisementRepository.GetHistoryByPlayerIdAsync(playerAdId);
+
+                if (result == null)
+                    throw new ApiException(String.Format(Resource.NAO_ENCONTRADO, playerID));
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(Resource.ERROR_LOG, nameof(GetAdvertisementHistoryByPlayerId), nameof(AdvertisementService), ex.Message);
+                throw;
+            }
         }
     }
 }

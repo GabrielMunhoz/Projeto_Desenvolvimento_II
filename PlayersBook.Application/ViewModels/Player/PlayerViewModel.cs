@@ -1,4 +1,6 @@
-﻿namespace PlayersBook.Application.ViewModels.Player
+﻿using PlayersBook.Application.ViewModels.PlayerProfile;
+
+namespace PlayersBook.Application.ViewModels.Player
 {
     public class PlayerViewModel
     {
@@ -7,6 +9,6 @@
         public string Nickname { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-
+        public PlayerProfileViewModel PlayerProfile { get; set; }
     }
 }

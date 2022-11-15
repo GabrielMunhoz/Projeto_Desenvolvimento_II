@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using PlayersBook.Application.Interfaces;
 
 namespace PlayersBook.Web.Controllers
@@ -23,5 +22,13 @@ namespace PlayersBook.Web.Controllers
             var categories = await gamesCategoryService.GetTopGamesCategoryTwitchAsync();
             return Ok(categories.GamesCategories); 
         }
+
+        [HttpGet("getgamecategorybyname/{gameName}")]
+        public async Task<IActionResult> GetGameCategoryByNameAsync(string gameName)
+        {
+            var categories = await gamesCategoryService.GetGameCategoryByName(gameName);
+            return Ok(categories);
+        }
+
     }
 }

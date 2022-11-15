@@ -1,15 +1,15 @@
-﻿using PlayersBook.Domain.Models.Base;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using PlayersBook.Domain.Entities;
 
-namespace PlayersBook.Domain.Entities
+namespace PlayersBook.Domain.DTOs
 {
-    public class Profile : BaseEntity
+    public class ProfileDto
     {
         public Player Player { get; set; }
-        public ICollection<GamesTags> GamesTagsProfile { get; set; }
+        public ICollection<ChannelStreams> ChannelStreams { get; set; }
         public string Description { get; set; }
         public int RatingPositive { get; set; }
         public int RatingNegative { get; set; }
+        public string ImageUrl { get; set; }
         public ICollection<GamesCategory> GamesCategoryProfile { get; set; }
     }
 }

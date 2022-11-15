@@ -1,0 +1,80 @@
+<div class="container" *ngIf="playerProfile">
+  <div class="profile">
+    <div class="editButton">
+      <button mat-button color="primary" (click)="editPlayerProfile()">Editar</button>
+    </div>
+    <div class="pictureProfile" style="
+    background-image: url('Https://localhost:44393/{{playerProfile.imageUrl}}');
+    background-position: center;
+    background-size: cover;
+    "></div>
+    <div class="profileinfos">
+      <div class="nickname">
+        <h2>{{playerProfile.player.nickname}}</h2>
+      </div>
+      <div class="rating">
+        <div><fa-icon class="like" [icon]="faThumbsUp"></fa-icon><p>2</p></div>
+        <div><fa-icon class="deslike" [icon]="faThumbsDown"></fa-icon><p>1</p></div>
+      </div>
+      <div class="biografy">
+        <h3>Biografia</h3>
+        <div class="biografy-content">
+          <p *ngIf="playerProfile.description">{{playerProfile.description}}</p>
+          <p *ngIf="!playerProfile.description">Adicione uma biografia</p>
+        </div>
+      </div>
+      <div class="games">
+        <h3>Jogos</h3>
+        <div class="gamesorder">
+          <div
+          *ngFor="let gamesCategory of playerProfile.gamesCategoryProfile"
+          class="cardGame"
+          style="
+            background-image: url({{gamesCategory.boxArtUrl}});
+            background-size: cover;
+            background-position: center top;
+            "
+        >
+        </div>
+          <!-- <p>{{gamesCategory.name}}</p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="streamers">
+      <h3>Lives Favoritas</h3>
+      <!-- Component carousel: https://github.com/ivylaboratory/angular-carousel/tree/master/projects -->
+        <carousel [cellWidth]="120" [width]="700" [height]="150" [loop]="true" [margin]="0" [minSwipeDistance]="10" [arrowsOutside]="true" [cellsToShow]="5" [cellsToScroll]="5" [pauseOnHover]="false"  [loop]="true">
+          <div class="carousel-cell" *ngFor="let streams of playerProfile.channelStreams">
+            <div class="channel">
+              <img src="{{streams.imageProfile}}" alt="channel picture" />
+              <h3>{{streams.name}}</h3>
+            </div>
+          </div>
+        </carousel>
+    </div>
+    <div class="advertisementHistory">
+      <h3>Histórico de anúncios</h3>
+      <div class="advertisement" *ngFor="let ads of historyAds">
+        <div class="adText">
+          <h4 class="gameCategory">Game <br> <strong>{{ads.gameCategory}}</strong></h4>
+        </div>
+        <div class="guestsAdvertisements">
+          <div class="guestPlayer" *ngFor="let guest of ads.guests">
+            <img src="Https://localhost:44393/{{guest?.playerProfile?.imageUrl}}" alt="guest picture" />
+            <h3>{{guest?.name}}</h3>
+          </div>
+          <div class="guestPlayer">
+          <img src="Https://localhost:44393/{{ads?.host?.playerProfile?.imageUrl}}" alt="guest picture" />
+          <h3>{{ads?.host?.name}}</h3>
+        </div>
+        </div>
+        
+        <div class="adText">
+          <h4 class="group">Grupo <br> <strong>{{ads.groupCategory}}</strong></h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

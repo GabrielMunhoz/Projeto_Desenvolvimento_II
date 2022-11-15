@@ -16,6 +16,9 @@ export class GameDataService{
     get(): Observable<IGameCategory[]>{
         return this.http.get<IGameCategory[]>(this.module);
     }
+    getGameByName(gameName: string): Observable<IGameCategory[]>{
+        return this.http.get<IGameCategory[]>(this.module+"/getgamecategorybyname/"+gameName);
+    }
     getGrouped(): Observable<IGameCategory[]>{
         return this.http.get<IGameCategory[]>(this.module + "/advertisementsGrouped");
     }

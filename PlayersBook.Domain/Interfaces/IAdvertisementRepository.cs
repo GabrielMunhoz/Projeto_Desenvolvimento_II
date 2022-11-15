@@ -11,6 +11,7 @@ namespace PlayersBook.Domain.Interfaces
         Task<Advertisement> SaveAdvertisement(Advertisement advertisement);
         Task<Advertisement> UpdateAdvertisement(Advertisement advertisement);
         Task<Advertisement> GetByIdAsync(Guid id);
+        Task<List<Advertisement>> GetHistoryByPlayerIdAsync(Guid Playerid);
         Task<bool> DeleteAdvertisementAsync(string id); 
     }
 }

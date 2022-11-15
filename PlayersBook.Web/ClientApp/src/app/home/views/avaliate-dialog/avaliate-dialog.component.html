@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Avalie seu time!</h1>
+
+<div mat-dialog-content>
+    <div class="avaliateGuests" *ngFor="let guest of guests">
+        <div class="guest">
+            <p>{{guest.name}}</p>
+            <div class="avaliate">
+                <fa-icon class="like" (click)="avaliatePositive(guest.id)" [icon]="faThumbsUp"></fa-icon>
+                <fa-icon class="deslike" (click)="avaliateNegative(guest.id)" [icon]="faThumbsDown">Negative</fa-icon>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="onOkClick()">Fechar</button>
+</div>

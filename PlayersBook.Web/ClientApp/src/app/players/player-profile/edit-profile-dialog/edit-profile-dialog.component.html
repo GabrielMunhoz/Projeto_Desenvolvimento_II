@@ -1,0 +1,146 @@
+<h1 mat-dialog-title>Editar Perfil</h1>
+<div mat-dialog-content>
+  <mat-form-field class="example-chip-list" appearance="fill">
+    <mat-label>Pesquise seus streamers favoritos</mat-label>
+    <mat-chip-list #chipList aria-label="Channel selection">
+      <mat-chip
+        color="primary"
+        *ngFor="let channel of channelStreams"
+        (removed)="removeChannelStream(channel)"
+      >
+        <img
+          matChipAvatar
+          src="{{ channel.imageProfile }}"
+          alt="image profile of {{ channel.name }}"
+        />
+        {{ channel.name }}
+        <button matChipRemove>
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip>
+      <input
+        placeholder="Nova stream..."
+        #channelInput
+        minlength="3"
+        [formControl]="channelCtrl"
+        [matAutocomplete]="auto"
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="addChannel($event)"
+      />
+    </mat-chip-list>
+
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      (optionSelected)="selectedChannel($event)"
+    >
+      <mat-option
+        *ngFor="let channel of allChannelStreamsString"
+        [value]="channel"
+      >
+        <img
+          alt=""
+          class="example-option-img"
+          [src]="channel.imageProfile"
+          height="25"
+        />
+        <span>{{ channel.name }}</span>
+      </mat-option>
+    </mat-autocomplete>
+    <mat-progress-bar
+      color="accent"
+      mode="indeterminate"
+      *ngIf="consultingChannel"
+    ></mat-progress-bar>
+  </mat-form-field>
+  <mat-form-field class="example-chip-list" appearance="fill">
+    <mat-label>Pesquise seus games favoritos</mat-label>
+    <mat-chip-list #chipListGame aria-label="games selection">
+      <mat-chip
+        color="primary"
+        *ngFor="let game of gamesCategories"
+        (removed)="removeGameCategory(game)"
+      >
+        <img
+          matChipAvatar
+          src="{{ game.boxArtUrl }}"
+          alt="image profile of {{ game.name }}"
+        />
+        {{ game.name }}
+        <button matChipRemove>
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip>
+      <input
+        placeholder="Novo game..."
+        #gameInput
+        minlength="3"
+        [formControl]="gameCtrl"
+        [matAutocomplete]="autoGame"
+        [matChipInputFor]="chipListGame"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="addGame($event)"
+      />
+    </mat-chip-list>
+    <mat-autocomplete
+      #autoGame="matAutocomplete"
+      (optionSelected)="selectedGame($event)"
+    >
+      <mat-option *ngFor="let game of allGamesCategories" [value]="game">
+        <img
+          alt=""
+          class="example-option-img"
+          [src]="game.boxArtUrl"
+          height="25"
+        />
+        <span>{{ game.name }}</span>
+      </mat-option>
+    </mat-autocomplete>
+    <mat-progress-bar
+      color="accent"
+      mode="indeterminate"
+      *ngIf="consultingGamesCategory"
+    ></mat-progress-bar>
+  </mat-form-field>
+  <div class="imageProfile">
+    <label for="actual-btn" class="customLabel">Imagem de Perfil</label>
+    <input
+      class="inputFile"
+      type="file"
+      hidden
+      (change)="onChangeFileUpload($event)"
+      id="actual-btn"
+    />
+    <span id="actual-btn" *ngIf="!fileOk"
+      >Arquivo não selecionado
+      <fa-icon [icon]="faXmark" style="color: red"></fa-icon
+    ></span>
+    <span id="actual-btn" *ngIf="fileOk"
+      >Imagem atualizada
+      <fa-icon [icon]="faCheck" style="color: green"></fa-icon
+    ></span>
+	  <mat-progress-bar
+    class="fileLoading"
+    color="accent"
+    mode="indeterminate"
+    *ngIf="uploadingFile"
+  ></mat-progress-bar>
+  </div>
+  <form [formGroup]="profileForm">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Biografia</mat-label>
+      <textarea matInput
+              class="example-full-width"
+              cdkTextareaAutosize
+              #autosize="cdkTextareaAutosize"
+              cdkAutosizeMinRows="1"
+              cdkAutosizeMaxRows="5"
+              formControlName="description" 
+              name="description"></textarea>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button (click)="updateProfile()" cdkFocusInitial>Ok</button>
+</div>

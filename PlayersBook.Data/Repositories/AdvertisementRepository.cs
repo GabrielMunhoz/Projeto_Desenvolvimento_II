@@ -23,12 +23,12 @@ namespace PlayersBook.Data.Repositories
                 .Include(x => x.Guests)
                 .AsNoTracking()
                 .Where(x => !x.IsDeleted && x.IsActive && x.ExpireIn < DateTime.Now);
-            
-            if(adsExpired.Any())
+
+            if (adsExpired.Any())
                 await adsExpired.ForEachAsync(x =>
                 {
                     x.IsActive = false;
-                    _context.Update(x); 
+                    _context.Update(x);
                 });
             _context.SaveChanges();
         }
@@ -43,19 +43,19 @@ namespace PlayersBook.Data.Repositories
         }
         public async Task<ICollection<Advertisement>> GetAdvertisementsActiveWithHostAsync()
         {
-             var result = await Query(x => x.IsActive)
-                .Include(x => x.Guests)
-                .AsNoTracking()
-                .Where(x => x.IsActive)
-                .ToListAsync();
-            
+            var result = await Query(x => x.IsActive)
+               .Include(x => x.Guests)
+               .AsNoTracking()
+               .Where(x => x.IsActive)
+               .ToListAsync();
+
             if (result != null)
-                foreach(var item in result)
+                foreach (var item in result)
                 {
                     item.Host = await _context.Players.FirstAsync(x => x.Id.ToString() == item.PlayerHostId);
                 }
-            
-            return result; 
+
+            return result;
         }
 
         public async Task<ICollection<Advertisement>> GetAllAdvertisementsAsync()
@@ -71,14 +71,14 @@ namespace PlayersBook.Data.Repositories
 
             var result = await _context.Advertisements
                 .Include(a => a.Guests)
-                    .ThenInclude( x => x.Player)
+                    .ThenInclude(x => x.Player)
                         .ThenInclude(x => x.Advertisements)
                 .FirstOrDefaultAsync(a => a.Id == id);
 
             if (result != null)
-                result.Host = await _context.Players.FirstAsync(x => x.Id.ToString() == result.PlayerHostId); 
+                result.Host = await _context.Players.FirstAsync(x => x.Id.ToString() == result.PlayerHostId);
 
-            return result; 
+            return result;
         }
 
         public async Task<Advertisement> UpdateAdvertisement(Advertisement advertisement)
@@ -88,21 +88,21 @@ namespace PlayersBook.Data.Repositories
                 .SingleOrDefaultAsync(ad => ad.Id == advertisement.Id);
 
             if (adConsulted == null)
-                throw new Exception("Advertisement not found"); 
+                throw new Exception("Advertisement not found");
 
             _context.Entry(adConsulted).CurrentValues.SetValues(advertisement);
 
             await UpdateAdvertisementGuests(advertisement, adConsulted);
-            await _context.SaveChangesAsync(); 
+            await _context.SaveChangesAsync();
 
             return adConsulted;
         }
 
         private async Task UpdateAdvertisementGuests(Advertisement advertisement, Advertisement advertisementConsulted)
         {
-            advertisementConsulted.Guests.Clear(); 
+            advertisementConsulted.Guests.Clear();
 
-            foreach(AdvertisementPlayers guest in advertisement?.Guests)
+            foreach (AdvertisementPlayers guest in advertisement?.Guests)
             {
                 if (guest.PlayerId != Guid.Empty)
                 {
@@ -119,7 +119,7 @@ namespace PlayersBook.Data.Repositories
             }
         }
 
-        public  async Task<bool> DeleteAdvertisementAsync(string id)
+        public async Task<bool> DeleteAdvertisementAsync(string id)
         {
             if (string.IsNullOrEmpty(id))
                 throw new Exception("Id invalid");
@@ -138,7 +138,7 @@ namespace PlayersBook.Data.Repositories
             var result = await UpdateAdvertisement(adConsulted);
 
             return result != null ? true : false;
-            
+
         }
 
         public async Task<Advertisement> SaveAdvertisement(Advertisement advertisement)
@@ -149,31 +149,32 @@ namespace PlayersBook.Data.Repositories
             return advertisement;
         }
 
-        private async Task AddGuestPlayer(Advertisement advertisement)
+        public async Task<List<Advertisement>> GetHistoryByPlayerIdAsync(Guid Playerid)
         {
-            var playerConsulted = new List<Player>();
-            foreach (var guest in advertisement.Guests)
-            {
-                var especialidadeConsultada = await _context.Players.FindAsync(guest.PlayerId);
-                playerConsulted.Add(especialidadeConsultada);
-            }
-            advertisement.Guests = PlayerToAdvertisementPlayers(playerConsulted);
-        }
+            var result = await _context.Advertisements
+                .Include(a => a.Guests)
+                    .ThenInclude(x => x.Player.PlayerProfile)
+                .Where(a => a.PlayerHostId == Playerid.ToString())
+                .ToListAsync();
 
-        private ICollection<AdvertisementPlayers> PlayerToAdvertisementPlayers(List<Player> playerConsulted)
-        {
-            ICollection<AdvertisementPlayers> advertisementPlayers = new List<AdvertisementPlayers>();
-            playerConsulted.ForEach(p =>
+            var resultGuests = await _context.AdvertisementPlayers
+                .Include(x => x.Player)
+                    .ThenInclude(x => x.PlayerProfile)
+                .Include(x => x.Advertisement)
+                    .ThenInclude(x => x.Guests)
+                .Where(x => x.PlayerId == Playerid)
+                .ToListAsync();
+
+            result = result.Union(resultGuests.Select(x => x.Advertisement)).ToList();
+
+            if (result != null)
             {
-                advertisementPlayers.Add(new AdvertisementPlayers
+                result.ForEach(x =>
                 {
-                    PlayerId = p.Id
+                    x.Host =  _context.Players.FirstOrDefault(y => y.Id.ToString() == x.PlayerHostId);
                 });
-            });
-
-            return advertisementPlayers;
+            }
+            return result;
         }
-
-
     }
 }

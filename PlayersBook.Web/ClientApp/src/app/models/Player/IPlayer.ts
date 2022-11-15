@@ -1,3 +1,5 @@
+import { IPlayerProfile } from "../PlayerProfile/iplayer-profile";
+
 export interface IPlayer{
     id: string,
     name: string,
@@ -5,4 +7,5 @@ export interface IPlayer{
     email: string
     nickname: string;
     password: string;
+    playerProfile: IPlayerProfile
 }

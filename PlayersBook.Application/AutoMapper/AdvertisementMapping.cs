@@ -18,9 +18,9 @@ namespace PlayersBook.Application.AutoMapper
 
             #region DomainToViewModel
             CreateMap<AdvertisementsGroupedByGame, AdvertisementGroupedViewModel>()
-                .ForMember(x => x.GameCategory, opt => opt.MapFrom( src => src.GameCategory.Name));
-            
-            CreateMap<AdvertisementsGroupedByGame,AdvertisementGroupedWithArtViewModel>();
+                .ForMember(x => x.GameCategory, opt => opt.MapFrom(src => src.GameCategory.Name));
+
+            CreateMap<AdvertisementsGroupedByGame, AdvertisementGroupedWithArtViewModel>();
             CreateMap<AdvertisementPlayers, PlayerReferenceViewModel>();
             CreateMap<PlayerReferenceViewModel, AdvertisementPlayers>();
             CreateMap<Advertisement, AdvertisementViewModel>()
@@ -37,7 +37,7 @@ namespace PlayersBook.Application.AutoMapper
                 x => x.GuestCount,
                 opt => opt.MapFrom(
                     src => src.Guests.Count()));
-
+                
             #endregion
         }
     }

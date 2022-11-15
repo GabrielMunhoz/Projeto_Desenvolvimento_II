@@ -1,0 +1,30 @@
+.example-chip-list{
+    width: 100%;
+}
+.mat-dialog-content{
+    min-height: 300px;
+}
+.inputFile{
+    margin-bottom: 2px;
+}
+.customLabel{
+    border-radius: 4px 4px 0 0;
+    padding: .75em .75em  0 .75em;
+    background-color: rgba(255,255,255,.1);
+    color: white;
+    text-align: left;
+    height: 40px;
+}
+.imageProfile{
+    padding: 10px 0;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    display: flex;
+    gap: 5px;
+}
+.fileLoading{
+    width: 100%;
+}
+.example-full-width{
+    width: 100%;
+}
