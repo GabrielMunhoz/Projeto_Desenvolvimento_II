@@ -44,14 +44,15 @@
   <div class="content">
     <div class="streamers">
       <h3>Lives Favoritas</h3>
-      <div class="lives">
-        <cdk-virtual-scroll-viewport orientation="horizontal" itemSize="50" class="example-viewport">
-          <div class="channel" *ngFor="let streams of playerProfile.channelStreams">
-            <img src="{{streams.imageProfile}}" alt="channel picture" />
-            <h3>{{streams.name}}</h3>
+      <!-- Component carousel: https://github.com/ivylaboratory/angular-carousel/tree/master/projects -->
+        <carousel [cellWidth]="120" [width]="700" [height]="150" [loop]="true" [margin]="0" [minSwipeDistance]="10" [arrowsOutside]="true" [cellsToShow]="5" [cellsToScroll]="5" [pauseOnHover]="false"  [loop]="true">
+          <div class="carousel-cell" *ngFor="let streams of playerProfile.channelStreams">
+            <div class="channel">
+              <img src="{{streams.imageProfile}}" alt="channel picture" />
+              <h3>{{streams.name}}</h3>
+            </div>
           </div>
-        </cdk-virtual-scroll-viewport>
-      </div>
+        </carousel>
     </div>
     <div class="advertisementHistory">
       <h3>Histórico de anúncios</h3>

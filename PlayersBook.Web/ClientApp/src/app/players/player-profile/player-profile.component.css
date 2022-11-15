@@ -141,15 +141,17 @@ h3{
     display: flex;
 }
 
+
 .channel{
-    width: 130px;
-    height: 130px;
+    width: 120px;
+    height: 120px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: white;
     border-radius: 10px;
+    padding: 20px;
 }
 
 .channel img{

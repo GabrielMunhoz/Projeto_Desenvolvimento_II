@@ -37,7 +37,7 @@ import { MatIconModule } from '@angular/material/icon'
 import { MatAutocompleteModule } from '@angular/material/autocomplete'
 import { MatProgressBarModule } from '@angular/material/progress-bar'
 import { ScrollingModule } from '@angular/cdk/scrolling';
-
+import {IvyCarouselModule} from 'angular-responsive-carousel';
 
 @NgModule({
   declarations: [
@@ -87,6 +87,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     MatAutocompleteModule,
     MatProgressBarModule,
     ScrollingModule,
+    IvyCarouselModule,
   ],
   providers: [PlayerDataService, AdvertisementDataService, GameDataService],
   bootstrap: [AppComponent]
