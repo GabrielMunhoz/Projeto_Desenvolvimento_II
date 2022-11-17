@@ -171,7 +171,7 @@ namespace PlayersBook.Data.Repositories
             {
                 result.ForEach(x =>
                 {
-                    x.Host =  _context.Players.FirstOrDefault(y => y.Id.ToString() == x.PlayerHostId);
+                    x.Host =  _context.Players.Include(x => x.PlayerProfile).FirstOrDefault(y => y.Id.ToString() == x.PlayerHostId);
                 });
             }
             return result;
