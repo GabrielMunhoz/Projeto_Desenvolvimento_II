@@ -51,6 +51,7 @@ export class PlayerProfileInfoComponent implements OnInit {
     this.advertisementDataService.getbyHistoryPlayerId(this.playerID).subscribe(
       suc => {
         this.historyAds = suc;
+        console.log(suc)
       },
       err => {
         console.log(err.error)

@@ -104,7 +104,21 @@ mat-spinner{
     flex-direction: column;
     
 }
+.linkHost{
+    margin-left: 2px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    color: #55f0ae;
+}
+.linkHost:hover,
+.linkHost:active{
+    text-decoration: none;
+    color: #7b1fa2;
+    cursor: pointer;
+}
 .advertisement strong{
+
     text-transform: uppercase;
     font-weight: 600;
 }

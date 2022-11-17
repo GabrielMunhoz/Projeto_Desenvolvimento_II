@@ -152,7 +152,10 @@ namespace PlayersBook.Application.Services
                         if (profile == null)
                             throw new ApiException(String.Format(Resource.NAO_ENCONTRADO, avaliateGuestViewModel.PlayerId));
 
-                        profile.RatingPositive++;
+                        if (!profile.RatingPositive.HasValue)
+                            profile.RatingPositive = 1; 
+                        else
+                            profile.RatingPositive++;
 
                         var update = await playerProfileRepository.UpdateAsync(profile);
 
@@ -165,7 +168,10 @@ namespace PlayersBook.Application.Services
                         if (profile == null)
                             throw new ApiException(String.Format(Resource.NAO_ENCONTRADO, avaliateGuestViewModel.PlayerId));
 
-                        profile.RatingNegative++;
+                        if (!profile.RatingNegative.HasValue)
+                            profile.RatingNegative = 1;
+                        else
+                            profile.RatingNegative++;
 
                         var update = await playerProfileRepository.UpdateAsync(profile);
 
@@ -193,8 +199,22 @@ namespace PlayersBook.Application.Services
                 var result = await playerProfileRepository.GetByPlayerIdAsync(playerprofileId);
 
                 if (result == null)
-                    throw new ApiException(String.Format(Resource.NAO_ENCONTRADO, playerprofileId));
+                {
+                    var playerConsulted = await playerService.GetByIdAsync(playerprofileId.ToString());
 
+                    if(playerConsulted == null)
+                        throw new ApiException(String.Format(Resource.NAO_ENCONTRADO, playerprofileId));
+
+                    PlayerProfile newPlayerProfile = new PlayerProfile
+                    {
+                        PlayerId = playerprofileId
+                    };
+
+                    var saveProfile = await playerProfileRepository.CreateAsync(newPlayerProfile); 
+
+                    return saveProfile;
+                }
+                    
                 return result;
             }
             catch (Exception ex)

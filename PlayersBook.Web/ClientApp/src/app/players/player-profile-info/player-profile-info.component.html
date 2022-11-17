@@ -19,11 +19,11 @@
         <div class="rating">
           <div>
             <fa-icon class="like" [icon]="faThumbsUp"></fa-icon>
-            <p>2</p>
+            <p>{{playerProfile.ratingPositive}}</p>
           </div>
           <div>
             <fa-icon class="deslike" [icon]="faThumbsDown"></fa-icon>
-            <p>1</p>
+            <p>{{playerProfile.ratingNegative}}</p>
           </div>
         </div>
         <div class="biografy">
@@ -92,7 +92,7 @@
           <div class="guestsAdvertisements">
             <div class="guestPlayer" *ngFor="let guest of ads.guests">
               <img
-                *ngIf="guest?.playerProfile?.imageUrl != null"
+                *ngIf="guest?.playerProfile?.imageUrl"
                 src="{{ baseUrl + guest?.playerProfile?.imageUrl }}"
                 alt="guest picture"
               />
@@ -103,6 +103,7 @@
             </div>
             <div class="guestPlayer">
               <img
+                *ngIf="ads?.host?.playerProfile?.imageUrl"
                 src="{{ baseUrl + ads?.host?.playerProfile?.imageUrl }}"
                 alt="guest picture"
               />
