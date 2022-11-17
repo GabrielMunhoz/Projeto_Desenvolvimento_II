@@ -19,6 +19,7 @@ h3{
     color: #55f0ae;
 }
 .profile{
+    padding-top: 30px;
     min-width: 330px;
     display: flex;
     flex-direction: column;
@@ -37,6 +38,7 @@ h3{
     border-radius: 10px;
 }
 .profileinfos{
+    padding-top: 20px;
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -52,7 +54,6 @@ h3{
     min-width: 130px;
     border-radius: 50%;
 }
-
 .pictureProfileIcon{
     background-color: white;
     max-height: 130px;
@@ -63,14 +64,12 @@ h3{
     justify-content: center;
     overflow: hidden;
 }
-
 .userProfileIcon{
     color: black;
     font-size: 7em;
     margin: 0;
     transform: translate(0, 35px);
 }
-
 .nickname{
     width: 100%;
     text-align: center;
@@ -91,7 +90,6 @@ h3{
 .deslike{
     color: #f44336;
 }
-
 .biografy{
     padding: 5px;
     width: 100%;
@@ -99,7 +97,6 @@ h3{
     border-radius: 10px;
     text-align: justify;
 }
-
 .biografy-content{
     padding: 5px;
     width: 100%;
@@ -109,7 +106,6 @@ h3{
     text-align: justify;
     background-color: rgb(123, 121, 121);
 }
-
 .games{
     min-height: 150px;
     width: 100%;
@@ -118,7 +114,6 @@ h3{
     justify-content: start;
     color: white;
 }
-
 .gamesorder{
     display: flex;
     flex-direction: row;
@@ -126,7 +121,6 @@ h3{
     gap: 10px;
     flex-wrap: wrap;
 }
-
 .cardGame{
     width: 40px;
     height: 60px;
@@ -134,7 +128,6 @@ h3{
     align-items: flex-end;
     color: white;
 }
-
 .content{
     min-width:300px ;
     width: 870px;
@@ -143,7 +136,6 @@ h3{
     flex-direction: column;
     justify-content: space-between;
 }
-
 .streamers{
     background-color: #231923;
     width: 100%;
@@ -153,13 +145,10 @@ h3{
     justify-content: center;  
     border-radius: 10px;
 }
-
 .lives{
     margin-top: 10px;
     display: flex;
 }
-
-
 .channel{
     width: 120px;
     height: 120px;
@@ -171,14 +160,12 @@ h3{
     border-radius: 10px;
     padding: 20px;
 }
-
 .channel img{
     width: 95px;
     height: 95px;
     border-radius: 50%;
     background-color: white;
 }
-
 .advertisementHistory{
     padding: 30px 10px;
     background-color: #231923;
@@ -231,8 +218,6 @@ h3{
     border-radius: 50%;
     background-color: white;
 }
-
-
 .guestProfileIcon{
     background-color: white;
     max-height: 50px;
@@ -243,25 +228,21 @@ h3{
     justify-content: center;
     overflow: hidden;
 }
-
 .guestProfileIconlogo{
     color: black;
     font-size: 3em;
     margin: 0;
     transform: translate(0, 15px);
 }
-
 .example-viewport {
     height: 200px;
     width: 200px;
     border: 1px solid black;
 }
-
 .example-viewport .cdk-virtual-scroll-content-wrapper {
     display: flex;
     flex-direction: row;
 }
-
 .example-item {
     width: 50px;
     height: 100%;

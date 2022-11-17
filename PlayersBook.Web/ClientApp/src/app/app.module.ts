@@ -38,6 +38,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete'
 import { MatProgressBarModule } from '@angular/material/progress-bar'
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
+import { PlayerProfileInfoComponent } from './players/player-profile-info/player-profile-info.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,7 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
     AvaliateDialogComponent,
     PlayerProfileComponent,
     EditProfileDialogComponent,
-    
+    PlayerProfileInfoComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -68,6 +69,7 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
       { path: 'register', component: RegisterComponent },
       { path: 'login', component: LoginComponent },
       { path: 'profile', component: PlayerProfileComponent },
+      { path: 'playerprofileinfo/:playerid', component: PlayerProfileInfoComponent },
     ]),
     Interceptor,
     BrowserAnimationsModule,
@@ -88,6 +90,7 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
     MatProgressBarModule,
     ScrollingModule,
     IvyCarouselModule,
+    
   ],
   providers: [PlayerDataService, AdvertisementDataService, GameDataService],
   bootstrap: [AppComponent]

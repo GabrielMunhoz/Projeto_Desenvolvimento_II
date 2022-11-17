@@ -26,7 +26,7 @@
         <fa-icon class="iconVoiceOn" title="Voz" [icon]="iconVoiceOn" *ngIf="ad.voiceChannel"></fa-icon>
         <fa-icon class="iconVoiceOff" title="Voz" [icon]="iconVoiceOff" *ngIf="!ad.voiceChannel"></fa-icon>
       </div>
-      <h4><strong>Host:</strong> {{ad.playerHostName}}</h4>
+      <h4><strong>Host:</strong> <a class="linkHost" target="_blank" [routerLink]="['/playerprofileinfo', ad.playerHostId]"> {{ad.playerHostName}}</a></h4>
       <p><strong>Grupo:</strong> {{ad.groupCategory}}</p>
       <p><strong>Participantes:</strong> {{ad.guestCount}}</p>
       <p><strong>Jogo:</strong> {{adGrouped.gameCategory.name}}</p>
