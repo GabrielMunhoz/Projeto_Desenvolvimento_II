@@ -61,19 +61,7 @@
     <div class="streamers">
       <h3>Lives Favoritas</h3>
       <!-- Component carousel: https://github.com/ivylaboratory/angular-carousel/tree/master/projects -->
-      <carousel
-        [cellWidth]="120"
-        [width]="700"
-        [height]="150"
-        [loop]="true"
-        [margin]="0"
-        [minSwipeDistance]="10"
-        [arrowsOutside]="true"
-        [cellsToShow]="5"
-        [cellsToScroll]="5"
-        [pauseOnHover]="false"
-        [loop]="true"
-      >
+      <carousel [arrowsOutside]="true" [cellWidth]="130">
         <div
           class="carousel-cell"
           *ngFor="let streams of playerProfile.channelStreams"
