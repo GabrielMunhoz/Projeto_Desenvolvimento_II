@@ -149,16 +149,16 @@ h3{
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;  
     border-radius: 10px;
+    padding: 0 60px;
 }
 
 .lives{
     margin-top: 10px;
     display: flex;
 }
-
 
 .channel{
     width: 120px;
@@ -267,3 +267,18 @@ h3{
     height: 100%;
     writing-mode: vertical-lr;
 }
+
+@media (max-width: 560px) {
+    .container{
+        margin: 30px auto;
+        display: flex;
+        max-width: 560px;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        transform: translate(0, 0);
+    }
+    .content{
+        max-width: 330px;
+    }
+  }
