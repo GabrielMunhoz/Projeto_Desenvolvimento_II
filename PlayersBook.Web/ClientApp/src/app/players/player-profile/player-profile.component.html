@@ -62,10 +62,7 @@
       <h3>Lives Favoritas</h3>
       <!-- Component carousel: https://github.com/ivylaboratory/angular-carousel/tree/master/projects -->
       <carousel [arrowsOutside]="true" [cellWidth]="150">
-        <div
-          class="carousel-cell"
-          *ngFor="let streams of playerProfile.channelStreams"
-        >
+        <div class="carousel-cell" *ngFor="let streams of playerProfile.channelStreams">
           <div class="channel">
             <img src="{{ streams.imageProfile }}" alt="channel picture" />
             <h3>{{ streams.name }}</h3>
@@ -75,45 +72,35 @@
     </div>
     <div class="advertisementHistory">
       <h3>Histórico de anúncios</h3>
-      <div class="advertisement" *ngFor="let ads of historyAds">
-        <div class="adText">
-          <h4 class="gameCategory">
-            Game <br />
-            <strong>{{ ads.gameCategory }}</strong>
-          </h4>
-        </div>
-        <div class="guestsAdvertisements">
-          <div class="guestPlayer" *ngFor="let guest of ads.guests">
-            <img
-              *ngIf="guest?.playerProfile?.imageUrl "
-              src="{{ baseUrl + guest?.playerProfile?.imageUrl }}"
-              alt="guest picture"
-            />
-            <div class="guestProfileIcon" *ngIf="!guest?.playerProfile?.imageUrl">
-              <fa-icon class="guestProfileIconlogo" [icon]="faUser"></fa-icon>
-            </div>
-            <h3>{{ guest?.name }}</h3>
+      <cdk-virtual-scroll-viewport scrollWindow [itemSize]="150" class="example-viewport">
+        <div class="advertisement" *ngFor="let ads of historyAds">
+          <div class="adText">
+            <h4 class="gameCategory">
+              Game <br />
+              <strong>{{ ads.gameCategory }}</strong>
+            </h4>
           </div>
-          <div class="guestPlayer">
-            <img
-              *ngIf="ads?.host?.playerProfile?.imageUrl"
-              src="{{ baseUrl + ads?.host?.playerProfile?.imageUrl }}"
-              alt="guest picture"
-            />
-            <div class="guestProfileIcon" *ngIf="!ads?.host?.playerProfile?.imageUrl">
-              <fa-icon class="guestProfileIconlogo" [icon]="faUser"></fa-icon>
-            </div>
-            <h3>{{ ads?.host?.name }}</h3>
+          <div class="guestsAdvertisements">
+            <carousel [arrowsOutside]="true" [cellWidth]="100" [height]="100" [width]="200">
+              <div class="carousel-cells" *ngFor="let guest of ads.guests">
+                <div class="guestPlayer">
+                  <img *ngIf="guest?.playerProfile?.imageUrl" src="{{baseUrl + guest?.playerProfile?.imageUrl}}" alt="guest picture" />
+                  <div class="guestProfileIcon" *ngIf="!guest?.playerProfile?.imageUrl">
+                    <fa-icon class="guestProfileIconlogo" [icon]="faUser"></fa-icon>
+                  </div>
+                  <h3>{{guest?.name}}</h3>
+                </div>
+              </div>
+            </carousel>
+          </div>
+          <div class="adText">
+            <h4 class="group">
+              Grupo <br />
+              <strong>{{ ads.groupCategory }}</strong>
+            </h4>
           </div>
         </div>
-
-        <div class="adText">
-          <h4 class="group">
-            Grupo <br />
-            <strong>{{ ads.groupCategory }}</strong>
-          </h4>
-        </div>
-      </div>
+      </cdk-virtual-scroll-viewport>
     </div>
   </div>
 </div>

@@ -195,6 +195,7 @@ h3{
     overflow: hidden;
 }
 .advertisement{
+    margin: 10px auto;
     text-align: center;
     padding: 10px;
     background-color: #3c173c;
@@ -206,19 +207,20 @@ h3{
     border-radius: 10px;
     color: white;
     text-align: center;
-    min-height: 150px;
+    height: 100px;
 }
 .adText{
-    min-width: 30%;
+    min-width: 150px;
 }
 .guestsAdvertisements{
-    width: 60%;
+    width: 300px;
+    height: 100px;
     display: flex;
     flex-direction: row;
 }
 .guestPlayer{
-    width: 100px;
-    height: 100px;
+    max-width: 100px;
+    max-height: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -253,14 +255,8 @@ h3{
 }
 
 .example-viewport {
-    height: 200px;
-    width: 200px;
-    border: 1px solid black;
-}
-
-.example-viewport .cdk-virtual-scroll-content-wrapper {
-    display: flex;
-    flex-direction: row;
+    height: 100%;
+    width: 100%;
 }
 
 .example-item {
