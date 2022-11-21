@@ -141,7 +141,8 @@ h3{
     height: 820px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 30px;
 }
 
 .streamers{
@@ -190,16 +191,16 @@ h3{
     justify-content: start;  
     flex-direction: column;
     min-height: 530px;
-    max-height: 600px;
+    height: 820px;
     border-radius: 10px;
     overflow: hidden;
 }
 .advertisement{
     margin: 10px auto;
     text-align: center;
-    padding: 10px;
+    padding: 0 10px;
     background-color: #3c173c;
-    width: 80%;
+    width: 90%;
     display: flex;
     align-items: center;
     justify-content: space-between;  
@@ -207,7 +208,7 @@ h3{
     border-radius: 10px;
     color: white;
     text-align: center;
-    height: 100px;
+    height: 150px;
 }
 .adText{
     min-width: 150px;
@@ -228,13 +229,14 @@ h3{
     color: white;
     border-radius: 10px;
 }
-.guestPlayer img{
+.imageGuest{
+    background-position: center;
+    background-size: cover;
     width: 50px;
     height: 50px;
     border-radius: 50%;
     background-color: white;
 }
-
 
 .guestProfileIcon{
     background-color: white;

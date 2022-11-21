@@ -49,11 +49,12 @@ export class PlayerProfileComponent implements OnInit {
     this.advertisementDataService.getbyHistoryPlayerId(player.id).subscribe(
       suc => {
         this.historyAds = suc;
-        this.historyAds.forEach( x => {
-          console.log(x.host)
-          x.guests.push(x.host)
+        suc.forEach( x => {
+          x.guests = x.guests.filter(x => x !== null);
+          x.guests.push(x.host);
+          x.guestCount = x.guests.length;
         })
-        console.log(this.historyAds)
+        this.historyAds = suc;
       },
       err => {
         console.log(err.error)

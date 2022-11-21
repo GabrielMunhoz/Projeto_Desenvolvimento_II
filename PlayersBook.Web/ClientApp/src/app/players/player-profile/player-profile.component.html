@@ -80,13 +80,14 @@
               <strong>{{ ads.gameCategory }}</strong>
             </h4>
           </div>
+          
           <div class="guestsAdvertisements">
-            <carousel [arrowsOutside]="true" [cellWidth]="100" [height]="100" [width]="200">
-              <div class="carousel-cells" *ngFor="let guest of ads.guests">
-                <div class="guestPlayer">
-                  <img *ngIf="guest?.playerProfile?.imageUrl" src="{{baseUrl + guest?.playerProfile?.imageUrl}}" alt="guest picture" />
+            <carousel [arrowsOutside]="true" [cellWidth]="100" [height]="100">
+              <div class="carousel-cell" *ngFor="let guest of ads?.guests">
+                <div class="guestPlayer" *ngIf="guest?.name != null">
+                  <div class="imageGuest" *ngIf="guest?.playerProfile?.imageUrl" style="background-image: url('{{ baseUrl + guest?.playerProfile?.imageUrl}}');"></div>
                   <div class="guestProfileIcon" *ngIf="!guest?.playerProfile?.imageUrl">
-                    <fa-icon class="guestProfileIconlogo" [icon]="faUser"></fa-icon>
+                    <fa-icon class="guestProfileIconlogo" *ngIf="!guest?.playerProfile?.imageUrl" [icon]="faUser"></fa-icon>
                   </div>
                   <h3>{{guest?.name}}</h3>
                 </div>
