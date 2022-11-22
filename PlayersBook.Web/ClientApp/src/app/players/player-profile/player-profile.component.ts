@@ -21,7 +21,7 @@ export class PlayerProfileComponent implements OnInit {
   faThumbsDown = faThumbsDown;
   faEdit = faEdit;
   
-  baseUrl :string
+  baseUrl : string;
   player: IPlayer; 
   playerProfile: IPlayerProfile
 
@@ -41,6 +41,7 @@ export class PlayerProfileComponent implements OnInit {
     this.FillPlayerProfile();
     this.FillHistoryAdvertisements(); 
   }
+  
   FillHistoryAdvertisements() {
     let player = this.playerDataService.userAuthenticated(); 
     if(!player)

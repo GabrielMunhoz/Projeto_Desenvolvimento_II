@@ -14,7 +14,7 @@ namespace PlayersBook.Data.Repositories
         }
         public List<Player> GetAll()
         {
-            return Query(x => !x.IsDeleted).ToList();
+            return Query(x => !x.IsDeleted).Include(x => x.PlayerProfile).ToList();
         }
     }
 }
