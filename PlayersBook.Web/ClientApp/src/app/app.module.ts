@@ -39,6 +39,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar'
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { PlayerProfileInfoComponent } from './players/player-profile-info/player-profile-info.component';
+import { SearchPlayersComponent } from './players/search-players/search-players.component';
+import { SearchPlayersPipe } from './customPipe/search-players.pipe';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,8 @@ import { PlayerProfileInfoComponent } from './players/player-profile-info/player
     PlayerProfileComponent,
     EditProfileDialogComponent,
     PlayerProfileInfoComponent,
+    SearchPlayersComponent,
+    SearchPlayersPipe,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -69,6 +73,7 @@ import { PlayerProfileInfoComponent } from './players/player-profile-info/player
       { path: 'register', component: RegisterComponent },
       { path: 'login', component: LoginComponent },
       { path: 'profile', component: PlayerProfileComponent },
+      { path: 'playersSearch', component: SearchPlayersComponent },
       { path: 'playerprofileinfo/:playerid', component: PlayerProfileInfoComponent },
     ]),
     Interceptor,

@@ -24,6 +24,7 @@ html {
   color: blueviolet;
 }
 .navbar-brand{
+  font-weight: 600;
   color: white;
 }
 .navbar-brand:hover{

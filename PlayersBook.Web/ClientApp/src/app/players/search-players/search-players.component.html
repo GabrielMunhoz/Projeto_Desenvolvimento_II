@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="searchBar">
+        <input type="text" name="search" class="searchInput" [(ngModel)]="searchTerm" placeholder="Pesquisar jogador">
+    </div>
+    <div class="searchContent">
+        <div class="profileResult" (click)="viewProfile(player.id)" *ngFor="let player of PlayersSearch | searchPlayers:searchTerm">
+            <div class="profileImage" style="background-image: url('{{ BaseUrl + player?.playerProfile?.imageUrl}}');">
+
+            </div>
+            <div class="infoText">
+                <h4>Apelido</h4>
+                <p>{{player.nickname}}</p>
+            </div>
+            <div class="profileIcon" (click)="viewProfile(player.id)">
+                Perfil
+            </div>
+        </div>
+    </div>
+</div>

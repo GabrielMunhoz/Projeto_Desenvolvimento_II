@@ -15,8 +15,8 @@ export class PlayerDataService{
     constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
         
     }
-    get(){
-        return this.http.get(this.module);
+    get(): Observable<IPlayer[]>{
+        return this.http.get<IPlayer[]>(this.module);
     }
     validateToken(){
         return this.http.get(this.module + "/validateToken");

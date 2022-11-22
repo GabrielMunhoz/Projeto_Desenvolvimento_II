@@ -31,6 +31,9 @@
             <a class="nav-link text-light" [routerLink]="['/profile']" *ngIf="playerDataService.userLogged()">Perfil</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-light" [routerLink]="['/playersSearch']" *ngIf="playerDataService.userLogged()">Jogadores</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-light" [routerLink]="['/login']" *ngIf="!playerDataService.userLogged()">Logar</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
