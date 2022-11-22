@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, ViewEncapsulation, Inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { faThumbsUp, faThumbsDown, faUser} from '@fortawesome/free-solid-svg-icons';
+import { faThumbsUp, faThumbsDown, faUser, faEdit} from '@fortawesome/free-solid-svg-icons';
 import { IAdvertisementDetail } from 'src/app/models/Advertisements/IAdvertisementDetail';
 import { IPlayer } from 'src/app/models/Player/IPlayer';
 import { IPlayerProfile } from 'src/app/models/PlayerProfile/iplayer-profile';
@@ -19,6 +19,7 @@ export class PlayerProfileComponent implements OnInit {
   faThumbsUp = faThumbsUp; 
   faUser = faUser; 
   faThumbsDown = faThumbsDown;
+  faEdit = faEdit;
   
   baseUrl :string
   player: IPlayer; 
@@ -48,7 +49,12 @@ export class PlayerProfileComponent implements OnInit {
     this.advertisementDataService.getbyHistoryPlayerId(player.id).subscribe(
       suc => {
         this.historyAds = suc;
-        console.log(suc)
+        suc.forEach( x => {
+          x.guests = x.guests.filter(x => x !== null);
+          x.guests.push(x.host);
+          x.guestCount = x.guests.length;
+        })
+        this.historyAds = suc;
       },
       err => {
         console.log(err.error)
@@ -71,7 +77,7 @@ export class PlayerProfileComponent implements OnInit {
 
   editPlayerProfile(){
     const dialogRef = this.dialog.open(EditProfileDialogComponent, {
-      minWidth: '500px',
+      minWidth: '300px',
       data: this.playerProfile
     });
     

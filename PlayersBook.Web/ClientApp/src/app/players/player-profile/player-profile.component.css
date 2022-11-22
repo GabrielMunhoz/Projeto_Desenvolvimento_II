@@ -141,7 +141,8 @@ h3{
     height: 820px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 30px;
 }
 
 .streamers{
@@ -149,7 +150,8 @@ h3{
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    max-height: 150px;
     justify-content: center;  
     border-radius: 10px;
     padding: 0 60px;
@@ -189,15 +191,16 @@ h3{
     justify-content: start;  
     flex-direction: column;
     min-height: 530px;
-    max-height: 600px;
+    height: 820px;
     border-radius: 10px;
     overflow: hidden;
 }
 .advertisement{
+    margin: 10px auto;
     text-align: center;
-    padding: 10px;
+    padding: 0 10px;
     background-color: #3c173c;
-    width: 80%;
+    width: 90%;
     display: flex;
     align-items: center;
     justify-content: space-between;  
@@ -205,19 +208,20 @@ h3{
     border-radius: 10px;
     color: white;
     text-align: center;
-    min-height: 150px;
+    height: 150px;
 }
 .adText{
-    min-width: 30%;
+    min-width: 150px;
 }
 .guestsAdvertisements{
-    width: 60%;
+    width: 300px;
+    height: 100px;
     display: flex;
     flex-direction: row;
 }
 .guestPlayer{
-    width: 100px;
-    height: 100px;
+    max-width: 100px;
+    max-height: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -225,13 +229,14 @@ h3{
     color: white;
     border-radius: 10px;
 }
-.guestPlayer img{
+.imageGuest{
+    background-position: center;
+    background-size: cover;
     width: 50px;
     height: 50px;
     border-radius: 50%;
     background-color: white;
 }
-
 
 .guestProfileIcon{
     background-color: white;
@@ -252,14 +257,8 @@ h3{
 }
 
 .example-viewport {
-    height: 200px;
-    width: 200px;
-    border: 1px solid black;
-}
-
-.example-viewport .cdk-virtual-scroll-content-wrapper {
-    display: flex;
-    flex-direction: row;
+    height: 100%;
+    width: 100%;
 }
 
 .example-item {
@@ -267,6 +266,48 @@ h3{
     height: 100%;
     writing-mode: vertical-lr;
 }
+
+@media (max-width: 1401px) {
+    .content{
+        max-width: 600px;
+    }
+  }
+@media (max-width: 1201px) {
+    .container{
+        display: flex;
+        justify-content: space-around;
+        gap: 0px;
+    }
+    .content{
+        max-width: 500px;
+    }
+  }
+@media (max-width: 991px) {
+    .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 30px;
+        transform: translate(0, 30px);
+    }
+    .content{
+        max-width: 700px;
+    }
+  }
+@media (max-width: 771px) {
+    .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 30px;
+        transform: translate(0, 30px);
+    }
+    .content{
+        max-width: 600px;
+    }
+  }
 
 @media (max-width: 560px) {
     .container{
@@ -282,3 +323,4 @@ h3{
         max-width: 330px;
     }
   }
+  
