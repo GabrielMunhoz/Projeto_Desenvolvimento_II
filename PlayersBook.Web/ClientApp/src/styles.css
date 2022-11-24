@@ -13,6 +13,16 @@ body{
   height: 100vh;
 }
 
+.rating{
+  background-color: #231923;
+  color: white;
+  text-align: center;
+}
+.rating a{
+  color: #55f0ae;
+  font-weight: 600;
+}
+
 .btn-primary {
   color: #fff;
   background-color: #1b6ec2;

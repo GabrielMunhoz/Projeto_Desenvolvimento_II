@@ -43,8 +43,7 @@ namespace PlayersBook.Web.Controllers
         [HttpGet("advertisementsGroupedWithArt"), AllowAnonymous]
         public async Task<IActionResult> GetAdvertisementsGrouByCategorysWithArtAsync()
         {
-            var itemsGrouped = mapper.Map<List<AdvertisementGroupedWithArtViewModel>>(await advertisementService.GetAdvertisementsGroupedWithArtAsync()); 
-
+            var itemsGrouped = mapper.Map<List<AdvertisementGroupedWithArtViewModel>>(await advertisementService.GetAdvertisementsGroupedWithArtAsync());
             return Ok(itemsGrouped); 
         }
         
