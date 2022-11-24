@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { IAdvertisement } from '../models/Advertisements/Iadvertisement';
 import { IAdvertisementGrouped } from '../models/Advertisements/IadvertisementsGrouped';
 
+
 import { AdvertisementDataService } from '../_data-services/advertisement-Data.Service';
 import { PlayerDataService } from '../_data-services/player-Data.Service';
 import { ConnectDialogComponent } from './views/connect-dialog/connect-dialog.component';
@@ -40,9 +41,13 @@ export class HomeComponent {
   get(){
     this._advertisementData.getGrouped().subscribe(
       advertisementsGrouped => {
-        this.advertisementsGrouped = advertisementsGrouped;
-        this.showFilterButton = false;
-        this.showSpinnerButtonFilter = false;
+        if(advertisementsGrouped){
+          this.advertisementsGrouped = advertisementsGrouped;
+          this.showFilterButton = false;
+          this.showSpinnerButtonFilter = false;
+        }else {
+          this.mockAdvertisements()
+        }
     }, err => {
       console.log(err);
       alert("Erro interno");
@@ -187,11 +192,11 @@ export class HomeComponent {
   validGroupCountGuest(ad: IAdvertisement) {
     switch(ad.groupCategory) {
       case "DUO":
-        return ad.guestCount <= 1;
+        return ad.guestCount < 1;
       case "TRIO":
-        return ad.guestCount <= 2;
+        return ad.guestCount < 2;
       case "TEAM":
-        return ad.guestCount <= 4; 
+        return ad.guestCount < 4; 
         default:
           return true;
     }
@@ -293,4 +298,11 @@ export class HomeComponent {
       this.validatedToken =  false;
     });
   }
+
+
+  mockAdvertisements(){
+    console.log("Entrou no mock")
+    this.advertisementsGrouped = JSON.parse('[{"gameCategory": {"id": "00000000-0000-0000-0000-000000000000","idTwitch": 0,"name": "VALORANT","boxArtUrl": "https://static-cdn.jtvnw.net/ttv-boxart/516575-150x200.jpg"},"advertisements": [{"id": "00cb3747-c87c-4cc9-83d5-08dacdbca863","gameCategory": "VALORANT","groupCategory": "DUO","tagHostGame": "gmunho#2204","linkDiscord": "","expireIn": "2022-11-24T22:38:58.8676823","voiceChannel": true,"isActive": true,"playerHostId": "d0f606a2-622c-46b8-a844-ae0e817b1839","playerHostName": "Gmunho","guestCount": 1,"guests": [{"playerId": "46d4bcdc-d095-4ae7-0f24-08dacdbdbea5"}]},{"id": "8fbeb219-9750-46b8-83d8-08dacdbca863","gameCategory": "VALORANT","groupCategory": "TRIO","tagHostGame": "mike#4332","linkDiscord": "https://discord.gg/aDabGQ5p","expireIn": "2022-11-24T22:49:27.6126397","voiceChannel": true,"isActive": true,"playerHostId": "dec3dc5a-ae0a-4694-0f23-08dacdbdbea5","playerHostName": "MIke","guestCount": 1,"guests": [{"playerId": "2c76f576-79b5-4951-0f25-08dacdbdbea5"}]}]},{"gameCategory": {"id": "00000000-0000-0000-0000-000000000000","idTwitch": 0,"name": "Counter-Strike: Global Offensive","boxArtUrl": "https://static-cdn.jtvnw.net/ttv-boxart/32399_IGDB-150x200.jpg"},"advertisements": [{"id": "26be429e-5b11-443d-83d6-08dacdbca863","gameCategory": "Counter-Strike: Global Offensive","groupCategory": "DUO","tagHostGame": "Rafa#2322","linkDiscord": "","expireIn": "2022-11-24T22:44:23.8646183","voiceChannel": true,"isActive": true,"playerHostId": "c967c3a0-af87-4696-178f-08dab8602b0c","playerHostName": "Rafa","guestCount": 0,"guests": []}]},{"gameCategory": {"id": "00000000-0000-0000-0000-000000000000","idTwitch": 0,"name": "FIFA 23","boxArtUrl": "https://static-cdn.jtvnw.net/ttv-boxart/1745202732_IGDB-150x200.jpg"},"advertisements": [{"id": "810c989e-6f2f-479f-83d7-08dacdbca863","gameCategory": "FIFA 23","groupCategory": "DUO","tagHostGame": "","linkDiscord": "https://discord.gg/aDabGQ5p","expireIn": "2022-11-24T22:47:33.1592355","voiceChannel": true,"isActive": true,"playerHostId": "40ccad3b-c526-4367-0f22-08dacdbdbea5","playerHostName": "marceloOliveira","guestCount": 0,"guests": []}]}]')
+  }
+
 }
