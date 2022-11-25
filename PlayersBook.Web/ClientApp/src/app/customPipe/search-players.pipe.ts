@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { IPlayer } from '../models/Player/IPlayer';
 
 @Pipe({
-  name: 'searchPlayers'
+  name: 'searchPlayers',
+  pure: false
 })
 export class SearchPlayersPipe implements PipeTransform {
 
