@@ -41,6 +41,8 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { PlayerProfileInfoComponent } from './players/player-profile-info/player-profile-info.component';
 import { SearchPlayersComponent } from './players/search-players/search-players.component';
 import { SearchPlayersPipe } from './customPipe/search-players.pipe';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { RouteGuardGuard } from './route-guard.guard';
 
 @NgModule({
   declarations: [
@@ -72,9 +74,11 @@ import { SearchPlayersPipe } from './customPipe/search-players.pipe';
       { path: 'players', component: PlayersComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'profile', component: PlayerProfileComponent },
-      { path: 'playersSearch', component: SearchPlayersComponent },
-      { path: 'playerprofileinfo/:playerid', component: PlayerProfileInfoComponent },
+      { path: 'profile', component: PlayerProfileComponent , canActivate: [RouteGuardGuard]},
+      { path: 'playersSearch', component: SearchPlayersComponent, canActivate: [RouteGuardGuard] },
+      { path: 'playerprofileinfo/:playerid', component: PlayerProfileInfoComponent, canActivate: [RouteGuardGuard] },
+      { path: '**', component: PageNotFoundComponent },
+
     ]),
     Interceptor,
     BrowserAnimationsModule,

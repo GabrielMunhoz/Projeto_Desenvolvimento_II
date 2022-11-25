@@ -39,7 +39,7 @@
             Desconectar 
             <mat-spinner  color="accent" diameter="20" id="{{ad.id}}" hidden></mat-spinner>
           </button>
-          <button mat-raised-button color="warn" (click)="finishAdvertisement(ad)" *ngIf="checkPlayerHost(ad.playerHostId)">
+          <button mat-raised-button color="warn" (click)="finishAdvertisement(ad)" *ngIf="checkPlayerHost(ad)">
             Finalizar 
             <mat-spinner  color="accent" diameter="20" id="{{ad.id}}" hidden></mat-spinner>
           </button>
